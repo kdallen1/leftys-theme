@@ -107,6 +107,12 @@
         <span class="price-item price-item--sale price-item--last">
           {{ money_price }}
         </span>
+        {%- if compare_at_price > price -%}
+          {%- assign discount_percentage = compare_at_price | minus: price | times: 100 | divided_by: compare_at_price -%}
+          <span class="price__sale-percentage">
+            -{{ discount_percentage }}%
+          </span>
+        {%- endif -%}
       </div>
       {%- if product.selected_or_first_available_variant.unit_price_measurement -%}
         {% render 'unit-price', price: product.selected_or_first_available_variant.unit_price, measurement: product.selected_or_first_available_variant.unit_price_measurement %}

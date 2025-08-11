@@ -3,6 +3,7 @@
   letter-spacing: 0.1rem;
   line-height: calc(1 + 0.5 / var(--font-body-scale));
   color: rgb(var(--color-foreground));
+  font-weight: 600;
 }
 
 .price > * {
@@ -86,8 +87,26 @@
 
 .price--on-sale .price-item--regular {
   text-decoration: line-through;
-  color: rgba(var(--color-foreground), 0.75);
+  color: rgba(var(--color-foreground), 0.6);
   font-size: 1.3rem;
+  margin-right: 0.8rem;
+}
+
+.price--on-sale .price-item--sale {
+  color: #E74C3C;
+  font-weight: 700;
+}
+
+.price__sale-percentage {
+  display: inline-block;
+  background-color: #E74C3C;
+  color: white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  vertical-align: middle;
 }
 
 .unit-price {

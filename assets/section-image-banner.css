@@ -388,20 +388,39 @@
   content: '';
   position: absolute;
   top: 0;
-  background: #000000;
+  background: linear-gradient(135deg, rgba(44, 62, 80, 0.3) 0%, rgba(52, 73, 94, 0.2) 100%);
   opacity: 0;
   z-index: 1;
   width: 100%;
   height: 100%;
+  transition: opacity 0.3s ease;
+}
+
+.banner:hover::after,
+.banner:hover .banner__media::after {
+  opacity: 1;
 }
 
 .banner__box > * + .banner__text {
   margin-top: 1.5rem;
 }
 
+.banner__text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.95;
+  max-width: 50rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media screen and (min-width: 750px) {
   .banner__box > * + .banner__text {
     margin-top: 2rem;
+  }
+  
+  .banner__text {
+    font-size: 1.2rem;
   }
 }
 
@@ -435,6 +454,10 @@
 
 .banner__heading {
   margin-bottom: 0;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .banner__box .banner__heading + * {

@@ -14,12 +14,29 @@
 }
 
 .list-menu__item--active {
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
+  position: relative;
+  color: rgb(var(--color-foreground));
+}
+
+.list-menu__item--active::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2rem;
+  height: 0.2rem;
+  background-color: rgb(var(--color-foreground));
+  border-radius: 0.1rem;
 }
 
 .list-menu__item--active:hover {
-  text-decoration-thickness: 0.2rem;
+  text-decoration: none;
+}
+
+.list-menu__item:hover {
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
 }
 
 .list-menu--disclosure.localization-selector {

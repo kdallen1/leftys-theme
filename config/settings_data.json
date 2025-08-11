@@ -6,24 +6,24 @@
       "color_schemes": {
         "scheme-1": {
           "settings": {
-            "background": "#FFFFFF",
+            "background": "#FEFEFE",
             "background_gradient": "",
-            "text": "#121212",
-            "button": "#121212",
+            "text": "#2C3E50",
+            "button": "#34495E",
             "button_label": "#FFFFFF",
-            "secondary_button_label": "#121212",
-            "shadow": "#121212"
+            "secondary_button_label": "#34495E",
+            "shadow": "#BDC3C7"
           }
         },
         "scheme-2": {
           "settings": {
-            "background": "#F3F3F3",
+            "background": "#F8F9FA",
             "background_gradient": "",
-            "text": "#121212",
-            "button": "#121212",
-            "button_label": "#F3F3F3",
-            "secondary_button_label": "#121212",
-            "shadow": "#121212"
+            "text": "#2C3E50",
+            "button": "#5D6D7E",
+            "button_label": "#FFFFFF",
+            "secondary_button_label": "#5D6D7E",
+            "shadow": "#AEB6BF"
           }
         },
         "scheme-3": {
@@ -50,27 +50,27 @@
         },
         "scheme-5": {
           "settings": {
-            "background": "#334FB4",
+            "background": "#4A90A4",
             "background_gradient": "",
             "text": "#FFFFFF",
             "button": "#FFFFFF",
-            "button_label": "#334FB4",
+            "button_label": "#4A90A4",
             "secondary_button_label": "#FFFFFF",
-            "shadow": "#121212"
+            "shadow": "#2C3E50"
           }
         }
       },
-      "type_header_font": "assistant_n4",
-      "heading_scale": 100,
-      "type_body_font": "assistant_n4",
+      "type_header_font": "helvetica_n4",
+      "heading_scale": 110,
+      "type_body_font": "helvetica_n4",
       "body_scale": 100,
       "page_width": 1200,
-      "spacing_sections": 0,
+      "spacing_sections": 52,
       "spacing_grid_horizontal": 8,
       "spacing_grid_vertical": 8,
       "buttons_border_thickness": 1,
       "buttons_border_opacity": 100,
-      "buttons_radius": 0,
+      "buttons_radius": 40,
       "buttons_shadow_opacity": 0,
       "buttons_shadow_horizontal_offset": 0,
       "buttons_shadow_vertical_offset": 4,

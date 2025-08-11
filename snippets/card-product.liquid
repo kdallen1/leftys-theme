@@ -139,6 +139,27 @@
               >
                 {{- 'products.product.on_sale' | t -}}
               </span>
+            {%- elsif card_product.metafields.custom.badge != blank -%}
+              <span
+                id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
+                class="badge badge--bottom-left color-scheme-4"
+              >
+                {{- card_product.metafields.custom.badge -}}
+              </span>
+            {%- elsif card_product.tags contains 'bestseller' or card_product.tags contains 'best-seller' -%}
+              <span
+                id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
+                class="badge badge--bottom-left badge--bestseller"
+              >
+                BEST SELLER
+              </span>
+            {%- elsif card_product.tags contains 'new' -%}
+              <span
+                id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
+                class="badge badge--bottom-left badge--new"
+              >
+                NEW
+              </span>
             {%- endif -%}
           </div>
         </div>

@@ -5,6 +5,41 @@
   z-index: 1;
 }
 
+.quick-add .button {
+  width: 100%;
+  font-size: 1.4rem;
+  padding: 1.2rem 2rem;
+  background-color: #34495E;
+  border-color: #34495E;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.quick-add .button:hover {
+  background-color: #2C3E50;
+  transform: translateY(-0.2rem);
+  box-shadow: 0 4px 8px rgba(52, 73, 94, 0.3);
+}
+
+.quick-add .button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+.quick-add .button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
 .card--card .quick-add {
   margin: 0 1.3rem 1rem;
 }

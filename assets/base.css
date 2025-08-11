@@ -82,6 +82,17 @@
   padding: 0 1.5rem;
 }
 
+.grid--uniform {
+  display: grid;
+  gap: 2rem;
+}
+
+@media screen and (min-width: 750px) {
+  .grid--uniform {
+    gap: 3rem;
+  }
+}
+
 body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   max-width: 100%;
 }
@@ -1221,7 +1232,7 @@ button.shopify-payment-button__button--unbranded {
   font-size: 1.5rem;
   text-decoration: none;
   color: rgb(var(--color-button-text));
-  transition: box-shadow var(--duration-short) ease;
+  transition: box-shadow var(--duration-short) ease, transform 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
   -webkit-appearance: none;
   appearance: none;
   background-color: rgba(var(--color-button), var(--alpha-button-background));
@@ -1259,6 +1270,13 @@ button.shopify-payment-button__button--unbranded {
       rgba(var(--color-button-text), var(--border-opacity)),
     0 0 0 var(--buttons-border-width) rgba(var(--color-button), var(--alpha-button-background));
   transition: box-shadow var(--duration-short) ease;
+}
+
+.button:not([disabled]):hover,
+.shopify-challenge__button:hover,
+.customer button:hover {
+  transform: translateY(-0.2rem);
+  opacity: 0.9;
 }
 
 .button:not([disabled]):hover::after,
@@ -2801,6 +2819,78 @@ details[open] > .header__submenu {
   color: rgb(var(--color-foreground));
 }
 
+/* Header Transparency Effects */
+.announcement-bar-section {
+  position: relative;
+  z-index: 5;
+}
+
+sticky-header.header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+/* Default state - remove the gradient background */
+sticky-header.header-wrapper.gradient {
+  background: transparent;
+}
+
+/* Transparent state (at top of page) - overlay on image */
+sticky-header.header-wrapper.header--transparent {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+/* Scrolled state (solid background) */
+sticky-header.header-wrapper.header--scrolled {
+  background: rgb(var(--color-background)) !important;
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.08) !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+/* Make sure the page content doesn't hide under the fixed header */
+.section-header + * {
+  margin-top: 0 !important;
+}
+
+/* Text colors for transparent header */
+sticky-header.header-wrapper.header--transparent .header__heading,
+sticky-header.header-wrapper.header--transparent .header__heading a,
+sticky-header.header-wrapper.header--transparent .header__heading span,
+sticky-header.header-wrapper.header--transparent .header__menu-item,
+sticky-header.header-wrapper.header--transparent .list-menu__item,
+sticky-header.header-wrapper.header--transparent .list-menu__item a,
+sticky-header.header-wrapper.header--transparent .header a,
+sticky-header.header-wrapper.header--transparent .header span,
+sticky-header.header-wrapper.header--transparent .icon,
+sticky-header.header-wrapper.header--transparent svg {
+  color: white !important;
+  fill: white !important;
+}
+
+/* Text colors for scrolled header */
+sticky-header.header-wrapper.header--scrolled .header__heading,
+sticky-header.header-wrapper.header--scrolled .header__heading a,
+sticky-header.header-wrapper.header--scrolled .header__heading span,
+sticky-header.header-wrapper.header--scrolled .header__menu-item,
+sticky-header.header-wrapper.header--scrolled .list-menu__item,
+sticky-header.header-wrapper.header--scrolled .list-menu__item a,
+sticky-header.header-wrapper.header--scrolled .header a,
+sticky-header.header-wrapper.header--scrolled .header span,
+sticky-header.header-wrapper.header--scrolled .icon,
+sticky-header.header-wrapper.header--scrolled svg {
+  color: rgb(var(--color-foreground)) !important;
+  fill: rgb(var(--color-foreground)) !important;
+}
+
+
 .header__menu-item span {
   transition: text-decoration var(--duration-short) ease;
 }
@@ -2929,6 +3019,19 @@ details-disclosure > details {
   border-color: rgba(var(--color-badge-border), var(--alpha-badge-border));
   color: rgb(var(--color-badge-foreground));
   word-break: break-word;
+  font-weight: 600;
+}
+
+.badge--bestseller {
+  background-color: #E74C3C;
+  color: #FFFFFF;
+  border-color: #E74C3C;
+}
+
+.badge--new {
+  background-color: #27AE60;
+  color: #FFFFFF;
+  border-color: #27AE60;
 }
 
 .gradient {

@@ -1,0 +1,303 @@
+/* Font Awesome Icons Enhancement - Premium Kit Integration */
+
+/* Social Icons - Replace with premium Font Awesome brands */
+.list-social__link .svg-wrapper {
+  position: relative;
+}
+
+/* Facebook - Premium brand icon */
+a[href*="facebook"] .svg-wrapper::before {
+  content: '\f39e'; /* fa-facebook-f (premium brand) */
+  font-family: 'Font Awesome 6 Brands';
+  font-weight: 400;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #1877f2;
+}
+
+/* Instagram - Premium brand icon with gradient effect */
+a[href*="instagram"] .svg-wrapper::before {
+  content: '\f16d'; /* fa-instagram (premium brand) */
+  font-family: 'Font Awesome 6 Brands';
+  font-weight: 400;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* YouTube - Premium brand icon */
+a[href*="youtube"] .svg-wrapper::before {
+  content: '\f167'; /* fa-youtube (premium brand) */
+  font-family: 'Font Awesome 6 Brands';
+  font-weight: 400;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #ff0000;
+}
+
+/* TikTok - Premium brand icon */
+a[href*="tiktok"] .svg-wrapper::before {
+  content: '\e07b'; /* fa-tiktok (premium brand) */
+  font-family: 'Font Awesome 6 Brands';
+  font-weight: 400;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #000000;
+}
+
+/* Twitter/X - Premium brand icon */
+a[href*="twitter"] .svg-wrapper::before,
+a[href*="x.com"] .svg-wrapper::before {
+  content: '\e61b'; /* fa-x-twitter (premium brand) */
+  font-family: 'Font Awesome 6 Brands';
+  font-weight: 400;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #000000;
+}
+
+/* Pinterest - Premium brand icon */
+a[href*="pinterest"] .svg-wrapper::before {
+  content: '\f0d2'; /* fa-pinterest (premium brand) */
+  font-family: 'Font Awesome 6 Brands';
+  font-weight: 400;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #bd081c;
+}
+
+/* Hide original SVG icons when Font Awesome is loaded */
+.list-social__link svg {
+  display: none;
+}
+
+/* Product and Cart Icons Enhancement */
+
+/* Error icons - Premium solid */
+.product-form__error-message-wrapper .svg-wrapper::before {
+  content: '\f071'; /* fa-triangle-exclamation (premium solid) */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
+  font-size: 16px;
+  color: #dc3545;
+  margin-right: 8px;
+}
+
+.product-form__error-message-wrapper svg {
+  display: none;
+}
+
+/* Success/Checkmark icons - Premium solid */
+.cart-notification__message .svg-wrapper::before {
+  content: '\f00c'; /* fa-check (premium solid) */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
+  font-size: 16px;
+  color: #28a745;
+}
+
+/* Shipping/Truck icons - Premium solid with animation */
+.pickup-availability .svg-wrapper::before,
+.delivery-info .svg-wrapper::before {
+  content: '\f48b'; /* fa-truck-fast (premium solid) */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
+  font-size: 18px;
+  color: #007bff;
+  animation: truck-drive 2s infinite;
+}
+
+@keyframes truck-drive {
+  0%, 100% { transform: translateX(0px); }
+  50% { transform: translateX(3px); }
+}
+
+/* Star rating icons - Premium solid */
+.rating .svg-wrapper::before {
+  content: '\f005'; /* fa-star (premium solid) */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
+  font-size: 14px;
+  color: #ffc107;
+}
+
+/* Heart/Wishlist icons - Premium solid with hover effect */
+.wishlist-button .svg-wrapper::before {
+  content: '\f004'; /* fa-heart (premium solid) */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 400;
+  font-size: 18px;
+  color: #dc3545;
+  transition: all 0.3s ease;
+}
+
+.wishlist-button:hover .svg-wrapper::before {
+  font-weight: 900;
+  transform: scale(1.2);
+}
+
+/* Location/Map icons - Premium solid */
+.location-icon .svg-wrapper::before {
+  content: '\f3c5'; /* fa-map-marker-alt (premium solid) */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
+  font-size: 16px;
+  color: #dc3545;
+}
+
+/* Arrow icons - Premium solid with animations */
+.arrow-right .svg-wrapper::before {
+  content: '\f30b'; /* fa-arrow-right-long (premium solid) */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.arrow-right:hover .svg-wrapper::before {
+  transform: translateX(5px);
+}
+
+.arrow-left .svg-wrapper::before {
+  content: '\f30a'; /* fa-arrow-left-long (premium solid) */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.arrow-left:hover .svg-wrapper::before {
+  transform: translateX(-5px);
+}
+
+/* Close/X icons - Premium solid */
+.modal__close .svg-wrapper::before,
+.drawer__close .svg-wrapper::before {
+  content: '\f00d'; /* fa-times (premium solid) */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
+  font-size: 20px;
+  color: currentColor;
+}
+
+/* Plus/Minus quantity icons - Premium solid */
+.quantity__button[name="plus"] .svg-wrapper::before {
+  content: '\f067'; /* fa-plus (premium solid) */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
+  font-size: 14px;
+  color: currentColor;
+}
+
+.quantity__button[name="minus"] .svg-wrapper::before {
+  content: '\f068'; /* fa-minus (premium solid) */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
+  font-size: 14px;
+  color: currentColor;
+}
+
+/* Email/Newsletter icons - Premium solid with pulse effect */
+.newsletter-form__button .svg-wrapper::before {
+  content: '\f1d8'; /* fa-paper-plane (premium solid) */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
+  font-size: 16px;
+  color: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.newsletter-form__button:hover .svg-wrapper::before {
+  transform: translateX(3px);
+}
+
+.newsletter-form__button svg {
+  display: none;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Filter/Sort icons - Premium solid */
+.filter-toggle .svg-wrapper::before {
+  content: '\f0b0'; /* fa-filter (premium solid) */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
+  font-size: 16px;
+  color: currentColor;
+}
+
+.sort-toggle .svg-wrapper::before {
+  content: '\f0dc'; /* fa-sort (premium solid) */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
+  font-size: 16px;
+  color: currentColor;
+}
+
+/* Play/Video icons - Premium solid */
+.video-play .svg-wrapper::before {
+  content: '\f04b'; /* fa-play (premium solid) */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
+  font-size: 24px;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Security/Lock icons - Premium solid */
+.secure-badge .svg-wrapper::before {
+  content: '\f023'; /* fa-lock (premium solid) */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
+  font-size: 14px;
+  color: #28a745;
+}
+
+/* Credit Card icons - Premium brands */
+.payment-icon-visa::before {
+  content: '\f1f0'; /* fa-cc-visa (premium brand) */
+  font-family: 'Font Awesome 6 Brands';
+  color: #1a1f71;
+}
+
+.payment-icon-mastercard::before {
+  content: '\f1f1'; /* fa-cc-mastercard (premium brand) */
+  font-family: 'Font Awesome 6 Brands';
+  color: #eb001b;
+}
+
+.payment-icon-amex::before {
+  content: '\f1f3'; /* fa-cc-amex (premium brand) */
+  font-family: 'Font Awesome 6 Brands';
+  color: #006fcf;
+}

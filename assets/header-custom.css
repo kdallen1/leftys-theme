@@ -6,14 +6,14 @@
   font-family: 'Clarendon', 'Clarendon LT Std', 'Times New Roman', serif;
   font-weight: 800;
   color: rgb(var(--color-foreground));
-  font-size: 3rem;
+  font-size: 4rem;
   letter-spacing: 0.03em;
 }
 
 /* Make navigation menu bolder and bigger */
 .header__inline-menu .list-menu__item a {
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   letter-spacing: 0.015em;
 }
 

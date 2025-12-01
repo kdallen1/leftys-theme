@@ -162,7 +162,9 @@
                 }}
               </div>
             {%- else -%}
-              <span class="h2">Lefty's</span>
+              <div class="logo-wrapper">
+                <img src="{{ 'logo.svg' | asset_url }}" alt="Lefty's" class="logo-image" />
+              </div>
             {%- endif -%}
           </a>
       {%- if request.page_type == 'index' -%}
@@ -202,7 +204,9 @@
                 }}
               </div>
             {%- else -%}
-              <span class="h2">Lefty's</span>
+              <div class="logo-wrapper">
+                <img src="{{ 'logo.svg' | asset_url }}" alt="Lefty's" class="logo-image" />
+              </div>
             {%- endif -%}
           </a>
       {%- if request.page_type == 'index' -%}

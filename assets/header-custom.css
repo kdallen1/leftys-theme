@@ -3,11 +3,47 @@
 
 /* Make logo/brand text bolder with Clarendon font */
 .header__heading-link .h2 {
-  font-family: 'Clarendon', 'Clarendon LT Std', 'Times New Roman', serif;
-  font-weight: 800;
+  font-family: 'Besley', 'Times New Roman', serif;
+  font-weight: 700;
   color: rgb(var(--color-foreground));
-  font-size: 4rem;
+  font-size: 5rem;
   letter-spacing: 0.03em;
+}
+
+/* Style logo to match text styling */
+.header__heading-link .logo-wrapper {
+  display: inline-block;
+  height: 5rem;
+  overflow: visible;
+  position: relative;
+}
+
+.header__heading-link .logo-image {
+  height: 8rem;
+  width: auto;
+  transition: filter 0.2s ease;
+  /* Position logo to extend beyond wrapper without affecting header height */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Default: White logo for dark header background */
+.logo-image {
+  filter: brightness(0) invert(1);
+  transition: filter 0.2s ease;
+}
+
+/* When scrolled and header becomes white background: Black logo */
+.scrolled-past-header .logo-image {
+  filter: brightness(0) invert(0) !important;
+}
+
+/* Apply Besley font to all headings */
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: 'Besley', 'Times New Roman', serif !important;
+  font-weight: 700;
 }
 
 /* Make navigation menu bolder and bigger */
@@ -41,6 +77,14 @@
   max-width: 100% !important;
   padding-left: 2rem !important;
   padding-right: 3rem !important;
+}
+
+/* Make desktop header height match mobile - reduce excessive padding */
+@media screen and (min-width: 990px) {
+  .header {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
 }
 
 /* Remove column gaps to spread elements */

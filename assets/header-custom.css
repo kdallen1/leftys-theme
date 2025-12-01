@@ -20,7 +20,7 @@
 }
 
 .header__heading-link .logo-image {
-  height: 8rem;
+  height: 7.5rem;
   width: auto;
   transition: filter 0.2s ease;
   /* Position logo to extend beyond wrapper without affecting header height */

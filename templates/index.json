@@ -25,6 +25,19 @@
             "button_style_secondary": false
           }
         },
+        "slide_ytCxV3": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/mint-secret-pocket-optimized.png",
+            "heading": "",
+            "heading_size": "h1",
+            "text": "",
+            "text_style": "body",
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        },
         "slide_9V9Apz": {
           "type": "slide",
           "settings": {
@@ -41,7 +54,7 @@
         "slide_nqhqUx": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/neon-moon-front-optimized.png",
+            "image": "shopify://shop_images/red-carpet-duckpopper-optimized.png",
             "heading": "",
             "heading_size": "h1",
             "text": "",
@@ -54,6 +67,7 @@
       },
       "block_order": [
         "slide_dGngAE",
+        "slide_ytCxV3",
         "slide_9V9Apz",
         "slide_nqhqUx"
       ],

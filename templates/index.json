@@ -28,6 +28,7 @@
         "slide_9V9Apz": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/brandon-duckpopper-optimized.png",
             "heading": "",
             "heading_size": "h1",
             "text": "",
@@ -37,9 +38,10 @@
             "button_style_secondary": false
           }
         },
-        "slide_w6Gf8P": {
+        "slide_nqhqUx": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/neon-moon-front-optimized.png",
             "heading": "",
             "heading_size": "h1",
             "text": "",
@@ -53,7 +55,7 @@
       "block_order": [
         "slide_dGngAE",
         "slide_9V9Apz",
-        "slide_w6Gf8P"
+        "slide_nqhqUx"
       ],
       "name": "Image Carousel",
       "settings": {

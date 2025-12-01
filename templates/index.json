@@ -12,10 +12,10 @@
     "image_carousel_Jmj3nD": {
       "type": "image-carousel",
       "blocks": {
-        "slide_8HGMnF": {
+        "slide_KaDhdd": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/brandon-duckpopper-optimized.png",
+            "image": "shopify://shop_images/IMG_3756-optimized.png",
             "heading": "",
             "heading_size": "h1",
             "text": "",
@@ -25,10 +25,10 @@
             "button_style_secondary": false
           }
         },
-        "slide_KaDhdd": {
+        "slide_8HGMnF": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/mint-secret-pocket-optimized.png",
+            "image": "shopify://shop_images/brandon-duckpopper-optimized.png",
             "heading": "",
             "heading_size": "h1",
             "text": "",
@@ -53,8 +53,8 @@
         }
       },
       "block_order": [
-        "slide_8HGMnF",
         "slide_KaDhdd",
+        "slide_8HGMnF",
         "slide_qjtJD4"
       ],
       "name": "Image Carousel",

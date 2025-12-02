@@ -80,9 +80,8 @@
   right: 2rem;
 }
 
-.carousel__nav svg {
-  width: 20px;
-  height: 20px;
+.carousel__nav i {
+  font-size: 20px;
 }
 
 @media screen and (max-width: 749px) {
@@ -99,9 +98,8 @@
     right: 1rem;
   }
 
-  .carousel__nav svg {
-    width: 16px;
-    height: 16px;
+  .carousel__nav i {
+    font-size: 16px;
   }
 }
 
@@ -120,12 +118,12 @@
 }
 
 .carousel__dot {
-  width: 13px;
-  height: 13px;
-  min-width: 13px;
-  min-height: 13px;
-  max-width: 13px;
-  max-height: 13px;
+  width: 15px;
+  height: 15px;
+  min-width: 15px;
+  min-height: 15px;
+  max-width: 15px;
+  max-height: 15px;
   border-radius: 50%;
   border: none;
   background: rgba(255, 255, 255, 0.4);

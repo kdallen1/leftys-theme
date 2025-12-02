@@ -36,9 +36,9 @@
   transition: filter 0.2s ease;
 }
 
-/* When scrolled and header becomes white background: Black logo */
+/* When scrolled and header becomes white background: Use primary color */
 .scrolled-past-header .logo-image {
-  filter: brightness(0) invert(0) !important;
+  filter: brightness(0) saturate(100%) invert(10%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(10%) contrast(100%) !important;
 }
 
 /* Apply Besley font to all headings */
@@ -55,22 +55,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 /* Make header icons bigger */
-.header__icon .svg-wrapper {
-  width: 56px;
-  height: 56px;
+.header__icon i {
+  font-size: 24px;
 }
 
-.header__icon svg {
-  stroke-width: 2.2;
-  transform: scale(1.2);
-}
-
-/* Enhance existing icons instead of replacing them */
-.header__icon--account svg,
-.header__icon--cart svg,
-.modal__toggle svg {
-  stroke-width: 2.5;
-  fill: currentColor;
+.header__icon {
+  text-decoration: none !important;
 }
 
 /* Full-width header like ponchooutdoors.com */
@@ -151,99 +141,44 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   transition: font-weight 0.2s ease, color 0.2s ease;
 }
 
-/* Premium Font Awesome Icons - Replace SVGs */
-.header__icon--account .svg-wrapper {
-  position: relative;
+/* Fix hamburger menu - only show one icon at a time */
+header-drawer summary span i:first-child {
+  display: inline-block;
 }
 
-.header__icon--account .svg-wrapper::before {
-  content: '\f406'; /* fa-user-circle (premium solid) */
-  font-family: 'Font Awesome 6 Pro';
-  font-weight: 900;
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  color: currentColor;
-}
-
-.header__icon--account svg {
+header-drawer summary span i:last-child {
   display: none;
 }
 
-.header__icon--cart .svg-wrapper {
-  position: relative;
-}
-
-.header__icon--cart .svg-wrapper::before {
-  content: '\f290'; /* fa-shopping-bag (premium solid) */
-  font-family: 'Font Awesome 6 Pro';
-  font-weight: 900;
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  color: currentColor;
-}
-
-.header__icon--cart svg {
+header-drawer[open] summary span i:first-child {
   display: none;
 }
 
-.modal__toggle {
-  text-decoration: none !important;
+header-drawer[open] summary span i:last-child {
+  display: inline-block;
 }
 
-.modal__toggle .svg-wrapper {
-  position: relative;
-  text-decoration: none;
-}
-
-.modal__toggle .svg-wrapper::before {
-  content: '\f002'; /* fa-magnifying-glass (premium solid) */
-  font-family: 'Font Awesome 6 Pro';
-  font-weight: 900;
+header-drawer summary span i {
   font-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  color: currentColor;
-  text-decoration: none;
 }
 
-.modal__toggle:hover,
-.modal__toggle:focus {
-  text-decoration: none !important;
+/* Fix search modal toggle - only show one icon at a time */
+.header__search summary span i:first-child {
+  display: inline-block;
 }
 
-.modal__toggle svg {
+.header__search summary span i:last-child {
   display: none;
 }
 
-/* Menu drawer icon replacement */
-header-drawer .header__icon .svg-wrapper {
-  position: relative;
-}
-
-header-drawer .header__icon .svg-wrapper::before {
-  content: '\f550'; /* fa-bars-staggered (premium solid) */
-  font-family: 'Font Awesome 6 Pro';
-  font-weight: 900;
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  color: currentColor;
-}
-
-header-drawer .header__icon svg {
+.header__search[open] summary span i:first-child {
   display: none;
+}
+
+.header__search[open] summary span i:last-child {
+  display: inline-block;
+}
+
+.header__search summary span i {
+  font-size: 24px;
 }

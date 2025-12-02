@@ -119,11 +119,16 @@
 .carousel__dot {
   width: 10px;
   height: 10px;
+  min-width: 10px;
+  min-height: 10px;
+  max-width: 10px;
+  max-height: 10px;
   border-radius: 50%;
   border: none;
   background: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .carousel__dot:hover {
@@ -145,6 +150,11 @@
   .carousel__dot {
     width: 10px;
     height: 10px;
+    min-width: 10px;
+    min-height: 10px;
+    max-width: 10px;
+    max-height: 10px;
+    flex-shrink: 0;
   }
 }
 

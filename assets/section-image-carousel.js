@@ -162,6 +162,9 @@ class ImageCarousel {
   startAutoplay() {
     if (!this.isAutoplay || this.slides.length <= 1) return;
 
+    // Don't create a new timer if one is already running
+    if (this.autoplayTimer) return;
+
     this.autoplayTimer = setInterval(() => {
       this.goToNext();
     }, this.autoplaySpeed);

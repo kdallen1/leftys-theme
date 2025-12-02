@@ -18,9 +18,9 @@
             "image": "shopify://shop_images/red-carpet-duckpopper-optimized.png",
             "heading": "Fine Western Shirts",
             "heading_size": "h1",
-            "text": "Bold designs made from 100% cotton",
+            "text": "Throwback designs made with ultra-durable 100% cotton",
             "text_style": "body",
-            "button_label": "Pre-order",
+            "button_label": "Pre-order now",
             "button_link": "",
             "button_style_secondary": false
           }
@@ -29,11 +29,11 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/brandon-duckpopper-optimized.png",
-            "heading": "",
+            "heading": "Introducing The Duckpopper",
             "heading_size": "h1",
-            "text": "",
+            "text": "For our first western shirt, we're doing a run of just 100 pieces. Make sure you get yours.",
             "text_style": "body",
-            "button_label": "",
+            "button_label": "Reserve yours now",
             "button_link": "",
             "button_style_secondary": false
           }
@@ -42,11 +42,11 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/IMG_3756-optimized.png",
-            "heading": "",
+            "heading": "Superior Fishing Shirts",
             "heading_size": "h1",
-            "text": "",
+            "text": "Western details, secret pockets, lens cleaner, UPF 50. Coming soon.",
             "text_style": "body",
-            "button_label": "",
+            "button_label": "Learn more",
             "button_link": "",
             "button_style_secondary": false
           }
@@ -55,11 +55,11 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/mint-secret-pocket-optimized.png",
-            "heading": "",
+            "heading": "Superior Fishing Shirts",
             "heading_size": "h1",
-            "text": "",
+            "text": "Western details, secret pockets, lens cleaner, UPF 50. Coming soon.",
             "text_style": "body",
-            "button_label": "",
+            "button_label": "Learn more",
             "button_link": "",
             "button_style_secondary": false
           }

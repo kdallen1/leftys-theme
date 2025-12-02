@@ -44,8 +44,13 @@ class ImageCarousel {
     // Dot indicators
     this.dots.forEach((dot, index) => {
       dot.addEventListener('click', () => {
-        this.resetAutoplay();
+        this.pauseAutoplay();
         this.goToSlide(index);
+        if (this.isAutoplay) {
+          setTimeout(() => {
+            this.startAutoplay();
+          }, 3000); // Wait 3 seconds before restarting autoplay
+        }
       });
     });
 

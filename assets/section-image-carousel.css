@@ -127,7 +127,7 @@
   max-width: 13px;
   max-height: 13px;
   border-radius: 50%;
-  border: 2px solid rgba(192, 192, 192, 0.7);
+  border: none;
   background: rgba(255, 255, 255, 0.4);
   cursor: pointer;
   transition: all 0.3s ease;
@@ -139,12 +139,11 @@
 
 .carousel__dot:hover {
   background: rgba(255, 255, 255, 0.6);
-  border-color: rgba(192, 192, 192, 0.9);
 }
 
 .carousel__dot--active {
   background: rgba(255, 255, 255, 1);
-  border-color: rgba(192, 192, 192, 1);
+  box-shadow: 0 0 0 2px rgba(192, 192, 192, 1);
 }
 
 @media screen and (max-width: 749px) {

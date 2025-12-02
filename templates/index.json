@@ -12,6 +12,32 @@
     "image_carousel_DTmFXT": {
       "type": "image-carousel",
       "blocks": {
+        "slide_nqhqUx": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/red-carpet-duckpopper-optimized.png",
+            "heading": "",
+            "heading_size": "h1",
+            "text": "",
+            "text_style": "body",
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        },
+        "slide_9V9Apz": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/brandon-duckpopper-optimized.png",
+            "heading": "",
+            "heading_size": "h1",
+            "text": "",
+            "text_style": "body",
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        },
         "slide_dGngAE": {
           "type": "slide",
           "settings": {
@@ -37,39 +63,13 @@
             "button_link": "",
             "button_style_secondary": false
           }
-        },
-        "slide_9V9Apz": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/brandon-duckpopper-optimized.png",
-            "heading": "",
-            "heading_size": "h1",
-            "text": "",
-            "text_style": "body",
-            "button_label": "",
-            "button_link": "",
-            "button_style_secondary": false
-          }
-        },
-        "slide_nqhqUx": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/red-carpet-duckpopper-optimized.png",
-            "heading": "",
-            "heading_size": "h1",
-            "text": "",
-            "text_style": "body",
-            "button_label": "",
-            "button_link": "",
-            "button_style_secondary": false
-          }
         }
       },
       "block_order": [
-        "slide_dGngAE",
-        "slide_ytCxV3",
+        "slide_nqhqUx",
         "slide_9V9Apz",
-        "slide_nqhqUx"
+        "slide_dGngAE",
+        "slide_ytCxV3"
       ],
       "name": "Image Carousel",
       "settings": {

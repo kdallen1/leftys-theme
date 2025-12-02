@@ -8,7 +8,6 @@ class ImageCarousel {
 
     this.currentIndex = 0;
     this.autoplayTimer = null;
-    this.restartTimeout = null;
     this.isAutoplay = container.dataset.autoplay === 'true';
     this.autoplaySpeed = parseInt(container.dataset.autoplaySpeed) * 1000 || 5000;
 
@@ -45,14 +44,8 @@ class ImageCarousel {
     // Dot indicators
     this.dots.forEach((dot, index) => {
       dot.addEventListener('click', () => {
-        this.pauseAutoplay();
-        this.clearRestartTimeout();
+        this.resetAutoplay();
         this.goToSlide(index);
-        if (this.isAutoplay) {
-          this.restartTimeout = setTimeout(() => {
-            this.startAutoplay();
-          }, 3000); // Wait 3 seconds before restarting autoplay
-        }
       });
     });
 

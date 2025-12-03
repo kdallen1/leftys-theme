@@ -375,8 +375,8 @@
   }
 }
 
-/* Image overlay */
-.carousel::after {
+/* Image overlay - only on active slides */
+.carousel__slide::after {
   content: '';
   position: absolute;
   top: 0;
@@ -384,8 +384,14 @@
   width: 100%;
   height: 100%;
   background: rgb(var(--color-foreground));
-  z-index: 15;
+  z-index: 2;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.carousel__slide--active::after {
+  opacity: 0.3;
 }
 
 /* Image behaviors */

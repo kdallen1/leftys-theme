@@ -121,6 +121,7 @@ body, p, .body, .rte, .text {
   position: relative;
 }
 
+
 /* Remove column gaps to spread elements */
 .header--middle-center:not(.drawer-menu) {
   column-gap: 0 !important;
@@ -218,4 +219,60 @@ header-drawer summary span i {
 
 .header__search summary span i {
   font-size: 24px;
+}
+
+/* Mobile Menu Drawer Styling - Override color scheme CSS variables at the right level */
+.menu-drawer-container .menu-drawer,
+#menu-drawer.gradient.menu-drawer.motion-reduce,
+.menu-drawer.gradient,
+.menu-drawer[class*="color-scheme"],
+.menu-drawer.color-scheme-1,
+.menu-drawer.color-scheme-2,
+.menu-drawer.color-scheme-3 {
+  --color-foreground: 26, 26, 26 !important;
+  --color-background: 255, 255, 255 !important;
+  --color-link: 26, 26, 26 !important;
+  background: rgb(var(--color-background)) !important;
+  background-color: rgb(var(--color-background)) !important;
+  color: rgb(var(--color-foreground)) !important;
+}
+
+.menu-drawer__menu-item,
+.menu-drawer__menu-item.link,
+.menu-drawer__menu-item span,
+.menu-drawer .list-menu__item,
+.menu-drawer .list-menu__item.link,
+summary.menu-drawer__menu-item,
+summary.menu-drawer__menu-item.link,
+#menu-drawer .menu-drawer__menu-item,
+#menu-drawer .list-menu__item,
+#menu-drawer summary.menu-drawer__menu-item {
+  font-family: 'SuperClarendon', 'Clarendon', 'Times New Roman', serif !important;
+  font-weight: 400 !important;
+  font-size: 1.8rem !important;
+  text-transform: uppercase !important;
+  color: rgb(26, 26, 26) !important;
+  color: #1a1a1a !important;
+  text-decoration: none !important;
+  padding: 1.5rem 2rem !important;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.1) !important;
+  background: transparent !important;
+}
+
+.menu-drawer__menu-item:hover,
+.menu-drawer .list-menu__item:hover,
+summary.menu-drawer__menu-item:hover {
+  background: rgba(var(--color-foreground), 0.05) !important;
+  color: rgb(var(--color-foreground)) !important;
+}
+
+.menu-drawer__close-button,
+.menu-drawer__close-button.link {
+  font-family: 'SuperClarendon', 'Clarendon', 'Times New Roman', serif !important;
+  font-weight: 400 !important;
+  font-size: 1.6rem !important;
+  text-transform: uppercase !important;
+  color: rgb(var(--color-foreground)) !important;
+  padding: 1.5rem 2rem !important;
+  background: transparent !important;
 }

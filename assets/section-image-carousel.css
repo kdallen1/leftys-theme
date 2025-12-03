@@ -209,6 +209,40 @@
   justify-content: center;
 }
 
+/* Carousel text styling */
+.carousel__text-overlay {
+  text-align: center;
+  max-width: 800px;
+}
+
+.carousel__heading {
+  color: white;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+}
+
+.carousel__description {
+  color: white;
+  font-size: 1.8rem;
+  margin-bottom: 3rem;
+  line-height: 1.5;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.carousel__button {
+  display: inline-block;
+  background: #34495E;
+  color: white;
+  padding: 1.5rem 3rem;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.5rem;
+  box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+}
+
 
 .carousel .banner__content--top-left {
   align-items: flex-start;

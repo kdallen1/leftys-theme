@@ -38,13 +38,14 @@
 
 /* Logo changes color when scrolled - sync with natural header behavior */
 .scrolled-past-header .logo-image {
-  filter: brightness(0) saturate(100%) invert(10%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(10%) contrast(100%) drop-shadow(1px 1px 2px rgba(0,0,0,0.1)) !important;
+  filter: brightness(0) saturate(100%) invert(10%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(10%) contrast(100%) !important;
 }
 
 /* Apply SuperClarendon font to all headings - ALL CAPS */
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6,
+.rich-text h1, .rich-text h2, .rich-text h3, .rich-text h4, .rich-text h5, .rich-text h6 {
   font-family: 'SuperClarendon', 'Clarendon', 'Times New Roman', serif !important;
-  font-weight: 700;
+  font-weight: 700 !important;
   text-transform: uppercase !important;
 }
 
@@ -53,11 +54,36 @@ body, p, .body, .rte, .text {
   font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif !important;
 }
 
-/* Make navigation menu bolder and bigger */
-.header__inline-menu .list-menu__item a {
-  font-weight: 600;
-  font-size: 1.6rem;
-  letter-spacing: 0.015em;
+/* Make navigation menu use SuperClarendon like a subtitle */
+.header__inline-menu .list-menu__item a,
+.header__menu-item,
+.header__menu-item span,
+.list-menu__item a {
+  font-family: 'SuperClarendon', 'Clarendon', 'Times New Roman', serif !important;
+  font-weight: 400;
+  font-size: 1.4rem !important;
+  letter-spacing: 0.02em;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  color: rgb(var(--color-foreground));
+  transition: color 0.3s ease;
+}
+
+/* Navigation hover and active states */
+.header__inline-menu .list-menu__item a:hover,
+.header__menu-item:hover,
+.header__menu-item:hover span,
+.list-menu__item a:hover {
+  color: rgba(var(--color-foreground), 0.6) !important;
+  text-decoration: none !important;
+}
+
+/* Active/current page navigation */
+.header__inline-menu .list-menu__item a[aria-current="page"],
+.header__menu-item[aria-current="page"],
+.header__active-menu-item {
+  color: rgba(var(--color-foreground), 0.7) !important;
+  text-decoration: none !important;
 }
 
 /* Make header icons bigger */

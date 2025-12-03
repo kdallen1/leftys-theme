@@ -238,7 +238,6 @@
           </localization-form>
         {%- endif -%}
       </div>
-      {% render 'header-search', input_id: 'Search-In-Modal' %}
 
       {%- if shop.customer_accounts_enabled -%}
         <a
@@ -251,11 +250,11 @@
               {%- if customer and customer.has_avatar? -%}
                 {{ customer | avatar }}
               {%- else -%}
-                <i class="fas fa-user"></i>
+                <i class="fa-solid fa-user-cowboy"></i>
               {%- endif -%}
             </account-icon>
           {%- else -%}
-            <i class="fas fa-user"></i>
+            <i class="fa-solid fa-user-cowboy"></i>
           {%- endif -%}
           <span class="visually-hidden">
             {%- liquid
@@ -278,9 +277,9 @@
 
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
           {% if cart == empty %}
-            <i class="fas fa-shopping-cart"></i>
+            <i class="fa-solid fa-basket-shopping"></i>
           {% else %}
-            <i class="fas fa-shopping-cart"></i>
+            <i class="fa-solid fa-basket-shopping"></i>
           {% endif %}
         <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
         {%- if cart != empty -%}

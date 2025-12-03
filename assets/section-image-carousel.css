@@ -4,6 +4,7 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+  z-index: 1;
 }
 
 .carousel__container {
@@ -183,18 +184,18 @@
 
 @media screen and (max-width: 749px) {
   .carousel.banner--small {
-    height: 30vh;
-    min-height: 250px;
-  }
-
-  .carousel.banner--medium {
-    height: 50vh;
+    height: 40vh;
     min-height: 350px;
   }
 
+  .carousel.banner--medium {
+    height: 65vh;
+    min-height: 500px;
+  }
+
   .carousel.banner--large {
-    height: 70vh;
-    min-height: 450px;
+    height: 80vh;
+    min-height: 600px;
   }
 }
 
@@ -212,7 +213,15 @@
 /* Carousel text styling */
 .carousel__text-overlay {
   text-align: center;
-  max-width: 800px;
+  max-width: 500px;
+  padding: 2rem 1rem;
+}
+
+@media screen and (max-width: 749px) {
+  .carousel__text-overlay {
+    max-width: 80%;
+    padding: 10rem 2rem 2rem 2rem;
+  }
 }
 
 .carousel__heading {
@@ -228,7 +237,7 @@
   font-size: 1.8rem;
   margin-bottom: 3rem;
   line-height: 1.5;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
 }
 
 .carousel__button {

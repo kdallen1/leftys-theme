@@ -160,6 +160,11 @@
     max-height: 10px;
     flex-shrink: 0;
   }
+
+  .carousel__dot--active {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 0 2px rgba(192, 192, 192, 1);
+  }
 }
 
 /* Banner height variations */

@@ -47,6 +47,22 @@
   filter: brightness(0) invert(1) drop-shadow(2px 2px 4px rgba(0,0,0,0.5)) !important;
 }
 
+/* Solid header state for non-home pages - ensure proper white background and black text */
+.header--scrolled {
+  background: rgb(var(--color-background)) !important;
+  backdrop-filter: none !important;
+}
+
+/* On non-home pages, make header take up space instead of overlay */
+.is-non-home-page sticky-header.header-wrapper {
+  position: relative !important;
+}
+
+/* Ensure main content doesn't have unnecessary top margin on non-home pages */
+.is-non-home-page .section-header + * {
+  margin-top: 0 !important;
+}
+
 /* Apply SuperClarendon font to all headings - ALL CAPS */
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6,
 .rich-text h1, .rich-text h2, .rich-text h3, .rich-text h4, .rich-text h5, .rich-text h6 {

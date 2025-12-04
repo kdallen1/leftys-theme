@@ -21,7 +21,7 @@
             "text": "Throwback pearl snaps in durable 100% cotton",
             "text_style": "body",
             "button_label": "Pre-order now",
-            "button_link": "",
+            "button_link": "shopify://collections/long-sleeve-western-shirts",
             "button_style_secondary": false
           }
         },
@@ -34,7 +34,7 @@
             "text": "Our first pearl snap, inspired by the resplendent hues of the Mandarin Duck. Get in on this limited run.",
             "text_style": "body",
             "button_label": "Reserve yours now",
-            "button_link": "",
+            "button_link": "shopify://products/the-duckpopper",
             "button_style_secondary": false
           }
         },
@@ -47,7 +47,7 @@
             "text": "Western details, pearl snaps, secret pockets, lens cloth, and UPF 50 for long days on the boat.",
             "text_style": "body",
             "button_label": "Learn more",
-            "button_link": "",
+            "button_link": "shopify://collections/fishing-shirts",
             "button_style_secondary": false
           }
         },
@@ -60,7 +60,7 @@
             "text": "Poncho needs your prayers, it's true. Lefty's is making the fishing shirt you've always wanted.",
             "text_style": "body",
             "button_label": "Learn more",
-            "button_link": "",
+            "button_link": "shopify://products/mint-og-fishing-shirt",
             "button_style_secondary": false
           }
         }

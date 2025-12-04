@@ -134,6 +134,10 @@
   flex-grow: 0;
   display: block;
   box-sizing: border-box;
+  padding: 0;
+  /* Override inherited button styles that can cause squishing */
+  justify-content: initial;
+  align-items: initial;
 }
 
 .carousel__dot:hover {
@@ -159,6 +163,10 @@
     max-width: 10px;
     max-height: 10px;
     flex-shrink: 0;
+    padding: 0;
+    /* Override inherited button styles that can cause squishing */
+    justify-content: initial;
+    align-items: initial;
   }
 
   .carousel__dot--active {

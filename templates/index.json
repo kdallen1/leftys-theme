@@ -235,6 +235,71 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "instagram_feed_9RefT3": {
+      "type": "instagram-feed",
+      "blocks": {
+        "image_HNab4Y": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "caption": ""
+          }
+        },
+        "image_dwDJhW": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "caption": ""
+          }
+        },
+        "image_a33TCx": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "caption": ""
+          }
+        },
+        "image_jz6yJq": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "caption": ""
+          }
+        },
+        "image_xeLaG8": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "caption": ""
+          }
+        },
+        "image_aKDEU6": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "caption": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_HNab4Y",
+        "image_dwDJhW",
+        "image_a33TCx",
+        "image_jz6yJq",
+        "image_xeLaG8",
+        "image_aKDEU6"
+      ],
+      "name": "Instagram Feed",
+      "settings": {
+        "title": "Follow us on Instagram",
+        "heading_size": "h2",
+        "instagram_link": "https://www.instagram.com/leftys_tx/",
+        "button_label": "Visit our Instagram",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -242,6 +307,7 @@
     "rich_text",
     "featured_collection",
     "collage",
-    "multicolumn"
+    "multicolumn",
+    "instagram_feed_9RefT3"
   ]
 }

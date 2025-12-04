@@ -71,6 +71,17 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6,
   text-transform: uppercase !important;
 }
 
+/* Make product title on product page a bit smaller */
+.product__title h1 {
+  font-size: 4rem !important;
+}
+
+@media screen and (max-width: 749px) {
+  .product__title h1 {
+    font-size: 2.8rem !important;
+  }
+}
+
 /* Use Source Sans Pro for body text - clean, readable complement to SuperClarendon */
 body, p, .body, .rte, .text {
   font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif !important;

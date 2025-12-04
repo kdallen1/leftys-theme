@@ -36,9 +36,15 @@
   transition: filter 0.3s ease;
 }
 
-/* Logo changes color when scrolled - sync with natural header behavior */
-.scrolled-past-header .logo-image {
+/* Logo changes color when scrolled - sync with header transparency behavior */
+.scrolled-past-header .logo-image,
+.header--scrolled .logo-image {
   filter: brightness(0) saturate(100%) invert(10%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(10%) contrast(100%) !important;
+}
+
+/* Ensure white logo when transparent */
+.header--transparent .logo-image {
+  filter: brightness(0) invert(1) drop-shadow(2px 2px 4px rgba(0,0,0,0.5)) !important;
 }
 
 /* Apply SuperClarendon font to all headings - ALL CAPS */

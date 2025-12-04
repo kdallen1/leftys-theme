@@ -86,36 +86,6 @@
         "show_dots": true
       }
     },
-    "rich_text": {
-      "type": "rich-text",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 0
-      }
-    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
@@ -144,170 +114,44 @@
         "padding_bottom": 36
       }
     },
-    "collage": {
-      "type": "collage",
+    "newsletter_d9RigL": {
+      "type": "newsletter",
       "blocks": {
-        "collection-0": {
-          "type": "collection",
+        "heading_K6wf49": {
+          "type": "heading",
           "settings": {
-            "collection": ""
+            "heading": "Subscribe to our emails",
+            "heading_size": "h1"
           }
         },
-        "product": {
-          "type": "product",
+        "paragraph_cFBddP": {
+          "type": "paragraph",
           "settings": {
-            "product": "",
-            "second_image": false
+            "text": "<p>Be the first to know about new collections and exclusive offers.</p>"
           }
         },
-        "collection-1": {
-          "type": "collection",
-          "settings": {
-            "collection": ""
-          }
+        "email_form_6J4cj3": {
+          "type": "email_form",
+          "settings": {}
         }
       },
       "block_order": [
-        "collection-0",
-        "product",
-        "collection-1"
+        "heading_K6wf49",
+        "paragraph_cFBddP",
+        "email_form_6J4cj3"
       ],
+      "name": "t:sections.newsletter.presets.name",
       "settings": {
-        "heading": "Multimedia collage",
-        "heading_size": "h2",
-        "desktop_layout": "left",
-        "mobile_layout": "collage",
-        "card_styles": "product-card-wrapper",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "multicolumn": {
-      "type": "multicolumn",
-      "blocks": {
-        "column1": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column2": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column3": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column1",
-        "column2",
-        "column3"
-      ],
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "third",
-        "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "none",
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "instagram_feed_9RefT3": {
-      "type": "instagram-feed",
-      "blocks": {
-        "image_HNab4Y": {
-          "type": "image",
-          "settings": {
-            "link": "https://www.instagram.com/p/DRugAvGDdgO/?img_index=1",
-            "caption": ""
-          }
-        },
-        "image_dwDJhW": {
-          "type": "image",
-          "settings": {
-            "link": "",
-            "caption": ""
-          }
-        },
-        "image_a33TCx": {
-          "type": "image",
-          "settings": {
-            "link": "",
-            "caption": ""
-          }
-        },
-        "image_jz6yJq": {
-          "type": "image",
-          "settings": {
-            "link": "",
-            "caption": ""
-          }
-        },
-        "image_xeLaG8": {
-          "type": "image",
-          "settings": {
-            "link": "",
-            "caption": ""
-          }
-        },
-        "image_aKDEU6": {
-          "type": "image",
-          "settings": {
-            "link": "",
-            "caption": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_HNab4Y",
-        "image_dwDJhW",
-        "image_a33TCx",
-        "image_jz6yJq",
-        "image_xeLaG8",
-        "image_aKDEU6"
-      ],
-      "name": "Instagram Feed",
-      "settings": {
-        "title": "Follow us on Instagram",
-        "heading_size": "h2",
-        "instagram_link": "https://www.instagram.com/leftys_tx/",
-        "button_label": "Visit our Instagram",
         "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     }
   },
   "order": [
     "image_carousel_DTmFXT",
-    "rich_text",
     "featured_collection",
-    "collage",
-    "multicolumn",
-    "instagram_feed_9RefT3"
+    "newsletter_d9RigL"
   ]
 }

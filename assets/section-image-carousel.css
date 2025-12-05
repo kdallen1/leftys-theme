@@ -119,12 +119,12 @@
 }
 
 .carousel__dot {
-  width: 15px;
-  height: 15px;
-  min-width: 15px;
-  min-height: 15px;
-  max-width: 15px;
-  max-height: 15px;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  max-width: 20px;
+  max-height: 20px;
   border-radius: 50%;
   border: none;
   background: rgba(255, 255, 255, 0.4);
@@ -146,7 +146,7 @@
 
 .carousel__dot--active {
   background: rgba(255, 255, 255, 1);
-  box-shadow: 0 0 0 2px rgba(192, 192, 192, 1);
+  box-shadow: 0 0 0 3px rgba(192, 192, 192, 1);
 }
 
 @media screen and (max-width: 749px) {
@@ -156,12 +156,12 @@
   }
 
   .carousel__dot {
-    width: 10px;
-    height: 10px;
-    min-width: 10px;
-    min-height: 10px;
-    max-width: 10px;
-    max-height: 10px;
+    width: 14px;
+    height: 14px;
+    min-width: 14px;
+    min-height: 14px;
+    max-width: 14px;
+    max-height: 14px;
     flex-shrink: 0;
     padding: 0;
     /* Override inherited button styles that can cause squishing */

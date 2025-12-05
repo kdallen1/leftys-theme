@@ -120,7 +120,7 @@
       "settings": {
         "heading": "About Us",
         "heading_size": "h2",
-        "text": "<p>We design high-quality western wear with deep roots. Whether you're on the boat or out on the dance floor, you're gonna look good in Lefty's.  Based in Austin, TX.</p>",
+        "text": "<p>We design high-quality western wear with deep roots. Whether you're on the boat or the dance floor, you're gonna look good in Lefty's.<br/><br/>Founded in Austin, TX by two guys who play country music.</p>",
         "button_label": "Learn More",
         "button_link": "shopify://pages/about",
         "button_style_secondary": false,

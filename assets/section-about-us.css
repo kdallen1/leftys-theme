@@ -76,9 +76,9 @@
   text-decoration: none;
   font-weight: 600;
   font-size: 1.5rem;
-  font-family: 'SuperClarendon', 'Clarendon', 'Times New Roman', serif;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  text-transform: none;
+  letter-spacing: normal;
   box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
   transition: all 0.3s ease;
   display: inline-block;

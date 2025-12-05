@@ -30,6 +30,13 @@
     z-index: 1;
     pointer-events: none;
   }
+
+  @media screen and (max-width: 768px) {
+    .about-us-section::before {
+      background-attachment: scroll;
+      background-size: 200px 200px;
+    }
+  }
 {%- endstyle -%}
 
 <div class="about-us-section color-{{ section.settings.color_scheme }} gradient">

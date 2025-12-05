@@ -122,7 +122,7 @@
         "heading_size": "h2",
         "text": "<p>We're passionate about creating exceptional fishing and western wear that combines traditional craftsmanship with modern functionality. Every piece is designed with the outdoorsman in mind.</p>",
         "button_label": "Learn More",
-        "button_link": "",
+        "button_link": "shopify://pages/about",
         "button_style_secondary": false,
         "color_scheme": "",
         "padding_top": 60,

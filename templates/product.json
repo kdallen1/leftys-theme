@@ -34,6 +34,19 @@
           "type": "price",
           "settings": {}
         },
+        "custom_liquid_XETAyy": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": ""
+          }
+        },
+        "text_8GFRU9": {
+          "type": "text",
+          "settings": {
+            "text": "<em>{{ product.metafields.custom.shipping_message.value }}</em>",
+            "text_style": "body"
+          }
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -95,6 +108,8 @@
         "title",
         "caption",
         "price",
+        "custom_liquid_XETAyy",
+        "text_8GFRU9",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",

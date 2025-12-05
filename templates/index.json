@@ -114,6 +114,21 @@
         "padding_bottom": 36
       }
     },
+    "about_us_XH8kqL": {
+      "type": "about-us",
+      "name": "About Us",
+      "settings": {
+        "heading": "About Us",
+        "heading_size": "h2",
+        "text": "<p>We're passionate about creating exceptional fishing and western wear that combines traditional craftsmanship with modern functionality. Every piece is designed with the outdoorsman in mind.</p>",
+        "button_label": "Learn More",
+        "button_link": "",
+        "button_style_secondary": false,
+        "color_scheme": "",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
     "176488499441eaa556": {
       "type": "apps",
       "blocks": {
@@ -175,21 +190,6 @@
         "full_width": true,
         "padding_top": 40,
         "padding_bottom": 52
-      }
-    },
-    "about_us_XH8kqL": {
-      "type": "about-us",
-      "name": "About Us",
-      "settings": {
-        "heading": "About Us",
-        "heading_size": "h1",
-        "text": "<p>We're passionate about creating exceptional fishing and western wear that combines traditional craftsmanship with modern functionality. Every piece is designed with the outdoorsman in mind.</p>",
-        "button_label": "Learn More",
-        "button_link": "",
-        "button_style_secondary": false,
-        "color_scheme": "",
-        "padding_top": 60,
-        "padding_bottom": 60
       }
     }
   },

@@ -12,12 +12,13 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .about-us-section .about-us__tile-bg {
+    background-image: url({{ 'saltwater_preview.webp' | asset_url }});
+  }
 {%- endstyle -%}
 
-<div class="about-us-section color-{{ section.settings.color_scheme }} gradient">
-  <div class="about-us__background parallax-bg" data-parallax-speed="0.3">
-    <div class="about-us__tile-bg"></div>
-  </div>
+<div class="about-us-section color-{{ section.settings.color_scheme }} gradient about-us-parallax" data-parallax-speed="0.6" style="background-color: #e0f2f1; background-image: url({{ 'saltwater_preview.webp' | asset_url }}); background-repeat: repeat; background-size: 400px 400px;">
   <div class="about-us__content section-{{ section.id }}-padding">
     <div class="page-width">
       <div class="about-us__text-wrapper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
@@ -43,7 +44,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const parallaxElements = document.querySelectorAll('.parallax-bg');
+  const parallaxElements = document.querySelectorAll('.about-us-parallax');
 
   function handleParallax() {
     parallaxElements.forEach(element => {
@@ -56,8 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
       // Only apply parallax when element is in viewport
       if (elementTop < windowHeight && (elementTop + elementHeight) > 0) {
         const scrolled = window.pageYOffset;
-        const parallax = scrolled * speed;
-        element.style.transform = `translateY(${parallax}px)`;
+        const rate = scrolled * -speed;
+        element.style.backgroundPosition = `center ${rate}px`;
       }
     });
   }

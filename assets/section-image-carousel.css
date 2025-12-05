@@ -146,7 +146,7 @@
 
 .carousel__dot--active {
   background: rgba(255, 255, 255, 1);
-  box-shadow: 0 0 0 3px rgba(192, 192, 192, 1);
+  box-shadow: 0 0 0 2.5px rgba(192, 192, 192, 1);
 }
 
 @media screen and (max-width: 749px) {

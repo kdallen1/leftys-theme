@@ -261,6 +261,26 @@
           font-size: 1.6rem;
         }
       }
+
+      /* Instagram icon for Instafeed app */
+      .instafeed-bottom-link-wrapper a[href*="instagram.com"] {
+        display: inline-flex !important;
+        align-items: center;
+        text-decoration: none;
+      }
+
+      .instafeed-bottom-link-wrapper a[href*="instagram.com"]::before {
+        content: "\f16d";
+        font-family: "Font Awesome 6 Brands";
+        font-weight: 400;
+        font-size: 1.6em;
+        margin-right: 8px;
+        background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: inline-block;
+      }
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}

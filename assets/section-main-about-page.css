@@ -1,0 +1,309 @@
+/* Import Google Fonts for floral script font */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+/* About Page Styles */
+.about-page-section {
+  position: relative;
+  min-height: 100vh;
+  background-color: white;
+}
+
+.about-page__content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.about-page__wrapper {
+  background: white;
+  padding: 4rem;
+  margin: 2rem 0;
+}
+
+/* Main Heading */
+.about-page__main-heading {
+  font-family: 'SuperClarendon', 'Clarendon', 'Times New Roman', serif !important;
+  font-weight: 700 !important;
+  font-size: 4rem;
+  color: rgb(var(--color-foreground));
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+/* Subheading */
+.about-page__subheading {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 1.8rem;
+  color: rgb(var(--color-foreground));
+  text-align: left;
+  letter-spacing: 2px;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+}
+
+/* Brand Story Section */
+.about-page__brand-story {
+  margin-bottom: 4rem;
+}
+
+.about-page__brand-story p {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.7;
+  color: rgb(var(--color-foreground));
+  margin: 0 0 1.5rem 0;
+  text-align: justify;
+}
+
+/* Script Initial Letters */
+.script-initial {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3rem;
+  color: black;
+  margin-right: 0.2rem;
+  vertical-align: top;
+  line-height: 1;
+  display: inline-block;
+  position: relative;
+  top: 0.1em;
+}
+
+/* Section Headings */
+.about-page__section-heading {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: rgb(var(--color-foreground));
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-align: left;
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+}
+
+/* Product Gallery */
+.about-page__product-gallery {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: left;
+  flex-wrap: wrap;
+}
+
+.product-thumbnail {
+  width: 125px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-thumbnail:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Collection Text */
+.about-page__collection-text p {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.7;
+  color: rgb(var(--color-foreground));
+  margin-bottom: 2rem;
+}
+
+/* Product Links */
+.product-link {
+  color: #8B4513;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid #8B4513;
+  transition: all 0.3s ease;
+}
+
+.product-link:hover {
+  color: #A0522D;
+  border-bottom-color: #A0522D;
+}
+
+/* Founders Section */
+.about-page__founders-section {
+  margin-bottom: 3rem;
+}
+
+.about-page__founders-intro {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.7;
+  color: rgb(var(--color-foreground));
+  margin-bottom: 3rem;
+}
+
+.about-page__founders {
+  display: flex;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.founder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.founder__photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+  border: 4px solid #8B4513;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.founder__bio {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.6;
+  color: rgb(var(--color-foreground));
+}
+
+.founder__bio strong {
+  font-weight: 700;
+  color: #8B4513;
+}
+
+/* Contact Section */
+.about-page__contact {
+  text-align: left;
+  margin-top: 2rem;
+}
+
+.about-page__contact p {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.7;
+  color: rgb(var(--color-foreground));
+  margin-bottom: 1rem;
+}
+
+.contact-link {
+  color: #8B4513;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid #8B4513;
+  transition: all 0.3s ease;
+}
+
+.contact-link:hover {
+  color: #A0522D;
+  border-bottom-color: #A0522D;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+  .about-page__wrapper {
+    padding: 2rem;
+    margin: 1rem 0;
+  }
+
+  .about-page__main-heading {
+    font-size: 3rem;
+  }
+
+  .about-page__subheading {
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+  }
+
+  .about-page__brand-story p,
+  .about-page__collection-text p,
+  .about-page__founders-intro,
+  .about-page__contact p {
+    font-size: 1.4rem;
+    text-align: left;
+  }
+
+  .script-initial {
+    font-size: 2rem;
+  }
+
+  .about-page__section-heading {
+    font-size: 1.6rem;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-page__founders {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .founder__photo {
+    width: 150px;
+    height: 150px;
+  }
+
+  .founder__bio {
+    font-size: 1.3rem;
+  }
+
+}
+
+/* Large Screens */
+@media screen and (min-width: 1200px) {
+  .about-page__wrapper {
+    padding: 5rem;
+  }
+
+  .about-page__main-heading {
+    font-size: 5rem;
+  }
+
+  .about-page__subheading {
+    font-size: 2rem;
+  }
+
+  .about-page__brand-story p,
+  .about-page__collection-text p,
+  .about-page__founders-intro {
+    font-size: 2rem;
+  }
+
+  .script-initial {
+    font-size: 3rem;
+  }
+
+  .about-page__section-heading {
+    font-size: 2.5rem;
+  }
+
+  .founder__photo {
+    width: 250px;
+    height: 250px;
+  }
+
+  .founder__bio {
+    font-size: 1.7rem;
+  }
+}
+
+/* Animation for scroll reveal */
+@media (prefers-reduced-motion: no-preference) {
+  .about-page__wrapper.scroll-trigger {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .about-page__wrapper.scroll-trigger.animate--slide-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

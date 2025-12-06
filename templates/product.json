@@ -69,15 +69,6 @@
           "type": "description",
           "settings": {}
         },
-        "collapsible-row-1": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Shipping & Returns",
-            "icon": "truck",
-            "content": "",
-            "page": ""
-          }
-        },
         "share": {
           "type": "share",
           "settings": {
@@ -96,7 +87,6 @@
         "quantity_selector",
         "buy_buttons",
         "description",
-        "collapsible-row-1",
         "share"
       ],
       "settings": {

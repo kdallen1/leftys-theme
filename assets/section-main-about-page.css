@@ -54,7 +54,7 @@
   line-height: 1.7;
   color: rgb(var(--color-foreground));
   margin: 0 0 1.5rem 0;
-  text-align: justify;
+  text-align: left;
 }
 
 /* Script Initial Letters */
@@ -114,6 +114,7 @@
   line-height: 1.7;
   color: rgb(var(--color-foreground));
   margin-bottom: 2rem;
+  text-align: left;
 }
 
 /* Product Links */
@@ -156,7 +157,7 @@
   line-height: 1.7 !important;
   color: rgb(var(--color-foreground)) !important;
   margin: 0 0 2rem 0 !important;
-  text-align: justify;
+  text-align: left !important;
 }
 
 .about-page__founders-bios {
@@ -169,7 +170,7 @@
   line-height: 1.7 !important;
   color: rgb(var(--color-foreground)) !important;
   margin: 0 0 1.5rem 0 !important;
-  text-align: justify;
+  text-align: left !important;
 }
 
 .about-page__founders-bios strong {
@@ -192,12 +193,12 @@
 
   .about-page__founders-intro {
     text-align: left !important;
-    font-size: 1.4rem !important;
+    font-size: 1.8rem !important;
   }
 
   .about-page__founders-bios p {
     text-align: left !important;
-    font-size: 1.4rem !important;
+    font-size: 1.8rem !important;
   }
 }
 
@@ -213,6 +214,7 @@
   line-height: 1.7;
   color: rgb(var(--color-foreground));
   margin-bottom: 1rem;
+  text-align: left;
 }
 
 .contact-link {
@@ -248,7 +250,7 @@
   .about-page__collection-text p,
   .about-page__founders-intro,
   .about-page__contact p {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     text-align: left;
   }
 

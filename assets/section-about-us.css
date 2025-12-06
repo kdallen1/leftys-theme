@@ -92,7 +92,9 @@
   letter-spacing: normal;
   box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
   transition: all 0.3s ease;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .about-us__text-wrapper .button:hover {

@@ -133,50 +133,72 @@
 /* Founders Section */
 .about-page__founders-section {
   margin-bottom: 3rem;
+  display: flex;
+  gap: 4rem;
+  align-items: flex-start;
+}
+
+.founders__group-photo {
+  width: 450px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.about-page__founders-text {
+  flex: 1;
 }
 
 .about-page__founders-intro {
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
-  font-size: 1.8rem;
-  line-height: 1.7;
-  color: rgb(var(--color-foreground));
-  margin-bottom: 3rem;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif !important;
+  font-size: 1.8rem !important;
+  line-height: 1.7 !important;
+  color: rgb(var(--color-foreground)) !important;
+  margin: 0 0 2rem 0 !important;
+  text-align: justify;
 }
 
-.about-page__founders {
-  display: flex;
-  gap: 3rem;
-  margin-top: 2rem;
+.about-page__founders-bios {
+  margin-top: 0;
 }
 
-.founder {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+.about-page__founders-bios p {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif !important;
+  font-size: 1.8rem !important;
+  line-height: 1.7 !important;
+  color: rgb(var(--color-foreground)) !important;
+  margin: 0 0 1.5rem 0 !important;
+  text-align: justify;
 }
 
-.founder__photo {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 1.5rem;
-  border: 4px solid #8B4513;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-}
-
-.founder__bio {
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
-  font-size: 1.8rem;
-  line-height: 1.6;
-  color: rgb(var(--color-foreground));
-}
-
-.founder__bio strong {
+.about-page__founders-bios strong {
   font-weight: 700;
   color: #8B4513;
+}
+
+/* Mobile responsive for founders section */
+@media screen and (max-width: 768px) {
+  .about-page__founders-section {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .founders__group-photo {
+    width: 100%;
+    max-width: 400px;
+    align-self: center;
+  }
+
+  .about-page__founders-intro {
+    text-align: left !important;
+    font-size: 1.4rem !important;
+  }
+
+  .about-page__founders-bios p {
+    text-align: left !important;
+    font-size: 1.4rem !important;
+  }
 }
 
 /* Contact Section */

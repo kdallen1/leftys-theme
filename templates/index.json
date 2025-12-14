@@ -12,6 +12,19 @@
     "image_carousel_DTmFXT": {
       "type": "image-carousel",
       "blocks": {
+        "slide_UQ8wBh": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/IMG_4558.jpg",
+            "heading": "The Neon Moon",
+            "heading_size": "h1",
+            "text": "Our newest pearl snap, inspired by your favorite 90's hits. Reserve yours before they're gone.",
+            "text_style": "body",
+            "button_label": "Pre-order now",
+            "button_link": "shopify://products/the-neon-moon",
+            "button_style_secondary": false
+          }
+        },
         "slide_nqhqUx": {
           "type": "slide",
           "settings": {
@@ -66,6 +79,7 @@
         }
       },
       "block_order": [
+        "slide_UQ8wBh",
         "slide_nqhqUx",
         "slide_9V9Apz",
         "slide_dGngAE",

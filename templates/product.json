@@ -47,6 +47,13 @@
             "text_style": "body"
           }
         },
+        "popup_p37qzX": {
+          "type": "popup",
+          "settings": {
+            "text": "View sizing chart",
+            "page": "{{ product.metafields.custom.size_chart.value.sizing_page.value }}"
+          }
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -83,6 +90,7 @@
         "price",
         "custom_liquid_XETAyy",
         "text_8GFRU9",
+        "popup_p37qzX",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",

@@ -12,13 +12,6 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "popup_qmALVq": {
-          "type": "popup",
-          "settings": {
-            "text": "Pop-up link text",
-            "page": ""
-          }
-        },
         "vendor": {
           "type": "text",
           "settings": {
@@ -84,7 +77,6 @@
         }
       },
       "block_order": [
-        "popup_qmALVq",
         "vendor",
         "title",
         "caption",

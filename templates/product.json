@@ -47,13 +47,6 @@
             "text_style": "body"
           }
         },
-        "popup_cLJb7J": {
-          "type": "popup",
-          "settings": {
-            "text": "Size chart",
-            "page": "long-sleeve-western-shirt-sizing"
-          }
-        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -90,7 +83,6 @@
         "price",
         "custom_liquid_XETAyy",
         "text_8GFRU9",
-        "popup_cLJb7J",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",

@@ -12,6 +12,19 @@
     "image_carousel_DTmFXT": {
       "type": "image-carousel",
       "blocks": {
+        "slide_9V9Apz": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/brandon-duckpopper-optimized.png",
+            "heading": "The Duckpopper",
+            "heading_size": "h1",
+            "text": "Our first pearl snap, inspired by the resplendent hues of the Mandarin Duck. Don't miss this limited run.",
+            "text_style": "body",
+            "button_label": "Get yours now",
+            "button_link": "shopify://products/the-duckpopper",
+            "button_style_secondary": false
+          }
+        },
         "slide_UQ8wBh": {
           "type": "slide",
           "settings": {
@@ -35,19 +48,6 @@
             "text_style": "body",
             "button_label": "Pre-order now",
             "button_link": "shopify://collections/long-sleeve-western-shirts",
-            "button_style_secondary": false
-          }
-        },
-        "slide_9V9Apz": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/brandon-duckpopper-optimized.png",
-            "heading": "The Duckpopper",
-            "heading_size": "h1",
-            "text": "Our first pearl snap, inspired by the resplendent hues of the Mandarin Duck. Don't miss this limited run.",
-            "text_style": "body",
-            "button_label": "Get yours now",
-            "button_link": "shopify://products/the-duckpopper",
             "button_style_secondary": false
           }
         },
@@ -79,9 +79,9 @@
         }
       },
       "block_order": [
+        "slide_9V9Apz",
         "slide_UQ8wBh",
         "slide_nqhqUx",
-        "slide_9V9Apz",
         "slide_dGngAE",
         "slide_ytCxV3"
       ],

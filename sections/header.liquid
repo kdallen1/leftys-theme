@@ -300,6 +300,28 @@
 {%- endif -%}
 
 {% javascript %}
+  // Set announcement bar height for header positioning
+  function setAnnouncementBarHeight() {
+    const announcementBar = document.querySelector('.announcement-bar-section');
+    if (announcementBar) {
+      const height = announcementBar.offsetHeight;
+      document.documentElement.style.setProperty('--announcement-bar-height', `${height}px`);
+    } else {
+      document.documentElement.style.setProperty('--announcement-bar-height', '0px');
+    }
+  }
+
+  // Set height on load and resize
+  document.addEventListener('DOMContentLoaded', setAnnouncementBarHeight);
+  window.addEventListener('resize', setAnnouncementBarHeight);
+
+  // Also set it immediately if DOM is already loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setAnnouncementBarHeight);
+  } else {
+    setAnnouncementBarHeight();
+  }
+
   class StickyHeader extends HTMLElement {
     constructor() {
       super();
@@ -311,6 +333,8 @@
       this.headerBounds = {};
 
       this.setHeaderHeight();
+      // Also update announcement bar height when header connects
+      setAnnouncementBarHeight();
 
       window.matchMedia('(max-width: 990px)').addEventListener('change', this.setHeaderHeight.bind(this));
 

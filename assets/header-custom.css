@@ -154,6 +154,27 @@ body, p, .body, .rte, .text {
   position: relative;
 }
 
+/* When announcement bar is present, ensure it stays fixed at the top */
+.announcement-bar-section {
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+  background: inherit;
+}
+
+/* When announcement bar is present, position header below it */
+.announcement-bar-section + .section-header .header-wrapper.shopify-section-header-sticky,
+.announcement-bar-section + .section-header .header-wrapper {
+  position: sticky !important;
+  top: var(--announcement-bar-height, 0px) !important;
+  z-index: 9999 !important;
+}
+
+/* Set CSS custom property for announcement bar height - will be set by JavaScript */
+:root {
+  --announcement-bar-height: 0px;
+}
+
 
 /* Remove column gaps to spread elements */
 .header--middle-center:not(.drawer-menu) {

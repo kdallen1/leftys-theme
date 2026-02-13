@@ -57,7 +57,7 @@
     }
   },
   "order": [
-    "header",
-    "announcement_bar_HwChpf"
+    "announcement_bar_HwChpf",
+    "header"
   ]
 }

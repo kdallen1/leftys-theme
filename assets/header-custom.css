@@ -154,23 +154,20 @@ body, p, .body, .rte, .text {
   position: relative;
 }
 
-/* When announcement bar is present, ensure it stays fixed at the top */
+/* Announcement bar stays at top */
 .announcement-bar-section {
   position: sticky;
   top: 0;
   z-index: 10000;
-  background: inherit;
 }
 
-/* When announcement bar is present, position header below it */
+/* Header maintains overlay behavior but positioned below announcement bar */
 .announcement-bar-section + .section-header .header-wrapper.shopify-section-header-sticky,
 .announcement-bar-section + .section-header .header-wrapper {
-  position: sticky !important;
   top: var(--announcement-bar-height, 0px) !important;
-  z-index: 9999 !important;
 }
 
-/* Set CSS custom property for announcement bar height - will be set by JavaScript */
+/* Set CSS custom property for announcement bar height */
 :root {
   --announcement-bar-height: 0px;
 }

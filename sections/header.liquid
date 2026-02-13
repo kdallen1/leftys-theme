@@ -312,14 +312,21 @@
   }
 
   // Set height on load and resize
-  document.addEventListener('DOMContentLoaded', setAnnouncementBarHeight);
+  document.addEventListener('DOMContentLoaded', () => {
+    // Small delay to ensure all elements are rendered
+    setTimeout(setAnnouncementBarHeight, 100);
+  });
+
   window.addEventListener('resize', setAnnouncementBarHeight);
+  window.addEventListener('load', setAnnouncementBarHeight);
 
   // Also set it immediately if DOM is already loaded
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setAnnouncementBarHeight);
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(setAnnouncementBarHeight, 100);
+    });
   } else {
-    setAnnouncementBarHeight();
+    setTimeout(setAnnouncementBarHeight, 100);
   }
 
   class StickyHeader extends HTMLElement {

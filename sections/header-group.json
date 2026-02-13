@@ -27,11 +27,19 @@
             "text": "Buy 2+ shirts get 10% off",
             "link": ""
           }
+        },
+        "announcement_dEp9gP": {
+          "type": "announcement",
+          "settings": {
+            "text": "Just arrived! The neon moon",
+            "link": "shopify://products/the-neon-moon"
+          }
         }
       },
       "block_order": [
         "announcement_DeHAcC",
-        "announcement_gDk8zX"
+        "announcement_gDk8zX",
+        "announcement_dEp9gP"
       ],
       "name": "t:sections.announcement-bar.presets.name",
       "settings": {

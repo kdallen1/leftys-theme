@@ -178,14 +178,14 @@
         "heading_K6wf49": {
           "type": "heading",
           "settings": {
-            "heading": "Please keep in touch",
+            "heading": "Stay in touch with us",
             "heading_size": "h2"
           }
         },
         "paragraph_cFBddP": {
           "type": "paragraph",
           "settings": {
-            "text": "<p>Join our (infrequent) newsletter and get 10% off your first order</p>"
+            "text": "<p>Join our (infrequent) newsletter and <strong>get 10% off</strong> your first order</p>"
           }
         },
         "email_form_6J4cj3": {

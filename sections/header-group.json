@@ -11,6 +11,39 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
+    "announcement_bar_HwChpf": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_DeHAcC": {
+          "type": "announcement",
+          "settings": {
+            "text": "FREE SHIPPING ANYWHERE IN THE USA",
+            "link": ""
+          }
+        },
+        "announcement_gDk8zX": {
+          "type": "announcement",
+          "settings": {
+            "text": "Buy 2+ shirts get 10% off",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_DeHAcC",
+        "announcement_gDk8zX"
+      ],
+      "name": "t:sections.announcement-bar.presets.name",
+      "settings": {
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "color_scheme": "",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
     "header": {
       "type": "header",
       "settings": {
@@ -28,31 +61,6 @@
         "margin_bottom": 0,
         "padding_top": 20,
         "padding_bottom": 20
-      }
-    },
-    "announcement_bar_HwChpf": {
-      "type": "announcement-bar",
-      "blocks": {
-        "announcement_DeHAcC": {
-          "type": "announcement",
-          "settings": {
-            "text": "FREE SHIPPING ANYWHERE IN THE USA",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "announcement_DeHAcC"
-      ],
-      "name": "t:sections.announcement-bar.presets.name",
-      "settings": {
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "color_scheme": "",
-        "show_line_separator": true,
-        "show_social": false,
-        "enable_country_selector": false,
-        "enable_language_selector": false
       }
     }
   },

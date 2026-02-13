@@ -277,7 +277,7 @@
 
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
           {% if cart == empty %}
-            <i class="fa-solid fa-basket-shopping"></i>
+            <i class="fa-regular fa-basket-shopping"></i>
           {% else %}
             <i class="fa-solid fa-basket-shopping"></i>
           {% endif %}
@@ -306,27 +306,30 @@
     if (announcementBar) {
       const height = announcementBar.offsetHeight;
       document.documentElement.style.setProperty('--announcement-bar-height', `${height}px`);
+      console.log('Announcement bar height:', height + 'px');
     } else {
       document.documentElement.style.setProperty('--announcement-bar-height', '0px');
+      console.log('No announcement bar found');
     }
   }
 
-  // Set height on load and resize
+  // Set height on load and resize with longer delay
   document.addEventListener('DOMContentLoaded', () => {
-    // Small delay to ensure all elements are rendered
-    setTimeout(setAnnouncementBarHeight, 100);
+    setTimeout(setAnnouncementBarHeight, 500);
   });
 
   window.addEventListener('resize', setAnnouncementBarHeight);
-  window.addEventListener('load', setAnnouncementBarHeight);
+  window.addEventListener('load', () => {
+    setTimeout(setAnnouncementBarHeight, 500);
+  });
 
   // Also set it immediately if DOM is already loaded
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(setAnnouncementBarHeight, 100);
+      setTimeout(setAnnouncementBarHeight, 500);
     });
   } else {
-    setTimeout(setAnnouncementBarHeight, 100);
+    setTimeout(setAnnouncementBarHeight, 500);
   }
 
   class StickyHeader extends HTMLElement {

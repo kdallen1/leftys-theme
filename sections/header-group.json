@@ -14,6 +14,13 @@
     "announcement_bar_HwChpf": {
       "type": "announcement-bar",
       "blocks": {
+        "announcement_JyAtBP": {
+          "type": "announcement",
+          "settings": {
+            "text": "🇩🇪🇬🇧🇨🇦 $10 Express International Shipping 🇨🇦🇬🇧🇩🇪",
+            "link": ""
+          }
+        },
         "announcement_DeHAcC": {
           "type": "announcement",
           "settings": {
@@ -37,6 +44,7 @@
         }
       },
       "block_order": [
+        "announcement_JyAtBP",
         "announcement_DeHAcC",
         "announcement_gDk8zX",
         "announcement_dEp9gP"

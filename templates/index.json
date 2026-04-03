@@ -76,6 +76,19 @@
             "button_link": "shopify://collections/fishing-shirts",
             "button_style_secondary": false
           }
+        },
+        "slide_GxNqFf": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/IMG_0442_black_front_detail_2_a6bfbdff-fa62-45a8-bcd2-867b388cf911.jpg",
+            "heading": "Pure Country Luxury",
+            "heading_size": "h1",
+            "text": "Preorder the Black-on-Black Luxe Pearl Snap. The fabric of the future, styled for the past.",
+            "text_style": "body",
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false
+          }
         }
       },
       "block_order": [
@@ -83,7 +96,8 @@
         "slide_UQ8wBh",
         "slide_nqhqUx",
         "slide_dGngAE",
-        "slide_ytCxV3"
+        "slide_ytCxV3",
+        "slide_GxNqFf"
       ],
       "name": "Image Carousel",
       "settings": {

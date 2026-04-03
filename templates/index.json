@@ -12,6 +12,19 @@
     "image_carousel_DTmFXT": {
       "type": "image-carousel",
       "blocks": {
+        "slide_GxNqFf": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/IMG_0442_black_front_detail_2_a6bfbdff-fa62-45a8-bcd2-867b388cf911.jpg",
+            "heading": "Pure Country Luxury",
+            "heading_size": "h1",
+            "text": "Preorder the Black-on-Black Luxe Pearl Snap. The fabric of the future, styled for the past.",
+            "text_style": "body",
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        },
         "slide_9V9Apz": {
           "type": "slide",
           "settings": {
@@ -76,28 +89,15 @@
             "button_link": "shopify://collections/fishing-shirts",
             "button_style_secondary": false
           }
-        },
-        "slide_GxNqFf": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/IMG_0442_black_front_detail_2_a6bfbdff-fa62-45a8-bcd2-867b388cf911.jpg",
-            "heading": "Pure Country Luxury",
-            "heading_size": "h1",
-            "text": "Preorder the Black-on-Black Luxe Pearl Snap. The fabric of the future, styled for the past.",
-            "text_style": "body",
-            "button_label": "",
-            "button_link": "",
-            "button_style_secondary": false
-          }
         }
       },
       "block_order": [
+        "slide_GxNqFf",
         "slide_9V9Apz",
         "slide_UQ8wBh",
         "slide_nqhqUx",
         "slide_dGngAE",
-        "slide_ytCxV3",
-        "slide_GxNqFf"
+        "slide_ytCxV3"
       ],
       "name": "Image Carousel",
       "settings": {

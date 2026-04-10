@@ -191,6 +191,23 @@ product-info {
 
 .product-form__submit {
   margin-bottom: 1rem;
+  background-color: #6833A9 !important;
+  color: #ffffff !important;
+  font-size: 1.8rem !important;
+  font-family: 'SuperClarendon', 'Clarendon', 'Times New Roman', serif !important;
+  text-transform: uppercase !important;
+  padding-top: 1.8rem !important;
+  padding-bottom: 1.8rem !important;
+  border: none !important;
+}
+
+.product-form__submit:hover:not([disabled]) {
+  background-color: #562b8a !important;
+  border: none !important;
+}
+
+.product-form__submit:hover:not([disabled])::after {
+  box-shadow: none !important;
 }
 
 .product-form__submit[aria-disabled='true'] + .shopify-payment-button .shopify-payment-button__button[disabled],
@@ -243,11 +260,17 @@ a.product__text {
 
 .product__text.caption-with-letter-spacing {
   text-transform: uppercase;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .product__title {
   word-break: break-word;
   margin-bottom: 1.5rem;
+}
+
+.product__title h1 {
+  font-size: 2.5rem;
 }
 
 .product__title > * {
@@ -844,13 +867,17 @@ a.product__text {
 
 .product-popup-modal__opener {
   display: inline-block;
+  margin-top: 1rem;
+  line-height: 1;
 }
 
 .product-popup-modal__button {
   font-size: 1.6rem;
   padding-right: 1.3rem;
   padding-left: 0;
-  min-height: 4.4rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  min-height: 0;
   text-underline-offset: 0.3rem;
   text-decoration-thickness: 0.1rem;
   transition: text-decoration-thickness var(--duration-short) ease;

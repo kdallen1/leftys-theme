@@ -402,5 +402,11 @@
     {%- endif -%}
     
     <script src="{{ 'header-transparency.js' | asset_url }}" defer="defer"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var cartNotification = document.querySelector('cart-notification');
+        if (cartNotification) document.body.appendChild(cartNotification);
+      });
+    </script>
   </body>
 </html>

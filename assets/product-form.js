@@ -127,10 +127,10 @@ if (!customElements.get('product-form')) {
       toggleSubmitButton(disable = true, text) {
         if (disable) {
           this.submitButton.setAttribute('disabled', 'disabled');
-          if (text) this.submitButtonText.textContent = text;
+          if (text) this.submitButtonText.innerHTML = text + '<i class="fa-solid fa-ban" style="margin-left: 0.6em;"></i>';
         } else {
           this.submitButton.removeAttribute('disabled');
-          this.submitButtonText.textContent = window.variantStrings.addToCart;
+          this.submitButtonText.innerHTML = window.variantStrings.addToCart + '<i class="fa-solid fa-basket-shopping" style="margin-left: 0.6em;"></i>';
         }
       }
 

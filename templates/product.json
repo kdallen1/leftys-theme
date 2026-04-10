@@ -136,6 +136,10 @@
         "padding_bottom": 12
       }
     },
+    "product-hotspots": {
+      "type": "product-hotspots",
+      "settings": {}
+    },
     "related-products": {
       "type": "related-products",
       "settings": {
@@ -157,6 +161,7 @@
   },
   "order": [
     "main",
+    "product-hotspots",
     "related-products"
   ]
 }

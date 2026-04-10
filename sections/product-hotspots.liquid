@@ -1,0 +1,182 @@
+{%- if product.handle == 'light-blue-og-fishing-shirt' -%}
+
+{{ 'section-product-hotspots.css' | asset_url | stylesheet_tag }}
+
+<section class="product-hotspots" id="product-hotspots-{{ section.id }}">
+  <div class="product-hotspots__inner page-width">
+  <h2 class="product-hotspots__heading">Better than the other guy.<br>And it won't run you 85 bucks.</h2>
+
+  <div class="product-hotspots__layout">
+
+    {%- comment -%} ── IMAGE WITH PINS ── {%- endcomment -%}
+    <div class="product-hotspots__image-wrap">
+      <img
+        src="{{ 'blue_fish_diagram.png' | asset_url }}"
+        alt="Light Blue OG Fishing Shirt — feature callouts"
+        class="product-hotspots__image"
+        loading="lazy"
+        width="800"
+      >
+
+      {%- comment -%}
+        Pin positions are percentages of the image dimensions.
+        Adjust --pin-top / --pin-left to reposition any dot.
+        data-hotspot must match data-feature in the panel below.
+      {%- endcomment -%}
+
+      <button class="hotspot-pin" data-hotspot="0"
+        style="--pin-top: 23%; --pin-left: 46%;"
+        aria-label="Hidden Collar Snaps">+</button>
+
+      <button class="hotspot-pin" data-hotspot="1"
+        style="--pin-top: 18%; --pin-left: 36%;"
+        aria-label="Western Yoke">+</button>
+
+      <button class="hotspot-pin" data-hotspot="2"
+        style="--pin-top: 17%; --pin-left: 72%;"
+        aria-label="UPF 50 Sun Protection">+</button>
+
+      <button class="hotspot-pin" data-hotspot="3"
+        style="--pin-top: 30%; --pin-left: 31%;"
+        aria-label="Scalloped Pocket Shape">+</button>
+
+      <button class="hotspot-pin" data-hotspot="4"
+        style="--pin-top: 27%; --pin-left: 60%;"
+        aria-label="Sunglasses &amp; Pen Holder">+</button>
+
+      <button class="hotspot-pin" data-hotspot="5"
+        style="--pin-top: 37%; --pin-left: 40%;"
+        aria-label="Secret Breast Pocket">+</button>
+
+      <button class="hotspot-pin" data-hotspot="6"
+        style="--pin-top: 47%; --pin-left: 52%;"
+        aria-label="Pearl Snaps">+</button>
+
+      <button class="hotspot-pin" data-hotspot="7"
+        style="--pin-top: 55%; --pin-left: 72%;"
+        aria-label="Soft &amp; Breathable">+</button>
+
+      <button class="hotspot-pin" data-hotspot="8"
+        style="--pin-top: 62%; --pin-left: 28%;"
+        aria-label="Four-Way Stretch">+</button>
+
+      <button class="hotspot-pin" data-hotspot="9"
+        style="--pin-top: 33%; --pin-left: 54%;"
+        aria-label="Phone Pocket">+</button>
+
+      <button class="hotspot-pin" data-hotspot="10"
+        style="--pin-top: 78%; --pin-left: 37%;"
+        aria-label="Built-In Lens Cloth">+</button>
+    </div>
+
+    {%- comment -%} ── FEATURE ACCORDION LIST ── {%- endcomment -%}
+    <div class="product-hotspots__panel" id="hotspot-panel-{{ section.id }}">
+
+      <details class="hotspot-accordion" data-feature="0">
+        <summary class="hotspot-accordion__summary">Hidden Collar Snaps</summary>
+        <p class="hotspot-accordion__body">Snaps can optionally keep the collar secure in windy conditions.</p>
+      </details>
+
+      <details class="hotspot-accordion" data-feature="1">
+        <summary class="hotspot-accordion__summary">Western Yoke</summary>
+        <p class="hotspot-accordion__body">A classic Western design element — the distinctive yoke across the upper chest adds structure and unmistakable Western character.</p>
+      </details>
+
+      <details class="hotspot-accordion" data-feature="2">
+        <summary class="hotspot-accordion__summary">UPF 50 Sun Protection</summary>
+        <p class="hotspot-accordion__body">Blocks 98% of harmful UV rays so you can stay out longer without burning. Your skin will thank you at the end of the day.</p>
+      </details>
+
+      <details class="hotspot-accordion" data-feature="3">
+        <summary class="hotspot-accordion__summary">Scalloped Pocket Shape</summary>
+        <p class="hotspot-accordion__body">Our signature scalloped pockets give this shirt its unmistakable Western character. Classic function meets timeless style.</p>
+      </details>
+
+      <details class="hotspot-accordion" data-feature="4">
+        <summary class="hotspot-accordion__summary">Sunglasses &amp; Pen Holder</summary>
+        <p class="hotspot-accordion__body">An integrated holder on the chest pocket keeps your sunglasses or a pen accessible at all times — no fumbling around.</p>
+      </details>
+
+      <details class="hotspot-accordion" data-feature="5">
+        <summary class="hotspot-accordion__summary">Secret Breast Pocket</summary>
+        <p class="hotspot-accordion__body">A hidden interior pocket for your valuables — keep cards, cash, or your fishing license safe and completely out of sight.</p>
+      </details>
+
+      <details class="hotspot-accordion" data-feature="6">
+        <summary class="hotspot-accordion__summary">Pearl Snaps</summary>
+        <p class="hotspot-accordion__body">Genuine pearl snaps down the front placket — easy on, easy off, and built to last through years of adventures.</p>
+      </details>
+
+      <details class="hotspot-accordion" data-feature="7">
+        <summary class="hotspot-accordion__summary">Soft &amp; Breathable</summary>
+        <p class="hotspot-accordion__body">Ultra-soft, breathable fabric that keeps you comfortable all day long — even when the sun is beating down and the fish aren't biting.</p>
+      </details>
+
+      <details class="hotspot-accordion" data-feature="8">
+        <summary class="hotspot-accordion__summary">Four-Way Stretch</summary>
+        <p class="hotspot-accordion__body">Moves with you in every direction — cast, climb, or reach without restriction. Built for the active outdoorsman.</p>
+      </details>
+
+      <details class="hotspot-accordion" data-feature="9">
+        <summary class="hotspot-accordion__summary">Phone Pocket</summary>
+        <p class="hotspot-accordion__body">A dedicated phone pocket keeps your device secure and easily accessible. Never miss a photo of the big catch.</p>
+      </details>
+
+      <details class="hotspot-accordion" data-feature="10">
+        <summary class="hotspot-accordion__summary">Built-In Lens Cloth</summary>
+        <p class="hotspot-accordion__body">A hidden microfiber lens cloth lets you wipe your sunglasses or camera lens clean on the fly — no digging through your pack.</p>
+      </details>
+
+    </div>
+  </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var section = document.getElementById('product-hotspots-{{ section.id }}');
+  if (!section) return;
+
+  var pins = section.querySelectorAll('.hotspot-pin');
+  var accordions = section.querySelectorAll('.hotspot-accordion');
+
+  function setActive(idx) {
+    pins.forEach(function (p) { p.classList.remove('is-active'); p.textContent = '+'; });
+    accordions.forEach(function (a) { a.removeAttribute('open'); a.classList.remove('is-active'); });
+
+    if (idx === null) return;
+
+    var targetAccordion = section.querySelector('.hotspot-accordion[data-feature="' + idx + '"]');
+    var targetPin = section.querySelector('.hotspot-pin[data-hotspot="' + idx + '"]');
+    if (targetAccordion) { targetAccordion.setAttribute('open', ''); targetAccordion.classList.add('is-active'); }
+    if (targetPin) { targetPin.classList.add('is-active'); targetPin.textContent = '−'; }
+  }
+
+  // Pin clicks
+  pins.forEach(function (pin) {
+    pin.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var wasActive = pin.classList.contains('is-active');
+      setActive(wasActive ? null : pin.dataset.hotspot);
+    });
+  });
+
+  // Summary clicks — prevent default so the browser doesn't toggle independently
+  accordions.forEach(function (accordion) {
+    accordion.querySelector('.hotspot-accordion__summary').addEventListener('click', function (e) {
+      e.preventDefault();
+      var wasOpen = accordion.open;
+      setActive(wasOpen ? null : accordion.dataset.feature);
+    });
+  });
+})();
+</script>
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Product Hotspots",
+  "settings": []
+}
+{% endschema %}

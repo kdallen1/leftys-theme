@@ -54,6 +54,8 @@ class CartNotification extends HTMLElement {
 
   updateShirtPromotion(cartData) {
     console.log('Updating cart notification shirt promotion');
+    console.log('Cart data structure:', Object.keys(cartData || {}));
+    console.log('Full cart data:', cartData);
 
     // Count shirts in the current cart
     const shirtCount = this.countShirtsInCart(cartData);

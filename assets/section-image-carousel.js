@@ -199,12 +199,27 @@ class ImageCarousel {
 }
 
 // Initialize all carousels on the page
-document.addEventListener('DOMContentLoaded', () => {
+function initializeCarousels() {
   const carousels = document.querySelectorAll('[id^="Carousel-"]');
   carousels.forEach(carousel => {
-    new ImageCarousel(carousel);
+    // Only initialize if not already initialized
+    if (!carousel.dataset.carouselInitialized) {
+      carousel.dataset.carouselInitialized = 'true';
+      new ImageCarousel(carousel);
+    }
   });
-});
+}
+
+// Try multiple initialization methods to ensure carousels start quickly
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeCarousels);
+} else {
+  // DOM is already ready, initialize immediately
+  initializeCarousels();
+}
+
+// Also try after a short delay in case there are other blocking scripts
+setTimeout(initializeCarousels, 100);
 
 // Initialize carousels that are added dynamically (e.g., via AJAX)
 if (typeof window.Shopify !== 'undefined' && window.Shopify.theme) {

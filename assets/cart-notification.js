@@ -63,13 +63,26 @@ class CartNotification extends HTMLElement {
   countShirtsInCart(cartData) {
     let shirtCount = 0;
 
+    console.log('Cart notification: Cart data:', cartData);
+
     if (cartData && cartData.items) {
-      cartData.items.forEach(item => {
+      console.log('Cart notification: Items in cart:', cartData.items);
+
+      cartData.items.forEach((item, index) => {
+        console.log(`Cart notification: Item ${index}:`, item);
+        console.log(`Cart notification: Item handle: ${item.handle}`);
+        console.log(`Cart notification: Item title: ${item.product_title || item.title}`);
+        console.log(`Cart notification: Item collections:`, item.collections);
+
         const isShirt = this.isShirtProduct(item);
+        console.log(`Cart notification: Is shirt? ${isShirt}`);
+
         if (isShirt) {
           shirtCount += item.quantity;
         }
       });
+    } else {
+      console.log('Cart notification: No cart data or items available');
     }
 
     console.log('Cart notification: Total shirt count:', shirtCount);

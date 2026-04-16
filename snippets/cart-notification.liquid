@@ -35,6 +35,25 @@
         </button>
       </div>
       <div id="cart-notification-product" class="cart-notification-product"></div>
+
+      <!-- Shirt Promotion Section for Cart Notification -->
+      <div id="cart-notification-shirt-promotion" class="shirt-promotion" style="display: none; padding: 1rem; margin: 1rem 0; background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-radius: 8px; border-left: 4px solid #28a745;">
+        <div id="cart-notification-shirt-promotion-encourage" style="display: none;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <span style="font-size: 1.2em;">👕</span>
+            <strong>Add one more shirt and save $15!</strong>
+          </div>
+          <p style="margin: 0; color: #666; font-size: 0.9em;">You now have 1 shirt in your cart. Add another shirt to unlock $15 savings on your order.</p>
+        </div>
+        <div id="cart-notification-shirt-promotion-congratulate" style="display: none;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <span style="font-size: 1.2em;">🎉</span>
+            <strong>You're saving $15 on shirts!</strong>
+          </div>
+          <p style="margin: 0; color: #28a745; font-size: 0.9em;">Great choice! You now have 2 or more shirts in your cart and are saving $15.</p>
+        </div>
+      </div>
+
       <div class="cart-notification__links">
         <a
           href="{{ routes.cart_url }}"

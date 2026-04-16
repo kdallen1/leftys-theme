@@ -125,6 +125,9 @@
                         {% if item.parent_relationship.parent != null %}
                           aria-label="{{- 'products.product.nested_label' | t: title: item.product.title, parent_title: item.parent_relationship.parent.title | escape -}}"
                         {% endif %}
+                        data-product-handle="{{ item.product.handle }}"
+                        data-is-shirt="{% for collection in item.product.collections %}{% if collection.handle == 'shirts' or collection.id == 478689722404 or collection.handle == 'long-sleeve-western-shirts' or collection.handle == 'fishing-shirts' %}true{% break %}{% endif %}{% endfor %}"
+                        data-quantity="{{ item.quantity }}"
                       >
                         <td
                           class="cart-item__media"
@@ -494,6 +497,24 @@
             </cart-note>
           </details>
         {%- endif -%}
+
+        <!-- Shirt Promotion Section -->
+        <div id="shirt-promotion-section" class="shirt-promotion" style="display: none; padding: 1rem; margin: 1rem 0; background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-radius: 8px; border-left: 4px solid #28a745;">
+          <div id="shirt-promotion-encourage" style="display: none;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <span style="font-size: 1.2em;">👕</span>
+              <strong>Add one more shirt and save $15!</strong>
+            </div>
+            <p style="margin: 0; color: #666; font-size: 0.9em;">You currently have 1 shirt in your cart. Add another shirt to unlock $15 savings on your order.</p>
+          </div>
+          <div id="shirt-promotion-congratulate" style="display: none;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <span style="font-size: 1.2em;">🎉</span>
+              <strong>You're saving $15 on shirts!</strong>
+            </div>
+            <p style="margin: 0; color: #28a745; font-size: 0.9em;">Great choice! You have 2 or more shirts in your cart and are saving $15.</p>
+          </div>
+        </div>
 
         <!-- Start blocks -->
         <!-- Subtotals -->

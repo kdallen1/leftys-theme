@@ -273,6 +273,116 @@ class CartItems extends HTMLElement {
 
 customElements.define('cart-items', CartItems);
 
+// Shirt promotion logic for main cart page
+class ShirtPromotionMainCart {
+  constructor() {
+    this.shirtCollectionIds = ['478689722404']; // The shirts collection ID from the URL
+    this.shirtCollectionHandles = ['shirts', 'long-sleeve-western-shirts', 'fishing-shirts']; // Collection handles for shirts
+    this.init();
+  }
+
+  init() {
+    // Listen for cart updates
+    document.addEventListener('shopify:section:load', () => {
+      this.updateShirtPromotion();
+    });
+
+    // Subscribe to cart update events
+    if (typeof subscribe !== 'undefined' && typeof PUB_SUB_EVENTS !== 'undefined') {
+      subscribe(PUB_SUB_EVENTS.cartUpdate, () => {
+        setTimeout(() => this.updateShirtPromotion(), 100);
+      });
+    }
+
+    // Initial check when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      this.updateShirtPromotion();
+    });
+
+    // Check on page load if DOM already loaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => this.updateShirtPromotion());
+    } else {
+      this.updateShirtPromotion();
+    }
+  }
+
+  updateShirtPromotion() {
+    console.log('Updating shirt promotion using DOM data');
+
+    // Count shirts by reading data attributes from cart items
+    const shirtCount = this.countShirtsInCart();
+    this.displayPromotionMessage(shirtCount);
+  }
+
+  countShirtsInCart() {
+    let shirtCount = 0;
+
+    // Look for cart items in the DOM
+    const cartItems = document.querySelectorAll('.cart-item[data-is-shirt]');
+
+    console.log('Found cart items:', cartItems.length);
+
+    cartItems.forEach(item => {
+      const isShirt = item.getAttribute('data-is-shirt') === 'true';
+      const quantity = parseInt(item.getAttribute('data-quantity')) || 0;
+
+      console.log('Item:', item.getAttribute('data-product-handle'), 'is shirt:', isShirt, 'quantity:', quantity);
+
+      if (isShirt) {
+        shirtCount += quantity;
+      }
+    });
+
+    console.log('Total shirt count:', shirtCount);
+    return shirtCount;
+  }
+
+  displayPromotionMessage(shirtCount) {
+    console.log('Shirt promotion: shirt count is', shirtCount);
+
+    const promotionSection = document.getElementById('shirt-promotion-section');
+    const encourageMessage = document.getElementById('shirt-promotion-encourage');
+    const congratulateMessage = document.getElementById('shirt-promotion-congratulate');
+
+    console.log('Shirt promotion elements found:', {
+      promotionSection: !!promotionSection,
+      encourageMessage: !!encourageMessage,
+      congratulateMessage: !!congratulateMessage
+    });
+
+    if (!promotionSection || !encourageMessage || !congratulateMessage) {
+      console.log('Shirt promotion elements not found, skipping');
+      return;
+    }
+
+    // Hide all messages first
+    promotionSection.style.display = 'none';
+    encourageMessage.style.display = 'none';
+    congratulateMessage.style.display = 'none';
+
+    if (shirtCount === 1) {
+      // Show encouragement message for 1 shirt
+      console.log('Showing encouragement message for 1 shirt');
+      promotionSection.style.display = 'block';
+      encourageMessage.style.display = 'block';
+    } else if (shirtCount >= 2) {
+      // Show congratulations message for 2+ shirts
+      console.log('Showing congratulations message for', shirtCount, 'shirts');
+      promotionSection.style.display = 'block';
+      congratulateMessage.style.display = 'block';
+    } else {
+      console.log('No shirts in cart, hiding promotion');
+    }
+    // For 0 shirts, keep everything hidden
+  }
+}
+
+// Initialize the shirt promotion when the script loads
+console.log('Initializing shirt promotion for main cart');
+const shirtPromotionMainCart = new ShirtPromotionMainCart();
+console.log('Shirt promotion initialized');
+
 if (!customElements.get('cart-note')) {
   customElements.define(
     'cart-note',

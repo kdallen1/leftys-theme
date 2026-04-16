@@ -52,73 +52,115 @@ class CartNotification extends HTMLElement {
     this.open();
   }
 
-  updateShirtPromotion(cartData) {
+  async updateShirtPromotion(cartData) {
     console.log('Updating cart notification shirt promotion');
-    console.log('Cart data structure:', Object.keys(cartData || {}));
-    console.log('Full cart data:', cartData);
+    console.log('Item that was just added:', cartData);
 
-    // Count shirts in the current cart
-    const shirtCount = this.countShirtsInCart(cartData);
-    this.displayPromotionMessage(shirtCount);
+    // Check if the just-added item is a shirt
+    const justAddedIsShirt = cartData ? this.isShirtProduct(cartData) : false;
+    console.log('Just added item is shirt?', justAddedIsShirt);
+
+    // Get the total shirt count in the cart by fetching current cart
+    const totalShirtCount = await this.getTotalShirtCountInCart(justAddedIsShirt, cartData);
+    this.displayPromotionMessage(totalShirtCount);
   }
 
-  countShirtsInCart(cartData) {
-    let shirtCount = 0;
+  async getTotalShirtCountInCart(justAddedIsShirt, justAddedItem) {
+    try {
+      // Fetch current cart to get all items
+      const response = await fetch('/cart.js');
+      const cart = await response.json();
 
-    console.log('Cart notification: Cart data:', cartData);
+      console.log('Full cart data from API:', cart);
 
-    if (cartData && cartData.items) {
-      console.log('Cart notification: Items in cart:', cartData.items);
+      let shirtCount = 0;
 
-      cartData.items.forEach((item, index) => {
-        console.log(`Cart notification: Item ${index}:`, item);
-        console.log(`Cart notification: Item handle: ${item.handle}`);
-        console.log(`Cart notification: Item title: ${item.product_title || item.title}`);
-        console.log(`Cart notification: Item collections:`, item.collections);
+      if (cart && cart.items) {
+        cart.items.forEach(item => {
+          const isShirt = this.isShirtProduct(item);
+          console.log(`Item: ${item.handle || item.product_title} is shirt: ${isShirt}, quantity: ${item.quantity}`);
 
-        const isShirt = this.isShirtProduct(item);
-        console.log(`Cart notification: Is shirt? ${isShirt}`);
+          if (isShirt) {
+            shirtCount += item.quantity;
+          }
+        });
+      }
 
-        if (isShirt) {
-          shirtCount += item.quantity;
-        }
-      });
-    } else {
-      console.log('Cart notification: No cart data or items available');
+      console.log('Total shirts in cart:', shirtCount);
+      return shirtCount;
+
+    } catch (error) {
+      console.error('Error fetching cart:', error);
+
+      // Fallback: if we can't fetch the cart, but we know a shirt was just added
+      if (justAddedIsShirt) {
+        const quantity = justAddedItem?.quantity || 1;
+        console.log('Fallback: Using just-added shirt quantity:', quantity);
+        return quantity;
+      }
+
+      return 0;
     }
-
-    console.log('Cart notification: Total shirt count:', shirtCount);
-    return shirtCount;
   }
 
   isShirtProduct(item) {
-    // Check if product belongs to shirts collection using various methods
+    if (!item) return false;
+
+    console.log('Checking if item is shirt:', {
+      handle: item.handle,
+      product_title: item.product_title,
+      product_type: item.product_type,
+      title: item.title
+    });
+
+    // Check if product type contains 'shirt'
     if (item.product_type && item.product_type.toLowerCase().includes('shirt')) {
+      console.log('Detected as shirt via product_type:', item.product_type);
       return true;
     }
 
     // Check collections if available
     if (item.collections) {
-      return item.collections.some(collection =>
+      const isInShirtCollection = item.collections.some(collection =>
         collection.handle === 'shirts' ||
         collection.id === 478689722404 ||
         collection.handle === 'long-sleeve-western-shirts' ||
         collection.handle === 'fishing-shirts'
       );
+      if (isInShirtCollection) {
+        console.log('Detected as shirt via collections');
+        return true;
+      }
     }
 
-    // Check product handle for shirt-related keywords
+    // Check product handle for known shirt products
     if (item.handle) {
-      const shirtKeywords = ['duckpopper', 'neon-moon', 'black-on-black-luxe-pearl-snap'];
-      return shirtKeywords.some(keyword => item.handle.toLowerCase().includes(keyword));
+      const shirtHandles = [
+        'duckpopper', 'the-duckpopper',
+        'neon-moon', 'the-neon-moon',
+        'black-on-black-luxe-pearl-snap',
+        'light-blue-performance-crop',
+        'light-blue-og-fishing-shirt'
+      ];
+      const matchedHandle = shirtHandles.some(handle => item.handle.toLowerCase().includes(handle));
+      if (matchedHandle) {
+        console.log('Detected as shirt via handle:', item.handle);
+        return true;
+      }
     }
 
     // Check product title for shirt-related keywords
-    if (item.product_title) {
-      const shirtKeywords = ['duckpopper', 'neon moon', 'pearl snap'];
-      return shirtKeywords.some(keyword => item.product_title.toLowerCase().includes(keyword));
+    const title = item.product_title || item.title || '';
+    if (title) {
+      const shirtKeywords = ['duckpopper', 'neon moon', 'pearl snap', 'fishing shirt', 'performance crop'];
+      const matchedTitle = shirtKeywords.some(keyword => title.toLowerCase().includes(keyword));
+      if (matchedTitle) {
+        console.log('Detected as shirt via title:', title);
+        return true;
+      }
     }
 
+    console.log('Not detected as shirt');
     return false;
   }
 

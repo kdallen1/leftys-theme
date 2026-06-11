@@ -114,37 +114,6 @@
         "show_dots": true
       }
     },
-    "rich_text_UwfwRw": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_QbaCn7": {
-          "type": "heading",
-          "settings": {
-            "heading": "We're on summer break",
-            "heading_size": "h1"
-          }
-        },
-        "text_weFWcV": {
-          "type": "text",
-          "settings": {
-            "text": "<p>All orders placed between May 21st and June 7th will ship out on June 8th. Thanks for your patience.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "heading_QbaCn7",
-        "text_weFWcV"
-      ],
-      "name": "t:sections.rich-text.presets.name",
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
-    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
@@ -254,7 +223,6 @@
   },
   "order": [
     "image_carousel_DTmFXT",
-    "rich_text_UwfwRw",
     "featured_collection",
     "about_us_XH8kqL",
     "176488499441eaa556",

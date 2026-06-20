@@ -12,6 +12,19 @@
     "image_carousel_DTmFXT": {
       "type": "image-carousel",
       "blocks": {
+        "slide_BkpDAr": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/IMG_1027.jpg",
+            "heading": "Summer '26 Collection",
+            "heading_size": "h1",
+            "text": "Your new favorite 90's-inspired pearl snaps. Get in on this drop before your size disappears.",
+            "text_style": "body",
+            "button_label": "Preorder Now",
+            "button_link": "shopify://collections/long-sleeve-western-shirts",
+            "button_style_secondary": false
+          }
+        },
         "slide_GxNqFf": {
           "type": "slide",
           "settings": {
@@ -92,6 +105,7 @@
         }
       },
       "block_order": [
+        "slide_BkpDAr",
         "slide_GxNqFf",
         "slide_9V9Apz",
         "slide_UQ8wBh",

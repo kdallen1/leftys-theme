@@ -25,6 +25,19 @@
             "button_style_secondary": false
           }
         },
+        "slide_eAzRez": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/IMG_1059_tank_front_zoomed.jpg",
+            "heading": "The Hummingbird Tank",
+            "heading_size": "h1",
+            "text": "Get ready for summer with our debut tank top - lovingly embroidered in Austin, Texas.",
+            "text_style": "body",
+            "button_label": "Order now",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        },
         "slide_GxNqFf": {
           "type": "slide",
           "settings": {
@@ -106,6 +119,7 @@
       },
       "block_order": [
         "slide_BkpDAr",
+        "slide_eAzRez",
         "slide_GxNqFf",
         "slide_9V9Apz",
         "slide_UQ8wBh",

@@ -102,19 +102,6 @@
             "button_link": "shopify://products/light-blue-og-fishing-shirt",
             "button_style_secondary": false
           }
-        },
-        "slide_ytCxV3": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/IMG_0469_fish_phone_pocket_0101e3d0-356c-4efe-b52d-8e2e7e74736d.jpg",
-            "heading": "More Coming Soon",
-            "heading_size": "h1",
-            "text": "Poncho needs your prayers, it's true. Lefty's is making the fishing shirt you've always wanted.",
-            "text_style": "body",
-            "button_label": "Learn more",
-            "button_link": "shopify://collections/fishing-shirts",
-            "button_style_secondary": false
-          }
         }
       },
       "block_order": [
@@ -124,8 +111,7 @@
         "slide_9V9Apz",
         "slide_UQ8wBh",
         "slide_nqhqUx",
-        "slide_dGngAE",
-        "slide_ytCxV3"
+        "slide_dGngAE"
       ],
       "name": "Image Carousel",
       "settings": {

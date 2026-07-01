@@ -153,7 +153,7 @@
         "columns_mobile": "2",
         "swipe_on_mobile": false,
         "padding_top": 28,
-        "padding_bottom": 36
+        "padding_bottom": 12
       }
     },
     "featured_collection_WJgfHY": {
@@ -181,8 +181,8 @@
         "quick_add": "none",
         "columns_mobile": "2",
         "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 20,
+        "padding_bottom": 12
       }
     },
     "featured_collection_iBXjGH": {
@@ -210,7 +210,7 @@
         "quick_add": "none",
         "columns_mobile": "2",
         "swipe_on_mobile": false,
-        "padding_top": 36,
+        "padding_top": 20,
         "padding_bottom": 36
       }
     },

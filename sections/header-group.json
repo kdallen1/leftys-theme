@@ -14,6 +14,13 @@
     "announcement_bar_HwChpf": {
       "type": "announcement-bar",
       "blocks": {
+        "announcement_gDk8zX": {
+          "type": "announcement",
+          "settings": {
+            "text": "Buy 2 shirts save $15",
+            "link": ""
+          }
+        },
         "announcement_JyAtBP": {
           "type": "announcement",
           "settings": {
@@ -27,27 +34,12 @@
             "text": "FREE SHIPPING ANYWHERE IN THE USA",
             "link": ""
           }
-        },
-        "announcement_gDk8zX": {
-          "type": "announcement",
-          "settings": {
-            "text": "Buy 2 shirts save $15",
-            "link": ""
-          }
-        },
-        "announcement_dEp9gP": {
-          "type": "announcement",
-          "settings": {
-            "text": "Preorder the ultimate black pearl snap",
-            "link": "shopify://products/black-on-black-luxe-pearl-snap"
-          }
         }
       },
       "block_order": [
-        "announcement_JyAtBP",
-        "announcement_DeHAcC",
         "announcement_gDk8zX",
-        "announcement_dEp9gP"
+        "announcement_JyAtBP",
+        "announcement_DeHAcC"
       ],
       "name": "t:sections.announcement-bar.presets.name",
       "settings": {

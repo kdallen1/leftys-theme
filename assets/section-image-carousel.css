@@ -87,20 +87,7 @@
 
 @media screen and (max-width: 749px) {
   .carousel__nav {
-    width: 40px;
-    height: 40px;
-  }
-
-  .carousel__nav--prev {
-    left: 1rem;
-  }
-
-  .carousel__nav--next {
-    right: 1rem;
-  }
-
-  .carousel__nav i {
-    font-size: 16px;
+    display: none;
   }
 }
 

@@ -25,6 +25,32 @@
             "button_style_secondary": false
           }
         },
+        "slide_UQ8wBh": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/IMG_4558.jpg",
+            "heading": "The 90's are back",
+            "heading_size": "h1",
+            "text": "Crank them peepaw tunes and throw on one of our 100% cotton throwback pearl snaps.",
+            "text_style": "body",
+            "button_label": "Order The Neon Moon",
+            "button_link": "shopify://products/the-neon-moon",
+            "button_style_secondary": false
+          }
+        },
+        "slide_nqhqUx": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/red-carpet-duckpopper-optimized.png",
+            "heading": "Fine Western Shirts",
+            "heading_size": "h1",
+            "text": "They don't make 'em like they used to. But we do.",
+            "text_style": "body",
+            "button_label": "Order The Duckpopper",
+            "button_link": "shopify://collections/long-sleeve-western-shirts",
+            "button_style_secondary": false
+          }
+        },
         "slide_eAzRez": {
           "type": "slide",
           "settings": {
@@ -50,80 +76,26 @@
             "button_link": "shopify://products/black-on-black-luxe-pearl-snap",
             "button_style_secondary": false
           }
-        },
-        "slide_9V9Apz": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/IMG_0500_dp_front_detail_27d2faf8-d7c4-418d-84fb-34a766c3964b.jpg",
-            "heading": "The Duckpopper",
-            "heading_size": "h1",
-            "text": "Our first pearl snap, inspired by the resplendent hues of the Mandarin Duck. Almost sold out.",
-            "text_style": "body",
-            "button_label": "Get yours now",
-            "button_link": "shopify://products/the-duckpopper",
-            "button_style_secondary": false
-          }
-        },
-        "slide_UQ8wBh": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/IMG_4558.jpg",
-            "heading": "The Neon Moon",
-            "heading_size": "h1",
-            "text": "Our newest pearl snap, inspired by your favorite 90's hits. Get yours before they're gone.",
-            "text_style": "body",
-            "button_label": "Buy now",
-            "button_link": "shopify://products/the-neon-moon",
-            "button_style_secondary": false
-          }
-        },
-        "slide_nqhqUx": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/red-carpet-duckpopper-optimized.png",
-            "heading": "Fine Western Shirts",
-            "heading_size": "h1",
-            "text": "Throwback pearl snaps in 100% cotton",
-            "text_style": "body",
-            "button_label": "Order now",
-            "button_link": "shopify://collections/long-sleeve-western-shirts",
-            "button_style_secondary": false
-          }
-        },
-        "slide_dGngAE": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/IMG_0363_fish_front_6dba1250-3b11-472e-895b-48e8b64b22d6.jpg",
-            "heading": "Superior Fishing Shirts",
-            "heading_size": "h1",
-            "text": "Western details, pearl snaps, secret pockets, lens cloth, and UPF 50 for long days on the boat.",
-            "text_style": "body",
-            "button_label": "Learn more",
-            "button_link": "shopify://products/light-blue-og-fishing-shirt",
-            "button_style_secondary": false
-          }
         }
       },
       "block_order": [
         "slide_BkpDAr",
-        "slide_eAzRez",
-        "slide_GxNqFf",
-        "slide_9V9Apz",
         "slide_UQ8wBh",
         "slide_nqhqUx",
-        "slide_dGngAE"
+        "slide_eAzRez",
+        "slide_GxNqFf"
       ],
       "name": "Image Carousel",
       "settings": {
         "image_overlay_opacity": 30,
         "image_height": "medium",
-        "image_behavior": "none",
+        "image_behavior": "ambient",
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "color_scheme": "scheme-1",
         "mobile_content_alignment": "center",
         "autoplay": true,
-        "autoplay_speed": 5,
+        "autoplay_speed": 4,
         "show_navigation": true,
         "show_dots": true
       }

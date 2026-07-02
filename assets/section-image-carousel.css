@@ -456,7 +456,7 @@
 }
 
 .carousel__slide--active::after {
-  opacity: 0.3;
+  opacity: 0.15;
 }
 
 /* Image behaviors */

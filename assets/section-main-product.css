@@ -1519,3 +1519,12 @@ a.product__text {
     border: none;
   }
 }
+
+/* Remove thin border around product page media (main gallery images) */
+.product__media-list .global-media-settings {
+  border: none;
+}
+
+.product__media-list .global-media-settings:after {
+  display: none;
+}

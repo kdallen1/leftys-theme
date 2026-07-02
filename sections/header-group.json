@@ -21,25 +21,25 @@
             "link": ""
           }
         },
-        "announcement_JyAtBP": {
-          "type": "announcement",
-          "settings": {
-            "text": "$10 Express International 🇩🇪🇬🇧🇨🇦 Shipping",
-            "link": ""
-          }
-        },
         "announcement_DeHAcC": {
           "type": "announcement",
           "settings": {
             "text": "FREE SHIPPING ANYWHERE IN THE USA",
             "link": ""
           }
+        },
+        "announcement_JyAtBP": {
+          "type": "announcement",
+          "settings": {
+            "text": "$10 Express International 🇩🇪🇬🇧🇨🇦 Shipping",
+            "link": ""
+          }
         }
       },
       "block_order": [
         "announcement_gDk8zX",
-        "announcement_JyAtBP",
-        "announcement_DeHAcC"
+        "announcement_DeHAcC",
+        "announcement_JyAtBP"
       ],
       "name": "t:sections.announcement-bar.presets.name",
       "settings": {

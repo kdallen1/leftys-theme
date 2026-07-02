@@ -245,7 +245,7 @@
   overflow-wrap: break-word;
   word-break: keep-all;
   overflow-wrap: anywhere;
-  line-height: 1.4;
+  line-height: 1.6;
 }
 
 /* Highlighted title: white background hugging the text per line */

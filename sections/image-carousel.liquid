@@ -45,12 +45,12 @@
                 <div class="carousel__text-overlay">
                   {%- if block.settings.heading != blank -%}
                     <h2 class="carousel__heading">
-                      {{ block.settings.heading }}
+                      <span class="carousel__heading-highlight">{{ block.settings.heading }}</span>
                     </h2>
                   {%- endif -%}
                   {%- if block.settings.text != blank -%}
                     <p class="carousel__description">
-                      {{ block.settings.text }}
+                      <span class="carousel__description-highlight">{{ block.settings.text }}</span>
                     </p>
                   {%- endif -%}
                   {%- if block.settings.button_label != blank -%}

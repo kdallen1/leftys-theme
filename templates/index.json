@@ -18,7 +18,7 @@
             "image": "shopify://shop_images/IMG_1027.jpg",
             "heading": "Summer '26 Collection",
             "heading_size": "h1",
-            "text": "Your new favorite 90's-inspired pearl snaps. Only making 10-20 per size so get 'em before someone else does.",
+            "text": "Your new favorite 90's-inspired pearl snaps. Only making 10-20 per size so get 'em quick.",
             "text_style": "body",
             "button_label": "Preorder Now",
             "button_link": "shopify://collections/summer-2026-collection",
@@ -33,7 +33,7 @@
             "heading_size": "h1",
             "text": "Crank them peepaw tunes and throw on one of our 100% cotton throwback pearl snaps.",
             "text_style": "body",
-            "button_label": "Order The Neon Moon",
+            "button_label": "The Neon Moon",
             "button_link": "shopify://products/the-neon-moon",
             "button_style_secondary": false
           }
@@ -46,7 +46,7 @@
             "heading_size": "h1",
             "text": "They don't make 'em like they used to. But we do.",
             "text_style": "body",
-            "button_label": "Order The Duckpopper",
+            "button_label": "The Duckpopper",
             "button_link": "shopify://products/the-duckpopper",
             "button_style_secondary": false
           }

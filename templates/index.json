@@ -263,6 +263,23 @@
         "padding_top": 40,
         "padding_bottom": 52
       }
+    },
+    "newsletter_popup": {
+      "type": "newsletter-popup",
+      "settings": {
+        "enable": true,
+        "heading": "Get 10% off",
+        "heading_size": "h1",
+        "text": "<p>Join the list for 10% off your first order and be first to know about new drops. We make super limited quantities — don't miss out.</p>",
+        "button_label": "Subscribe",
+        "success_text": "Thanks! Check your inbox for your 10% off code.",
+        "disclaimer": "No spam, just drops. Unsubscribe anytime.",
+        "scroll_percentage": 50,
+        "delay": 3,
+        "redisplay_days": 30,
+        "color_scheme": "scheme-1",
+        "corner_radius": 12
+      }
     }
   },
   "order": [
@@ -272,6 +289,7 @@
     "featured_collection_iBXjGH",
     "about_us_XH8kqL",
     "176488499441eaa556",
-    "newsletter_d9RigL"
+    "newsletter_d9RigL",
+    "newsletter_popup"
   ]
 }

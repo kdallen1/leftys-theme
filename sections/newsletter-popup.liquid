@@ -1,0 +1,258 @@
+{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
+{{ 'newsletter-popup.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'newsletter-popup.js' | asset_url }}" defer="defer"></script>
+
+{%- unless customer -%}
+  {%- if section.settings.enable -%}
+    {%- style -%}
+      #NewsletterPopup-{{ section.id }} {
+        --popup-corner-radius: {{ section.settings.corner_radius }}px;
+      }
+    {%- endstyle -%}
+
+    <newsletter-popup
+      data-storage-key="newsletter-popup:v1"
+      data-scroll-percentage="{{ section.settings.scroll_percentage }}"
+      data-redisplay-days="{{ section.settings.redisplay_days }}"
+      data-delay="{{ section.settings.delay }}"
+    >
+      <div
+        class="newsletter-popup"
+        id="NewsletterPopup-{{ section.id }}"
+        hidden
+      >
+        <div class="newsletter-popup__overlay" data-popup-close></div>
+
+        <div
+          class="newsletter-popup__content color-{{ section.settings.color_scheme }} gradient"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="NewsletterPopupHeading-{{ section.id }}"
+        >
+          <button
+            type="button"
+            class="newsletter-popup__close"
+            data-popup-close
+            aria-label="{{ 'accessibility.close' | t }}"
+          >
+            <span class="svg-wrapper icon">
+              {{- 'icon-close.svg' | inline_asset_content -}}
+            </span>
+          </button>
+
+          {%- if section.settings.image != blank -%}
+            {{
+              section.settings.image
+              | image_url: width: 1000
+              | image_tag:
+                loading: 'lazy',
+                class: 'newsletter-popup__media',
+                widths: '500, 700, 1000',
+                sizes: '(min-width: 750px) 46rem, 100vw'
+            }}
+          {%- endif -%}
+
+          <div class="newsletter-popup__inner">
+            <h2 class="newsletter-popup__heading {{ section.settings.heading_size }}" id="NewsletterPopupHeading-{{ section.id }}">
+              {{ section.settings.heading }}
+            </h2>
+
+            {%- if section.settings.text != blank -%}
+              <div class="newsletter-popup__text rte">{{ section.settings.text }}</div>
+            {%- endif -%}
+
+            {%- form 'customer', class: 'newsletter-form newsletter-popup__form' -%}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              {%- if form.posted_successfully? -%}
+                <h3
+                  class="newsletter-form__message newsletter-form__message--success newsletter-popup__message--success form__message"
+                  data-popup-success
+                  tabindex="-1"
+                >
+                  <span class="svg-wrapper">
+                    {{- 'icon-success.svg' | inline_asset_content -}}
+                  </span>
+                  {{ section.settings.success_text }}
+                </h3>
+              {%- else -%}
+                <div class="newsletter-form__field-wrapper">
+                  <div class="field">
+                    <input
+                      id="NewsletterPopupEmail-{{ section.id }}"
+                      type="email"
+                      name="contact[email]"
+                      class="field__input"
+                      value="{{ form.email }}"
+                      aria-required="true"
+                      autocorrect="off"
+                      autocapitalize="off"
+                      autocomplete="email"
+                      {% if form.errors %}
+                        aria-invalid="true"
+                        aria-describedby="NewsletterPopupError-{{ section.id }}"
+                      {% endif %}
+                      placeholder="{{ 'newsletter.label' | t }}"
+                      required
+                    >
+                    <label class="field__label" for="NewsletterPopupEmail-{{ section.id }}">
+                      {{ 'newsletter.label' | t }}
+                    </label>
+                    <button
+                      type="submit"
+                      class="newsletter-form__button field__button"
+                      name="commit"
+                      aria-label="{{ section.settings.button_label | escape }}"
+                    >
+                      <span class="svg-wrapper">
+                        {{- 'icon-plane.svg' | inline_asset_content -}}
+                      </span>
+                    </button>
+                  </div>
+                  {%- if form.errors -%}
+                    <small class="newsletter-form__message form__message" data-popup-error id="NewsletterPopupError-{{ section.id }}">
+                      <span class="svg-wrapper">
+                        {{- 'icon-error.svg' | inline_asset_content -}}
+                      </span>
+                      {{- form.errors.translated_fields.email | capitalize }}
+                      {{ form.errors.messages.email -}}
+                    </small>
+                  {%- endif -%}
+                </div>
+
+                {%- if section.settings.disclaimer != blank -%}
+                  <p class="newsletter-popup__disclaimer">{{ section.settings.disclaimer }}</p>
+                {%- endif -%}
+              {%- endif -%}
+            {%- endform -%}
+          </div>
+        </div>
+      </div>
+    </newsletter-popup>
+  {%- endif -%}
+{%- endunless -%}
+
+{% schema %}
+{
+  "name": "Newsletter popup",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "Enable popup",
+      "default": true
+    },
+    {
+      "type": "paragraph",
+      "content": "Collects emails with the \"newsletter\" tag, so it triggers the same welcome automation as your footer signup."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image (optional)"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Get 10% off"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Join the list for 10% off your first order and be first to know about new drops. We make super limited quantities — don't miss out.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Submit button label (for accessibility)",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "success_text",
+      "label": "Success message",
+      "default": "Thanks! Check your inbox for your 10% off code."
+    },
+    {
+      "type": "text",
+      "id": "disclaimer",
+      "label": "Small print (optional)",
+      "default": "No spam, just drops. Unsubscribe anytime."
+    },
+    {
+      "type": "header",
+      "content": "Display rules"
+    },
+    {
+      "type": "range",
+      "id": "scroll_percentage",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Show after scrolling",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "delay",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "s",
+      "label": "Minimum time on page before showing",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "redisplay_days",
+      "min": 0,
+      "max": 90,
+      "step": 1,
+      "unit": "d",
+      "label": "Show again after dismissal (days)",
+      "info": "Set to 0 to only ever show once per visitor. Subscribers never see it again.",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Corner radius",
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter popup"
+    }
+  ]
+}
+{% endschema %}

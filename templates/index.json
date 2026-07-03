@@ -236,14 +236,14 @@
         "heading_K6wf49": {
           "type": "heading",
           "settings": {
-            "heading": "Stay in touch with us",
+            "heading": "Let's keep in touch",
             "heading_size": "h2"
           }
         },
         "paragraph_cFBddP": {
           "type": "paragraph",
           "settings": {
-            "text": "<p>Join our (infrequent) newsletter and <strong>get 10% off</strong> your first order</p>"
+            "text": "<p>Be the first to know about new drops and <strong>get 10% off</strong> your first order.<br/>We only release limited runs, and they sell out quickly.</p>"
           }
         },
         "email_form_6J4cj3": {
@@ -274,9 +274,9 @@
         "button_label": "Subscribe",
         "success_text": "Thanks! Check your inbox for your 10% off code.",
         "disclaimer": "No spam, just drops. Unsubscribe anytime.",
-        "scroll_percentage": 50,
+        "scroll_percentage": 45,
         "delay": 3,
-        "redisplay_days": 30,
+        "redisplay_days": 14,
         "color_scheme": "scheme-1",
         "corner_radius": 12
       }

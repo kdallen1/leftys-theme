@@ -103,9 +103,10 @@
                       name="commit"
                       aria-label="{{ section.settings.button_label | escape }}"
                     >
-                      <span class="svg-wrapper">
+                      <span class="svg-wrapper newsletter-popup__button-icon">
                         {{- 'icon-plane.svg' | inline_asset_content -}}
                       </span>
+                      <span class="newsletter-popup__spinner" aria-hidden="true"></span>
                     </button>
                   </div>
                   {%- if form.errors -%}

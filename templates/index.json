@@ -95,7 +95,7 @@
         "color_scheme": "scheme-1",
         "mobile_content_alignment": "center",
         "autoplay": true,
-        "autoplay_speed": 4,
+        "autoplay_speed": 6,
         "show_navigation": true,
         "show_dots": true
       }

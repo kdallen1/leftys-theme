@@ -6,9 +6,11 @@ class NewsletterPopup extends HTMLElement {
     this.scrollPercentage = parseInt(this.dataset.scrollPercentage, 10) || 50;
     this.redisplayDays = parseInt(this.dataset.redisplayDays, 10);
     this.delay = (parseInt(this.dataset.delay, 10) || 0) * 1000;
-    // A successful signup or a validation error reloads the page and renders
-    // these markers server-side; their presence tells us to reopen.
-    this.postedSuccess = !!this.querySelector('[data-popup-success]');
+    // The success message is always in the DOM; it counts as "posted" only when
+    // the server rendered it visible (the no-JS / native fallback submit path,
+    // which reloads the page). Errors likewise reload and render their marker.
+    const successEl = this.querySelector('[data-popup-success]');
+    this.postedSuccess = !!successEl && !successEl.hasAttribute('hidden');
     this.hasErrors = !!this.querySelector('[data-popup-error]');
     this.form = this.querySelector('form');
 
@@ -136,21 +138,34 @@ class NewsletterPopup extends HTMLElement {
       });
       const text = await response.text();
       const doc = new DOMParser().parseFromString(text, 'text/html');
-      const success = doc.querySelector('newsletter-popup [data-popup-success]');
-      const error = doc.querySelector('newsletter-popup [data-popup-error]');
+      // Detect from the standard newsletter markers, which Shopify renders on
+      // whichever customer form owns the flash — not necessarily this popup.
+      const success = doc.querySelector(
+        '.newsletter-form__message--success:not([hidden])'
+      );
+      const error = doc.querySelector(
+        '.newsletter-form__message:not(.newsletter-form__message--success):not([hidden])'
+      );
 
       if (success) {
-        this.showSuccess(success);
+        this.showSuccess();
       } else if (error) {
         this.showError(error);
       } else {
-        // Unexpected response shape — fall back to a native submit.
-        this.form.submit();
+        // Couldn't classify the response — re-enable and let the browser
+        // submit natively so the visitor isn't stuck.
+        this.nativeFallback();
       }
     } catch (e) {
       // Network failure — let the browser submit the form the normal way.
-      this.form.submit();
+      this.nativeFallback();
     }
+  }
+
+  nativeFallback() {
+    this.setLoading(false);
+    this.isSubmitting = false;
+    this.form.submit();
   }
 
   setLoading(on) {
@@ -161,13 +176,17 @@ class NewsletterPopup extends HTMLElement {
     if (input) input.disabled = on;
   }
 
-  showSuccess(node) {
+  showSuccess() {
     this.setState({ subscribed: true });
-    this.form.classList.remove('is-loading');
+    this.setLoading(false);
     this.form.classList.add('is-success');
-    this.form.replaceChildren(document.importNode(node, true));
+    const fields = this.form.querySelector('[data-popup-fields]');
     const message = this.form.querySelector('[data-popup-success]');
-    if (message && typeof message.focus === 'function') message.focus();
+    if (fields) fields.hidden = true;
+    if (message) {
+      message.hidden = false;
+      if (typeof message.focus === 'function') message.focus();
+    }
   }
 
   showError(node) {
@@ -177,7 +196,9 @@ class NewsletterPopup extends HTMLElement {
     if (!wrapper) return;
     const existing = wrapper.querySelector('[data-popup-error]');
     if (existing) existing.remove();
-    wrapper.appendChild(document.importNode(node, true));
+    const imported = document.importNode(node, true);
+    imported.setAttribute('data-popup-error', '');
+    wrapper.appendChild(imported);
     const input = wrapper.querySelector('input[type="email"]');
     if (input) {
       input.setAttribute('aria-invalid', 'true');

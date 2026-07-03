@@ -117,6 +117,12 @@
   width: 100%;
 }
 
+/* Class selectors on the success/fields elements would otherwise win over the
+   UA [hidden] rule, so enforce it. */
+.newsletter-popup [hidden] {
+  display: none !important;
+}
+
 .newsletter-popup__message--success {
   display: flex;
   align-items: center;

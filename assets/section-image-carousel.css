@@ -225,7 +225,7 @@
 }
 
 .carousel__heading {
-  color: black;
+  color: #fff;
   font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
@@ -235,14 +235,9 @@
   line-height: 1.6;
 }
 
-/* Highlighted title: white background hugging the text per line */
 .carousel__heading-highlight {
   display: inline;
-  color: black;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 0.1em 0.4em;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
+  color: #fff;
 }
 
 @media screen and (max-width: 749px) {
@@ -252,7 +247,7 @@
 }
 
 .carousel__description {
-  color: black;
+  color: #fff;
   font-size: 2rem;
   margin-bottom: 3rem;
   line-height: 1.6;
@@ -261,22 +256,17 @@
   overflow-wrap: anywhere;
 }
 
-/* Highlighted description: white background hugging the text per line */
 .carousel__description-highlight {
   display: inline;
-  color: black;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 0.1em 0.4em;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
+  color: #fff;
 }
 
 .carousel__button {
   display: inline-block;
-  background: rgba(255, 255, 255, 0.9);
-  color: #111;
+  background: linear-gradient(135deg, #6833A9, #d6336c);
+  color: #fff;
   padding: 1.4rem 3.2rem;
-  border: 2px solid rgba(255, 255, 255, 0.9);
+  border: 2px solid transparent;
   border-radius: 40px;
   text-decoration: none;
   font-family: "Superclarendon", "Super Clarendon", "Clarendon",
@@ -293,7 +283,8 @@
 
 .carousel__button:hover,
 .carousel__button:focus-visible {
-  background: transparent;
+  background: linear-gradient(135deg, #562b8a, #b5225a);
+  border-color: transparent;
   color: #fff;
   transform: translateY(-2px);
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
@@ -443,7 +434,7 @@
 }
 
 .carousel__slide--active::after {
-  opacity: 0.15;
+  opacity: 0.3;
 }
 
 /* Image behaviors */

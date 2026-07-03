@@ -47,12 +47,15 @@ class NewsletterPopup extends HTMLElement {
     // and make sure it never shows again.
     if (this.postedSuccess) {
       this.setState({ subscribed: true });
+      if (this.form) this.form.classList.add('is-success');
+      this.clearAnchorJump();
       this.open();
       return;
     }
 
     // A submit with errors also reloads — reopen so the visitor can retry.
     if (this.hasErrors) {
+      this.clearAnchorJump();
       this.open();
       return;
     }
@@ -121,89 +124,30 @@ class NewsletterPopup extends HTMLElement {
     this.close();
   }
 
-  async onSubmit(event) {
-    event.preventDefault();
+  onSubmit() {
+    // Submit natively (do NOT preventDefault): Shopify's invisible spam
+    // protection injects its reCAPTCHA token during a real form submit, so it
+    // passes silently. Intercepting with fetch strips that token and forces a
+    // visible captcha challenge. We only add a loading state so the wait shows
+    // progress; the page reloads into the success/error state.
+    //
+    // Do not disable any fields here — native submission serializes them AFTER
+    // this handler runs, and a disabled field would be dropped from the POST.
     if (this.isSubmitting) return;
     this.isSubmitting = true;
-    // Capture the data before disabling fields — disabled inputs are omitted
-    // from FormData.
-    const body = new FormData(this.form);
-    this.setLoading(true);
+    this.form.classList.add('is-loading');
+  }
 
-    try {
-      const response = await fetch(this.form.action, {
-        method: 'POST',
-        body,
-        headers: { Accept: 'text/html' },
-      });
-      const text = await response.text();
-      const doc = new DOMParser().parseFromString(text, 'text/html');
-      // Detect from the standard newsletter markers, which Shopify renders on
-      // whichever customer form owns the flash — not necessarily this popup.
-      const success = doc.querySelector(
-        '.newsletter-form__message--success:not([hidden])'
-      );
-      const error = doc.querySelector(
-        '.newsletter-form__message:not(.newsletter-form__message--success):not([hidden])'
-      );
-
-      if (success) {
-        this.showSuccess();
-      } else if (error) {
-        this.showError(error);
-      } else {
-        // Couldn't classify the response — re-enable and let the browser
-        // submit natively so the visitor isn't stuck.
-        this.nativeFallback();
-      }
-    } catch (e) {
-      // Network failure — let the browser submit the form the normal way.
-      this.nativeFallback();
+  // Shopify appends "#contact_form" to the URL after a customer form submit,
+  // which makes the browser scroll to the footer "stay in touch" signup. Strip
+  // it and return to the top so closing the popup doesn't dump the visitor at
+  // the bottom of the page.
+  clearAnchorJump() {
+    if (window.location.hash) {
+      const clean = window.location.pathname + window.location.search;
+      window.history.replaceState(null, '', clean);
     }
-  }
-
-  nativeFallback() {
-    this.setLoading(false);
-    this.isSubmitting = false;
-    this.form.submit();
-  }
-
-  setLoading(on) {
-    this.form.classList.toggle('is-loading', on);
-    const button = this.form.querySelector('[type="submit"]');
-    const input = this.form.querySelector('input[type="email"]');
-    if (button) button.disabled = on;
-    if (input) input.disabled = on;
-  }
-
-  showSuccess() {
-    this.setState({ subscribed: true });
-    this.setLoading(false);
-    this.form.classList.add('is-success');
-    const fields = this.form.querySelector('[data-popup-fields]');
-    const message = this.form.querySelector('[data-popup-success]');
-    if (fields) fields.hidden = true;
-    if (message) {
-      message.hidden = false;
-      if (typeof message.focus === 'function') message.focus();
-    }
-  }
-
-  showError(node) {
-    this.isSubmitting = false;
-    this.setLoading(false);
-    const wrapper = this.form.querySelector('.newsletter-form__field-wrapper');
-    if (!wrapper) return;
-    const existing = wrapper.querySelector('[data-popup-error]');
-    if (existing) existing.remove();
-    const imported = document.importNode(node, true);
-    imported.setAttribute('data-popup-error', '');
-    wrapper.appendChild(imported);
-    const input = wrapper.querySelector('input[type="email"]');
-    if (input) {
-      input.setAttribute('aria-invalid', 'true');
-      input.focus();
-    }
+    window.scrollTo(0, 0);
   }
 
   onKeydown(event) {

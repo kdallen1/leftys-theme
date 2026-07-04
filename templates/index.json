@@ -288,7 +288,7 @@
         "button_label": "Subscribe",
         "success_text": "Thanks! Check your inbox for your 10% off code.",
         "disclaimer": "No spam, just drops. Unsubscribe anytime.",
-        "scroll_percentage": 35,
+        "scroll_percentage": 30,
         "delay": 3,
         "redisplay_days": 14,
         "color_scheme": "scheme-1",

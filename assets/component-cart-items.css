@@ -19,6 +19,55 @@ cart-items .title-wrapper-with-link {
   display: flex;
 }
 
+/* Softer, borderless quantity selector (no hard box) */
+.cart-quantity {
+  width: auto;
+  min-height: 0;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.cart-quantity:before,
+.cart-quantity:after {
+  content: none;
+}
+
+.cart-quantity .quantity__button {
+  width: 3.2rem;
+  height: 3.2rem;
+  margin: 0;
+  border-radius: 50%;
+  background-color: rgba(var(--color-foreground), 0.05);
+  transition: background-color var(--duration-short) ease;
+}
+
+.cart-quantity .quantity__button:hover {
+  background-color: rgba(var(--color-foreground), 0.12);
+}
+
+.cart-quantity .quantity__input {
+  width: 3.4rem;
+  min-width: 3.4rem;
+  padding: 0;
+  font-size: 1.5rem;
+  opacity: 1;
+}
+
+.cart-quantity .quantity__input:focus-visible {
+  outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+  outline-offset: 0.2rem;
+  border-radius: 0.4rem;
+}
+
+/* Faint background on the +/- buttons only — override quantity-popover's reset */
+quantity-popover .cart-quantity .quantity__button:not(:focus-visible):not(.focused) {
+  background-color: rgba(var(--color-foreground), 0.05);
+}
+
+quantity-popover .cart-quantity .quantity__button:not(:focus-visible):not(.focused):hover {
+  background-color: rgba(var(--color-foreground), 0.12);
+}
+
 .cart-item__totals {
   position: relative;
 }
@@ -240,8 +289,8 @@ cart-remove-button .icon-remove {
 
   .cart-item {
     display: grid;
-    grid-template: repeat(2, auto) / repeat(4, 1fr);
-    gap: 1.5rem;
+    grid-template: repeat(2, auto) / 12rem repeat(3, 1fr);
+    gap: 0.6rem 1.5rem;
     margin-bottom: 3.5rem;
   }
 
@@ -273,6 +322,21 @@ cart-remove-button .icon-remove {
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
+  }
+
+  /* Bigger product thumbnail */
+  .cart-item__image {
+    max-width: calc(12rem / var(--font-body-scale));
+  }
+
+  /* Tighter stacking of name / price / size */
+  .cart-item__details > * + * {
+    margin-top: 0.4rem;
+  }
+
+  .cart-item__details dl,
+  .cart-item__details .product-option {
+    margin: 0;
   }
 }
 

@@ -47,6 +47,36 @@
         {%- if item.selling_plan_allocation != null -%}
           <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
         {%- endif -%}
+
+        <div class="cart-notification__quantity">
+          <span class="cart-notification__quantity-label">{{ 'products.product.quantity.label' | t }}</span>
+          <div class="cart-notification__quantity-selector">
+            <button
+              type="button"
+              class="cart-notification__quantity-button"
+              data-quantity-action="minus"
+              aria-label="{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}"
+            >
+              <span aria-hidden="true">&minus;</span>
+            </button>
+            <input
+              class="cart-notification__quantity-input"
+              type="number"
+              inputmode="numeric"
+              min="1"
+              value="{{ item.quantity }}"
+              aria-label="{{ 'products.product.quantity.label' | t }}"
+            >
+            <button
+              type="button"
+              class="cart-notification__quantity-button"
+              data-quantity-action="plus"
+              aria-label="{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}"
+            >
+              <span aria-hidden="true">+</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   {%- endfor -%}

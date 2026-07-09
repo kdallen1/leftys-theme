@@ -1528,3 +1528,216 @@ a.product__text {
 .product__media-list .global-media-settings:after {
   display: none;
 }
+
+/* ==========================================================================
+   Mobile product info: tighter, grouped hierarchy
+   Groups the page into (1) an identity group — vendor / title / subtitle /
+   price — and (2) an action cluster — size / quantity / add-to-cart — so the
+   eye reads intent rather than an evenly-spaced list.
+   ========================================================================== */
+@media screen and (max-width: 749px) {
+  /* Slightly tighter default rhythm than desktop */
+  .product__info-container > * + * {
+    margin: 1.2rem 0;
+  }
+
+  /* --- Identity group: sits close together --- */
+  .product__text.caption-with-letter-spacing {
+    margin-bottom: 0.3rem;
+    font-size: 1.1rem;
+    opacity: 0.65;
+  }
+
+  .product__title {
+    margin-bottom: 0;
+  }
+
+  .product__title h1 {
+    font-size: 2.8rem;
+    line-height: 1.15;
+  }
+
+  /* Subtitle hugs the title */
+  .product__title + .product__text.subtitle,
+  .product__info-container > .product__text.subtitle {
+    margin-top: 0.6rem;
+    margin-bottom: 0;
+  }
+
+  /* Price sits close under the title/subtitle group */
+  .product__info-container > [id^='price-'] {
+    margin-top: 0.9rem;
+  }
+
+  /* --- Secondary notes (shipping message, sizing chart) read quietly --- */
+  .product__info-container > .product__text:not(.caption-with-letter-spacing):not(.subtitle) {
+    margin: 0.9rem 0 0;
+    font-size: 1.3rem;
+    opacity: 0.8;
+  }
+
+  .product-popup-modal__opener {
+    margin-top: 0.6rem;
+  }
+
+  /* --- Action cluster: size + quantity + add-to-cart read as one unit,
+     set apart from the text above by a light divider --- */
+  .product__info-container variant-selects {
+    display: block;
+    margin-top: 1.8rem;
+    padding-top: 1.8rem;
+    border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  }
+
+  .product__info-container .product-form {
+    margin: 1.4rem 0 0;
+  }
+
+  /* Make the inline add-to-cart the clear focal point */
+  .product-form__submit {
+    box-shadow: 0 0.4rem 1.2rem rgba(104, 51, 169, 0.28);
+  }
+}
+
+/* ==========================================================================
+   Mobile sticky add-to-cart bar
+   Hidden by default; revealed by sticky-atc.js once the inline button
+   scrolls out of view. Desktop never shows it.
+   ========================================================================== */
+.sticky-atc {
+  display: none;
+}
+
+@media screen and (max-width: 749px) {
+  .sticky-atc {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 4;
+    background: rgb(var(--color-background));
+    border-top: 0.1rem solid rgba(var(--color-foreground), 0.1);
+    box-shadow: 0 -0.4rem 1.2rem rgba(var(--color-foreground), 0.08);
+    padding: 0.8rem 0 calc(0.8rem + env(safe-area-inset-bottom));
+    transform: translateY(110%);
+    transition: transform var(--duration-default, 0.25s) ease;
+  }
+
+  .sticky-atc.is-visible {
+    transform: translateY(0);
+  }
+
+  .sticky-atc__inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .sticky-atc__thumb {
+    flex: 0 0 auto;
+    width: 4.8rem;
+    height: 4.8rem;
+    object-fit: cover;
+    border-radius: var(--media-radius, 0.4rem);
+    border: 0.1rem solid rgba(var(--color-foreground), 0.1);
+  }
+
+  .sticky-atc__info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  /* Mirrored size / variant selectors */
+  .sticky-atc__variants {
+    display: flex;
+    gap: 0.6rem;
+    flex: 0 0 auto;
+  }
+
+  .sticky-atc__variants:empty {
+    display: none;
+  }
+
+  .sticky-atc__variant-select {
+    flex: 0 1 auto;
+    min-width: 6.5rem;
+    max-width: 11rem;
+    height: 4.6rem;
+    padding: 0 2.8rem 0 1rem;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.2);
+    border-radius: var(--inputs-radius, 0.4rem);
+    background-color: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+    font-size: 1.4rem;
+    /* Native caret */
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='currentColor'%3E%3Cpath d='M6 8l4 4 4-4' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.6rem;
+  }
+
+  .sticky-atc__title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .sticky-atc__price,
+  .sticky-atc__price .price {
+    font-size: 1.3rem;
+  }
+
+  .sticky-atc__price .price__container {
+    margin: 0;
+  }
+
+  .sticky-atc__price .badge,
+  .sticky-atc__price .price__badge-sale,
+  .sticky-atc__price .price__badge-sold-out,
+  .sticky-atc__price .price__availability,
+  .sticky-atc__price .visually-hidden {
+    display: none;
+  }
+
+  .sticky-atc__button {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    min-width: 0;
+    width: 5rem;
+    height: 4.6rem;
+    padding: 0;
+    background-color: #6833a9 !important;
+    color: #ffffff !important;
+    font-size: 1.9rem !important;
+    border: none !important;
+  }
+
+  .sticky-atc__button i {
+    line-height: 1;
+  }
+
+  /* When the product has no variants, let the button fill the row */
+  .sticky-atc__variants:empty + .sticky-atc__button {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  .sticky-atc__button:hover:not([disabled]) {
+    background-color: #562b8a !important;
+  }
+
+  .sticky-atc__button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

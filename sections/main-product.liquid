@@ -715,6 +715,9 @@
       {{ product | structured_data }}
     </script>
   </div>
+
+  {%- render 'product-sticky-atc', product: product, section_id: section.id -%}
+  <script src="{{ 'product-sticky-atc.js' | asset_url }}" defer="defer"></script>
 </product-info>
 
 {% schema %}

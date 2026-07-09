@@ -1,0 +1,44 @@
+{% comment %}
+  Renders a slim, mobile-only sticky add-to-cart bar that appears once the
+  inline add-to-cart button has scrolled out of view. The bar's button proxies
+  a click to the real inline submit button, so all existing product-form logic
+  (cart drawer, loading state, error/sold-out handling) is reused as-is.
+
+  Accepts:
+  - product: {Object} product object.
+  - section_id: {String} id of the main-product section.
+
+  Usage:
+  {% render 'product-sticky-atc', product: product, section_id: section.id %}
+{% endcomment %}
+{%- if product != blank -%}
+  <sticky-atc class="sticky-atc" data-section-id="{{ section_id }}" aria-hidden="true">
+    <div class="sticky-atc__inner page-width">
+      {%- if product.featured_image != blank -%}
+        <img
+          class="sticky-atc__thumb"
+          src="{{ product.featured_image | image_url: width: 120 }}"
+          alt="{{ product.featured_image.alt | escape }}"
+          width="48"
+          height="48"
+          loading="lazy"
+        >
+      {%- endif -%}
+      <div class="sticky-atc__info">
+        <span class="sticky-atc__title">{{ product.title | escape }}</span>
+        <span class="sticky-atc__price" aria-hidden="true"></span>
+      </div>
+      {%- comment -%} Variant selects are mirrored here from the main picker by sticky-atc.js {%- endcomment -%}
+      <div class="sticky-atc__variants"></div>
+      <button
+        type="button"
+        class="sticky-atc__button button button--primary"
+        data-target="ProductSubmitButton-{{ section_id }}"
+        aria-label="{{ 'products.product.add_to_cart' | t }}"
+      >
+        <i class="fa-solid fa-basket-shopping" aria-hidden="true"></i>
+        <span class="visually-hidden sticky-atc__button-label">{{ 'products.product.add_to_cart' | t }}</span>
+      </button>
+    </div>
+  </sticky-atc>
+{%- endif -%}

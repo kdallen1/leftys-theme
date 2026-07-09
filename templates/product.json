@@ -61,10 +61,6 @@
             "swatch_shape": "circle"
           }
         },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -112,7 +108,6 @@
         "text_8GFRU9",
         "popup_p37qzX",
         "variant_picker",
-        "quantity_selector",
         "buy_buttons",
         "accordion_description",
         "accordion_features",

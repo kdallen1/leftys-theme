@@ -7,9 +7,32 @@ class CartNotification extends HTMLElement {
     this.onBodyClick = this.handleBodyClick.bind(this);
 
     this.notification.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
-    this.querySelectorAll('button[type="button"]').forEach((closeButton) =>
+    // Only the close (X) and "continue shopping" buttons dismiss the popup —
+    // the quantity stepper buttons must not.
+    this.querySelectorAll('.cart-notification__close, .button-label').forEach((closeButton) =>
       closeButton.addEventListener('click', this.close.bind(this))
     );
+
+    // The quantity stepper lives inside the re-rendered product markup, so use
+    // event delegation on the persistent notification element.
+    this.productContainer = document.getElementById('cart-notification-product');
+
+    this.addEventListener('click', (event) => {
+      const button = event.target.closest('.cart-notification__quantity-button');
+      if (!button) return;
+      const input = this.querySelector('.cart-notification__quantity-input');
+      if (!input) return;
+      const current = parseInt(input.value, 10) || 1;
+      const next = button.dataset.quantityAction === 'plus' ? current + 1 : current - 1;
+      if (next < 1) return;
+      this.updateQuantity(next);
+    });
+
+    this.addEventListener('change', (event) => {
+      if (!event.target.classList.contains('cart-notification__quantity-input')) return;
+      const value = parseInt(event.target.value, 10);
+      this.updateQuantity(!value || value < 1 ? 1 : value);
+    });
   }
 
   open() {
@@ -50,6 +73,39 @@ class CartNotification extends HTMLElement {
 
     if (this.header) this.header.reveal();
     this.open();
+  }
+
+  updateQuantity(quantity) {
+    if (!this.cartItemKey) return;
+    if (this.productContainer) this.productContainer.classList.add('is-loading');
+
+    const config = fetchConfig('json');
+    config.body = JSON.stringify({
+      id: this.cartItemKey,
+      quantity,
+      sections: this.getSectionsToRender().map((section) => section.id),
+      sections_url: window.location.pathname,
+    });
+
+    fetch(`${routes.cart_change_url}`, config)
+      .then((response) => response.json())
+      .then((parsedState) => {
+        this.getSectionsToRender().forEach((section) => {
+          const element = document.getElementById(section.id);
+          if (!element || !parsedState.sections || !parsedState.sections[section.id]) return;
+          element.innerHTML = this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);
+        });
+
+        this.updateShirtPromotion(parsedState);
+
+        if (typeof publish === 'function' && typeof PUB_SUB_EVENTS !== 'undefined') {
+          publish(PUB_SUB_EVENTS.cartUpdate, { source: 'cart-notification', cartData: parsedState });
+        }
+      })
+      .catch((e) => console.error(e))
+      .finally(() => {
+        if (this.productContainer) this.productContainer.classList.remove('is-loading');
+      });
   }
 
   async updateShirtPromotion(cartData) {

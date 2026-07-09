@@ -61,6 +61,12 @@
             "swatch_shape": "circle"
           }
         },
+        "low_stock": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{%- assign _lv = product.selected_or_first_available_variant -%}<p id=\"Inventory-{{ section.id }}\" class=\"product__low-stock\" role=\"status\">{%- if _lv.inventory_management == 'shopify' and _lv.inventory_quantity > 0 and _lv.inventory_quantity <= 5 -%}Hurry, only {{ _lv.inventory_quantity }} left!{%- endif -%}</p>"
+          }
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -108,6 +114,7 @@
         "text_8GFRU9",
         "popup_p37qzX",
         "variant_picker",
+        "low_stock",
         "buy_buttons",
         "accordion_description",
         "accordion_features",

@@ -59,6 +59,7 @@ class CartNotification extends HTMLElement {
 
   renderContents(parsedState) {
     this.cartItemKey = parsedState.key;
+    this.variantId = parsedState.variant_id || parsedState.id;
     this.getSectionsToRender().forEach((section) => {
       document.getElementById(section.id).innerHTML = this.getSectionInnerHTML(
         parsedState.sections[section.id],
@@ -79,22 +80,46 @@ class CartNotification extends HTMLElement {
     if (!this.cartItemKey) return;
     if (this.productContainer) this.productContainer.classList.add('is-loading');
 
-    const config = fetchConfig('json');
-    config.body = JSON.stringify({
-      id: this.cartItemKey,
-      quantity,
-      sections: this.getSectionsToRender().map((section) => section.id),
-      sections_url: window.location.pathname,
-    });
+    // Resolve the item's current line index from the live cart. Line-item keys
+    // can go stale, so identifying by line (Dawn's approach) is reliable both
+    // when increasing and decreasing quantity.
+    fetch('/cart.js')
+      .then((response) => response.json())
+      .then((cart) => {
+        let line = cart.items.findIndex((item) => item.key === this.cartItemKey);
+        if (line === -1) line = cart.items.findIndex((item) => item.variant_id === this.variantId);
+        if (line === -1) throw new Error('cart-notification: could not locate line item to update');
 
-    fetch(`${routes.cart_change_url}`, config)
+        const config = fetchConfig('json');
+        config.body = JSON.stringify({
+          line: line + 1,
+          quantity,
+          sections: this.getSectionsToRender().map((section) => section.id),
+          sections_url: window.location.pathname,
+        });
+        return fetch(`${routes.cart_change_url}`, config);
+      })
       .then((response) => response.json())
       .then((parsedState) => {
+        // Keep the key fresh in case it changed.
+        const updatedItem =
+          (parsedState.items || []).find((item) => item.variant_id === this.variantId) ||
+          (parsedState.items || []).find((item) => item.key === this.cartItemKey);
+        if (updatedItem) this.cartItemKey = updatedItem.key;
+
         this.getSectionsToRender().forEach((section) => {
           const element = document.getElementById(section.id);
           if (!element || !parsedState.sections || !parsedState.sections[section.id]) return;
-          element.innerHTML = this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);
+          try {
+            element.innerHTML = this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);
+          } catch (e) {
+            console.error('cart-notification: failed to render section', section.id, e);
+          }
         });
+
+        // Sync the displayed number to the authoritative server quantity.
+        const input = this.querySelector('.cart-notification__quantity-input');
+        if (input) input.value = updatedItem ? updatedItem.quantity : quantity;
 
         this.updateShirtPromotion(parsedState);
 
@@ -110,14 +135,22 @@ class CartNotification extends HTMLElement {
 
   async updateShirtPromotion(cartData) {
     console.log('Updating cart notification shirt promotion');
-    console.log('Item that was just added:', cartData);
+    console.log('Cart/item payload:', cartData);
 
-    // Check if the just-added item is a shirt
-    const justAddedIsShirt = cartData ? this.isShirtProduct(cartData) : false;
-    console.log('Just added item is shirt?', justAddedIsShirt);
-
-    // Get the total shirt count in the cart by fetching current cart
-    const totalShirtCount = await this.getTotalShirtCountInCart(justAddedIsShirt, cartData);
+    let totalShirtCount;
+    if (cartData && Array.isArray(cartData.items)) {
+      // Full cart payload (e.g. from a quantity change) — count directly, no extra fetch.
+      totalShirtCount = cartData.items.reduce(
+        (sum, item) => sum + (this.isShirtProduct(item) ? item.quantity : 0),
+        0
+      );
+      console.log('Total shirts from cart payload:', totalShirtCount);
+    } else {
+      // Just-added line item (from add-to-cart) — fetch the current cart to total up.
+      const justAddedIsShirt = cartData ? this.isShirtProduct(cartData) : false;
+      console.log('Just added item is shirt?', justAddedIsShirt);
+      totalShirtCount = await this.getTotalShirtCountInCart(justAddedIsShirt, cartData);
+    }
     this.displayPromotionMessage(totalShirtCount);
   }
 

@@ -114,6 +114,23 @@
         "show_dots": true
       }
     },
+    "value_props": {
+      "type": "value-props",
+      "settings": {
+        "shipping_icon": "fa-solid fa-truck-fast",
+        "shipping_us_text": "Free U.S. Shipping",
+        "shipping_intl_text": "$10 flat-rate international",
+        "returns_icon": "fa-solid fa-arrow-rotate-left",
+        "returns_text": "Free Returns & Exchanges",
+        "limited_icon": "fa-solid fa-hat-cowboy",
+        "limited_text": "Limited Runs",
+        "origin_icon": "fa-solid fa-location-dot",
+        "origin_text": "Designed in Austin, Texas",
+        "color_scheme": "scheme-1",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
@@ -298,6 +315,7 @@
   },
   "order": [
     "image_carousel_DTmFXT",
+    "value_props",
     "featured_collection",
     "featured_collection_WJgfHY",
     "featured_collection_iBXjGH",

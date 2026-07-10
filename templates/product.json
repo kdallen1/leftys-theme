@@ -64,7 +64,7 @@
         "low_stock": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "{%- assign _lv = product.selected_or_first_available_variant -%}<p id=\"Inventory-{{ section.id }}\" class=\"product__low-stock\" role=\"status\">{%- if _lv.inventory_management == 'shopify' and _lv.inventory_quantity > 0 and _lv.inventory_quantity <= 5 -%}Hurry, only {{ _lv.inventory_quantity }} left!{%- endif -%}</p>"
+            "custom_liquid": "{%- assign _lv = product.selected_or_first_available_variant -%}<p id=\"Inventory-{{ section.id }}\" class=\"product__low-stock\" role=\"status\">{%- if _lv.inventory_management == 'shopify' and _lv.inventory_quantity > 0 and _lv.inventory_quantity <= 9 -%}Hurry, only {{ _lv.inventory_quantity }} left!{%- endif -%}</p>"
           }
         },
         "buy_buttons": {

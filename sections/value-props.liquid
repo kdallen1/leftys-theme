@@ -1,0 +1,165 @@
+{{ 'section-value-props.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign shipping_text = section.settings.shipping_us_text
+  if localization.country.iso_code != 'US'
+    assign shipping_text = section.settings.shipping_intl_text
+  endif
+-%}
+
+<div class="value-props">
+  <div class="value-props__inner page-width section-{{ section.id }}-padding{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    <ul class="value-props__grid" role="list">
+      <li class="value-props__item">
+        <i class="value-props__icon {{ section.settings.shipping_icon }}" aria-hidden="true"></i>
+        <span class="value-props__label">{{ shipping_text }}</span>
+      </li>
+      <li class="value-props__item">
+        <i class="value-props__icon {{ section.settings.returns_icon }}" aria-hidden="true"></i>
+        <span class="value-props__label">{{ section.settings.returns_text }}</span>
+      </li>
+      <li class="value-props__item">
+        <i class="value-props__icon {{ section.settings.limited_icon }}" aria-hidden="true"></i>
+        <span class="value-props__label">{{ section.settings.limited_text }}</span>
+      </li>
+      <li class="value-props__item">
+        <i class="value-props__icon {{ section.settings.origin_icon }}" aria-hidden="true"></i>
+        <span class="value-props__label">{{ section.settings.origin_text }}</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Value Props",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Shipping"
+    },
+    {
+      "type": "text",
+      "id": "shipping_icon",
+      "default": "fa-solid fa-truck-fast",
+      "label": "Shipping icon",
+      "info": "Font Awesome classes, e.g. fa-solid fa-truck-fast"
+    },
+    {
+      "type": "text",
+      "id": "shipping_us_text",
+      "default": "Free U.S. Shipping",
+      "label": "Shipping text (U.S.)"
+    },
+    {
+      "type": "text",
+      "id": "shipping_intl_text",
+      "default": "$10 flat-rate international",
+      "label": "Shipping text (international)",
+      "info": "Shown when the customer's country is not the U.S."
+    },
+    {
+      "type": "header",
+      "content": "Returns"
+    },
+    {
+      "type": "text",
+      "id": "returns_icon",
+      "default": "fa-solid fa-arrow-rotate-left",
+      "label": "Returns icon"
+    },
+    {
+      "type": "text",
+      "id": "returns_text",
+      "default": "Free Returns & Exchanges",
+      "label": "Returns text"
+    },
+    {
+      "type": "header",
+      "content": "Limited runs"
+    },
+    {
+      "type": "text",
+      "id": "limited_icon",
+      "default": "fa-solid fa-hat-cowboy",
+      "label": "Limited runs icon"
+    },
+    {
+      "type": "text",
+      "id": "limited_text",
+      "default": "Limited Runs",
+      "label": "Limited runs text"
+    },
+    {
+      "type": "header",
+      "content": "Origin"
+    },
+    {
+      "type": "text",
+      "id": "origin_icon",
+      "default": "fa-solid fa-location-dot",
+      "label": "Origin icon"
+    },
+    {
+      "type": "text",
+      "id": "origin_text",
+      "default": "Designed in Austin, Texas",
+      "label": "Origin text"
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 28
+    }
+  ],
+  "presets": [
+    {
+      "name": "Value Props"
+    }
+  ]
+}
+{% endschema %}

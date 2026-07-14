@@ -12,6 +12,19 @@
     "image_carousel_DTmFXT": {
       "type": "image-carousel",
       "blocks": {
+        "slide_nqhqUx": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/red-carpet-duckpopper-optimized.png",
+            "heading": "Fine Western Shirts",
+            "heading_size": "h1",
+            "text": "<em>They don't make 'em like they used to. But we do.</em>",
+            "text_style": "body",
+            "button_label": "The Duckpopper",
+            "button_link": "shopify://products/the-duckpopper",
+            "button_style_secondary": false
+          }
+        },
         "slide_BkpDAr": {
           "type": "slide",
           "settings": {
@@ -51,19 +64,6 @@
             "button_style_secondary": false
           }
         },
-        "slide_nqhqUx": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/red-carpet-duckpopper-optimized.png",
-            "heading": "Fine Western Shirts",
-            "heading_size": "h1",
-            "text": "<em>They don't make 'em like they used to. But we do.</em>",
-            "text_style": "body",
-            "button_label": "The Duckpopper",
-            "button_link": "shopify://products/the-duckpopper",
-            "button_style_secondary": false
-          }
-        },
         "slide_eAzRez": {
           "type": "slide",
           "settings": {
@@ -92,10 +92,10 @@
         }
       },
       "block_order": [
+        "slide_nqhqUx",
         "slide_BkpDAr",
         "slide_ngGCqX",
         "slide_UQ8wBh",
-        "slide_nqhqUx",
         "slide_eAzRez",
         "slide_GxNqFf"
       ],

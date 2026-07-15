@@ -1,0 +1,75 @@
+/* Value Props Section Styles */
+
+/* Tuck the band flush against the carousel by removing the theme's
+   inter-section spacing on this section wrapper. */
+.section:has(.value-props) {
+  margin-top: 0;
+}
+
+.value-props {
+  background-color: #fff;
+  color: #000;
+  margin-top: 0;
+}
+
+.value-props__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+  grid-auto-flow: column;
+  gap: 2.4rem 1.6rem;
+  margin: 0 auto;
+  padding: 0 0 0 2rem;
+  list-style: none;
+  max-width: 90rem;
+}
+
+.value-props__item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  color: rgba(0, 0, 0, 0.85);
+  min-width: 0;
+}
+
+.value-props__icon {
+  font-size: 1.7rem;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 2.2rem;
+  text-align: center;
+}
+
+.value-props__label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.12rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+@media screen and (min-width: 990px) {
+  .value-props__grid {
+    grid-template-columns: repeat(4, max-content);
+    grid-template-rows: auto;
+    grid-auto-flow: row;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 0;
+    margin: 0;
+    max-width: none;
+  }
+
+  .value-props__item {
+    justify-content: flex-start;
+  }
+
+  .value-props__icon {
+    font-size: 1.9rem;
+  }
+
+  .value-props__label {
+    font-size: 1.3rem;
+  }
+}

@@ -12,6 +12,19 @@
     "image_carousel_DTmFXT": {
       "type": "image-carousel",
       "blocks": {
+        "slide_ngGCqX": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/IMG_1209.jpg",
+            "heading": "The Ultimate Outdoor Shirt",
+            "heading_size": "h1",
+            "text": "<em>Looks like tactical western, feels like home. Just released in Seafoam!</em>",
+            "text_style": "body",
+            "button_label": "Buy now",
+            "button_link": "shopify://products/seafoam-hooded-fishing-shirt",
+            "button_style_secondary": false
+          }
+        },
         "slide_nqhqUx": {
           "type": "slide",
           "settings": {
@@ -35,19 +48,6 @@
             "text_style": "body",
             "button_label": "Preorder Now",
             "button_link": "shopify://collections/summer-2026-collection",
-            "button_style_secondary": false
-          }
-        },
-        "slide_ngGCqX": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/IMG_1072_hooded_front.jpg",
-            "heading": "The Ultimate Outdoor Shirt",
-            "heading_size": "h1",
-            "text": "<em>Looks like tactical western, feels like home. Just released in Seafoam!</em>",
-            "text_style": "body",
-            "button_label": "Buy now",
-            "button_link": "shopify://products/seafoam-hooded-fishing-shirt",
             "button_style_secondary": false
           }
         },
@@ -92,9 +92,9 @@
         }
       },
       "block_order": [
+        "slide_ngGCqX",
         "slide_nqhqUx",
         "slide_BkpDAr",
-        "slide_ngGCqX",
         "slide_UQ8wBh",
         "slide_eAzRez",
         "slide_GxNqFf"

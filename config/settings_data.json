@@ -136,6 +136,13 @@
       }
     },
     "content_for_index": [],
+    "blocks": {
+      "2102808784413787648": {
+        "type": "shopify://apps/kbite-back-in-stock-notify-me/blocks/main-app-embed/147a6f7f-6771-4f9b-8dc6-c14e6b24f32c",
+        "disabled": false,
+        "settings": {}
+      }
+    },
     "color_schemes": {
       "scheme-1": {
         "settings": {

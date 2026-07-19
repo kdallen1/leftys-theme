@@ -1,0 +1,294 @@
+{{ 'section-reviews.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    #Reviews-{{ section.id }} .reviews__grid {
+      grid-template-columns: repeat({{ section.settings.columns_desktop }}, minmax(0, 1fr));
+    }
+  }
+
+  #Reviews-{{ section.id }} .reviews__quote {
+    -webkit-line-clamp: {{ section.settings.quote_lines }};
+    line-clamp: {{ section.settings.quote_lines }};
+  }
+
+  #Reviews-{{ section.id }} .reviews__media {
+    aspect-ratio: {{ section.settings.image_ratio }};
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign widths = '165, 360, 535, 750, 1070, 1500'
+-%}
+
+<div class="reviews-section color-{{ section.settings.color_scheme }} gradient">
+  <div
+    id="Reviews-{{ section.id }}"
+    class="reviews page-width section-{{ section.id }}-padding{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+  >
+    {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+      <div class="reviews__header">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="reviews__heading {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <div class="reviews__subheading rte">{{ section.settings.subheading }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <ul class="reviews__grid list-unstyled" role="list">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'review' -%}
+            <li class="reviews__item" {{ block.shopify_attributes }}>
+              <article class="reviews__card">
+                {%- if block.settings.image != blank -%}
+                  {%- assign zoom_src = block.settings.image | image_url: width: 1500 -%}
+                  {%- assign review_alt = block.settings.name | default: 'Customer photo' | escape -%}
+                  <div class="reviews__media">
+                    <button
+                      type="button"
+                      class="reviews__media-button reviews__trigger"
+                      aria-label="View full review from {{ block.settings.name | default: 'customer' | escape }}"
+                      data-review-open
+                    >
+                      {{
+                        block.settings.image
+                        | image_url: width: 750
+                        | image_tag:
+                          loading: 'lazy',
+                          widths: widths,
+                          sizes: '(min-width: 750px) 25vw, 90vw',
+                          alt: review_alt,
+                          class: 'reviews__image'
+                      }}
+                    </button>
+                  </div>
+                {%- endif -%}
+
+                <div class="reviews__body">
+                  {%- if block.settings.rating > 0 -%}
+                    <div class="reviews__rating" aria-label="Rated {{ block.settings.rating }} out of 5 stars">
+                      {%- for i in (1..5) -%}
+                        <i class="fa-{% if i <= block.settings.rating %}solid{% else %}regular{% endif %} fa-star" aria-hidden="true"></i>
+                      {%- endfor -%}
+                    </div>
+                  {%- endif -%}
+
+                  {%- if block.settings.quote != blank -%}
+                    <blockquote class="reviews__quote" data-review-quote>{{ block.settings.quote }}</blockquote>
+                    <button type="button" class="reviews__read-more reviews__trigger link" data-review-open hidden>
+                      {{ 'Read full review' }}
+                    </button>
+                  {%- endif -%}
+
+                  <div class="reviews__meta">
+                    {%- if block.settings.name != blank -%}
+                      <span class="reviews__name">{{ block.settings.name }}</span>
+                    {%- endif -%}
+                    {%- if block.settings.location != blank -%}
+                      <span class="reviews__location">{{ block.settings.location }}</span>
+                    {%- endif -%}
+                  </div>
+                </div>
+
+                {%- comment -%} Data payload consumed by the modal on open {%- endcomment -%}
+                <template data-review-payload>
+                  <div
+                    class="reviews__payload"
+                    data-name="{{ block.settings.name | escape }}"
+                    data-location="{{ block.settings.location | escape }}"
+                    data-rating="{{ block.settings.rating }}"
+                    {% if block.settings.image != blank %}data-image="{{ zoom_src }}"{% endif %}
+                  >{{ block.settings.quote }}</div>
+                </template>
+              </article>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} Single shared modal for this section {%- endcomment -%}
+  <dialog class="reviews-modal" data-reviews-modal aria-label="Full review">
+    <div class="reviews-modal__inner">
+      <button type="button" class="reviews-modal__close" aria-label="Close" data-review-close>
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+      <div class="reviews-modal__media" data-review-media hidden>
+        <img class="reviews-modal__image" alt="" data-review-image>
+        <span class="reviews-modal__zoom-hint">
+          <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+        </span>
+      </div>
+      <div class="reviews-modal__content">
+        <div class="reviews-modal__rating" data-review-modal-rating hidden></div>
+        <blockquote class="reviews-modal__quote" data-review-modal-quote></blockquote>
+        <div class="reviews-modal__meta">
+          <span class="reviews-modal__name" data-review-modal-name></span>
+          <span class="reviews-modal__location" data-review-modal-location></span>
+        </div>
+      </div>
+    </div>
+  </dialog>
+</div>
+
+<script src="{{ 'section-reviews.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Reviews",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "What y'all are saying",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "Columns on desktop"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "1", "label": "Square (1:1)" },
+        { "value": "4 / 3", "label": "Landscape (4:3)" },
+        { "value": "3 / 4", "label": "Portrait (3:4)" }
+      ],
+      "default": "1",
+      "label": "Photo shape"
+    },
+    {
+      "type": "range",
+      "id": "quote_lines",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 5,
+      "label": "Preview lines before truncating",
+      "info": "Longer reviews are cut off with an ellipsis; visitors tap the card to read the full review."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo"
+        },
+        {
+          "type": "richtext",
+          "id": "quote",
+          "default": "<p>Add the customer's words here. Longer reviews are automatically truncated on the card and can be read in full when a visitor taps to expand.</p>",
+          "label": "Review"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "default": "Customer name",
+          "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "default": "City, State",
+          "label": "Location"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 5,
+          "label": "Star rating",
+          "info": "Set to 0 to hide stars."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews",
+      "blocks": [
+        { "type": "review" },
+        { "type": "review" },
+        { "type": "review" }
+      ]
+    }
+  ]
+}
+{% endschema %}

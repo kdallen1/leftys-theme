@@ -217,54 +217,6 @@
         "padding_bottom": 36
       }
     },
-    "reviews_home": {
-      "type": "reviews",
-      "blocks": {
-        "review_1": {
-          "type": "review",
-          "settings": {
-            "quote": "<p>Add the customer's words here. Longer reviews are automatically truncated on the card and can be read in full when a visitor taps to expand.</p>",
-            "name": "Customer name",
-            "location": "City, State",
-            "rating": 5
-          }
-        },
-        "review_2": {
-          "type": "review",
-          "settings": {
-            "quote": "<p>Add the customer's words here. Longer reviews are automatically truncated on the card and can be read in full when a visitor taps to expand.</p>",
-            "name": "Customer name",
-            "location": "City, State",
-            "rating": 5
-          }
-        },
-        "review_3": {
-          "type": "review",
-          "settings": {
-            "quote": "<p>Add the customer's words here. Longer reviews are automatically truncated on the card and can be read in full when a visitor taps to expand.</p>",
-            "name": "Customer name",
-            "location": "City, State",
-            "rating": 5
-          }
-        }
-      },
-      "block_order": [
-        "review_1",
-        "review_2",
-        "review_3"
-      ],
-      "name": "Reviews",
-      "settings": {
-        "heading": "What y'all are saying",
-        "heading_size": "h1",
-        "columns_desktop": 3,
-        "image_ratio": "1",
-        "quote_lines": 5,
-        "color_scheme": "scheme-1",
-        "padding_top": 60,
-        "padding_bottom": 60
-      }
-    },
     "about_us_XH8kqL": {
       "type": "about-us",
       "name": "About Us",
@@ -367,7 +319,6 @@
     "featured_collection",
     "featured_collection_WJgfHY",
     "featured_collection_iBXjGH",
-    "reviews_home",
     "about_us_XH8kqL",
     "176488499441eaa556",
     "newsletter_d9RigL",

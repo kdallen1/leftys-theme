@@ -217,6 +217,91 @@
         "padding_bottom": 36
       }
     },
+    "reviews_KiMVmn": {
+      "type": "reviews",
+      "blocks": {
+        "review_Dx9nfM": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/aaron_1.jpg",
+            "quote": "<p>By far the highest quality western shirt I’ve felt. Thick material that holds up as well in the arena as it does out on the town. Everyone I know likes the nostalgia of the old 90s color</p>",
+            "name": "Aaron",
+            "location": "Roswell, NM",
+            "rating": 5
+          }
+        },
+        "review_WrUyHE": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/jaden_1.jpg",
+            "quote": "<p>I’ve been really impressed with Lefty’s. The quality of the clothing is excellent, the fit is great, and everything feels well made. Their style and color patterns are very unique without sacrificing comfort these have quickly became my favorite shirt to wear while performing on stage especially the duckpopper always seems to catch peoples eyes . I’ll definitely be buying from them again and would recommend Lefty’s to anyone looking for quality pearl snaps. Also customer service is the best out there!</p>",
+            "name": "Jaden",
+            "location": "Riverside, CA",
+            "rating": 5
+          }
+        },
+        "review_YN6HRr": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/geoff_1.jpg",
+            "quote": "<p>Just wanted to pass on I rocked your shirt at the Calgary Stampede this past weekend. And I've NEVER received more compliments in my life. It was a huge hit. Thanks again. </p>",
+            "name": "Geoff",
+            "location": "Canada",
+            "rating": 5
+          }
+        },
+        "review_G966tb": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/harry_1.jpg",
+            "quote": "<p>Every time I wear the Neon Moon on stage, I get so many compliments!  The 90s are back!</p><p>The Light Blue Performance Fishing Shirt has become my go to for everything this summer!  From backyard parties to the stage, it looks great everywhere and keeps me cool all the time!</p><p>The Luxe Black on Black Pearl Snap is the softest, most comfortable pearl snap I've ever owned!</p>",
+            "name": "Harry",
+            "location": "Nashville, TN",
+            "rating": 5
+          }
+        },
+        "review_ji6Ewy": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-07-19_at_1.57.47_PM.png",
+            "quote": "<p>Lefty’s hooded fishing shirt is a must have for all you fisher people out there!!!  I always wear a long sleeved shirt when I fish because of the sun. But now I have the option of a hood!!!  Game changer!!!!!  It is So Versatile too!  Slip the hood on to protect your ears and then tie it down if it is windy!!!  I absolutely LOVE this shirt!!!!</p>",
+            "name": "Doris",
+            "location": "Crystal Beach, TX",
+            "rating": 5
+          }
+        },
+        "review_Przadj": {
+          "type": "review",
+          "settings": {
+            "image": "shopify://shop_images/esteban_1.jpg",
+            "quote": "<p>The quality of this shirt is amazing it’s not too thin and it’s not too thick and I’ve gotten the most compliments from this shirt than any of my other brush poppers I have. Honestly I love the shirt it fits great and the material is fantastic</p>",
+            "name": "Esteban",
+            "location": "Gilroy, CA",
+            "rating": 5
+          }
+        }
+      },
+      "block_order": [
+        "review_Dx9nfM",
+        "review_WrUyHE",
+        "review_YN6HRr",
+        "review_G966tb",
+        "review_ji6Ewy",
+        "review_Przadj"
+      ],
+      "name": "Reviews",
+      "settings": {
+        "heading": "What y'all are saying",
+        "heading_size": "h1",
+        "subheading": "",
+        "columns_desktop": 3,
+        "image_ratio": "1",
+        "quote_lines": 5,
+        "color_scheme": "",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
     "about_us_XH8kqL": {
       "type": "about-us",
       "name": "About Us",
@@ -319,6 +404,7 @@
     "featured_collection",
     "featured_collection_WJgfHY",
     "featured_collection_iBXjGH",
+    "reviews_KiMVmn",
     "about_us_XH8kqL",
     "176488499441eaa556",
     "newsletter_d9RigL",

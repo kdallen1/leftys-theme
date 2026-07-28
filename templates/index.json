@@ -12,6 +12,19 @@
     "image_carousel_DTmFXT": {
       "type": "image-carousel",
       "blocks": {
+        "slide_BkpDAr": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/IMG_1027.jpg",
+            "heading": "Summer '26 Collection",
+            "heading_size": "h1",
+            "text": "<em>Your new favorite 90's-inspired pearl snaps. Only making 10-20 per size so get 'em quick.</em>",
+            "text_style": "body",
+            "button_label": "Preorder Now",
+            "button_link": "shopify://collections/summer-2026-collection",
+            "button_style_secondary": false
+          }
+        },
         "slide_ngGCqX": {
           "type": "slide",
           "settings": {
@@ -35,19 +48,6 @@
             "text_style": "body",
             "button_label": "The Duckpopper",
             "button_link": "shopify://products/the-duckpopper",
-            "button_style_secondary": false
-          }
-        },
-        "slide_BkpDAr": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/IMG_1027.jpg",
-            "heading": "Summer '26 Collection",
-            "heading_size": "h1",
-            "text": "<em>Your new favorite 90's-inspired pearl snaps. Only making 10-20 per size so get 'em quick.</em>",
-            "text_style": "body",
-            "button_label": "Preorder Now",
-            "button_link": "shopify://collections/summer-2026-collection",
             "button_style_secondary": false
           }
         },
@@ -92,9 +92,9 @@
         }
       },
       "block_order": [
+        "slide_BkpDAr",
         "slide_ngGCqX",
         "slide_nqhqUx",
-        "slide_BkpDAr",
         "slide_UQ8wBh",
         "slide_eAzRez",
         "slide_GxNqFf"

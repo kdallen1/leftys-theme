@@ -12,6 +12,19 @@
     "image_carousel_DTmFXT": {
       "type": "image-carousel",
       "blocks": {
+        "slide_UQ8wBh": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/IMG_4558.jpg",
+            "heading": "The 90's are back",
+            "heading_size": "h1",
+            "text": "<em>Crank those tunes and throw on one of our 100% cotton throwback pearl snaps.</em>",
+            "text_style": "body",
+            "button_label": "The Neon Moon",
+            "button_link": "shopify://products/the-neon-moon",
+            "button_style_secondary": false
+          }
+        },
         "slide_BkpDAr": {
           "type": "slide",
           "settings": {
@@ -51,19 +64,6 @@
             "button_style_secondary": false
           }
         },
-        "slide_UQ8wBh": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/IMG_4558.jpg",
-            "heading": "The 90's are back",
-            "heading_size": "h1",
-            "text": "<em>Crank them peepaw tunes and throw on one of our 100% cotton throwback pearl snaps.</em>",
-            "text_style": "body",
-            "button_label": "The Neon Moon",
-            "button_link": "shopify://products/the-neon-moon",
-            "button_style_secondary": false
-          }
-        },
         "slide_eAzRez": {
           "type": "slide",
           "settings": {
@@ -92,10 +92,10 @@
         }
       },
       "block_order": [
+        "slide_UQ8wBh",
         "slide_BkpDAr",
         "slide_ngGCqX",
         "slide_nqhqUx",
-        "slide_UQ8wBh",
         "slide_eAzRez",
         "slide_GxNqFf"
       ],

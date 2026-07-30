@@ -3698,3 +3698,43 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+
+/* ==========================================================================
+   Gradient pill button — brand purple-to-pink, used for the primary checkout
+   CTAs (add-to-cart notification, cart page). Shares the image carousel hero
+   button's shape and gradient but keeps the theme's default button typography.
+   ========================================================================== */
+.button--gradient {
+  background: linear-gradient(135deg, #6833a9, #d6336c);
+  background-origin: border-box;
+  color: #fff;
+  padding: 1.4rem 3.2rem;
+  border: 2px solid transparent;
+  border-radius: 40px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: none;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+}
+
+/* Neutralize the theme's default button border/shadow pseudo-elements */
+.button--gradient:before,
+.button--gradient:after {
+  content: none;
+  box-shadow: none;
+}
+
+.button--gradient:not([disabled]):hover,
+.button--gradient:focus-visible {
+  background: linear-gradient(135deg, #562b8a, #b5225a);
+  background-origin: border-box;
+  border-color: transparent;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: none;
+}
+
+.button--gradient:not([disabled]):active {
+  transform: translateY(0);
+  box-shadow: none;
+}

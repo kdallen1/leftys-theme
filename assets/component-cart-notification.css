@@ -121,3 +121,43 @@
   margin-bottom: 0.5rem;
   margin-top: 0;
 }
+
+/* ==========================================================================
+   Mobile: dim the page behind the add-to-cart notification.
+
+   The notification renders inside .section-header, which is a stacking context
+   at z-index 3, so the overlay has to clear the mobile sticky add-to-cart bar
+   (z-index 4) and the header section gets lifted above the overlay while the
+   notification is open. The announcement bar (z-index 10000) stays lit, like
+   the header itself.
+
+   Clicks land on <body>, which cart-notification.js already treats as an
+   outside click, so tapping the dim area dismisses the notification without
+   activating whatever link sits underneath.
+   ========================================================================== */
+@media screen and (max-width: 749px) {
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 6;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--duration-default, 0.2s) ease,
+      visibility 0s linear var(--duration-default, 0.2s);
+  }
+
+  body:has(#cart-notification.active)::before {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity var(--duration-default, 0.2s) ease, visibility 0s;
+  }
+
+  /* Lift the header section — and the notification inside it — above the overlay */
+  body:has(#cart-notification.active) .section-header {
+    z-index: 7;
+  }
+}

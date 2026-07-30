@@ -60,6 +60,28 @@
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
         {%- endif -%}
 
+        {%- comment -%}
+          Shipping line follows the buyer's country, matching the Value Props section.
+        {%- endcomment -%}
+        {%- liquid
+          assign shipping_trust_icon = 'fa-solid fa-truck-fast'
+          assign shipping_trust_text = 'Free U.S. shipping'
+          if localization.country.iso_code != 'US'
+            assign shipping_trust_icon = 'fa-solid fa-earth-americas'
+            assign shipping_trust_text = '$10 flat-rate international'
+          endif
+        -%}
+        <ul class="product-form__trust" role="list">
+          <li class="product-form__trust-item">
+            <i class="{{ shipping_trust_icon }}" aria-hidden="true"></i>
+            <span>{{ shipping_trust_text }}</span>
+          </li>
+          <li class="product-form__trust-item">
+            <i class="fa-solid fa-arrow-rotate-left" aria-hidden="true"></i>
+            <span>Free returns &amp; exchanges</span>
+          </li>
+        </ul>
+
         <div class="product-form__buttons">
           {%- liquid
             assign check_against_inventory = true

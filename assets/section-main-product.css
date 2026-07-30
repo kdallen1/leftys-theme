@@ -387,7 +387,7 @@ a.product__text {
 }
 
 .product-form__buttons {
-  max-width: 44rem;
+  max-width: 38rem;
 }
 
 .product--no-media .product__info-container > modal-opener {
@@ -1764,5 +1764,127 @@ a.product__text {
   .sticky-atc__button[disabled] {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+}
+
+/* ==========================================================================
+   Trust line above the add-to-cart button — shipping and returns reassurance
+   as the last thing read before committing. Icons match the Value Props
+   section's vocabulary; stacked and left-aligned to the info column.
+   ========================================================================== */
+.product-form__trust {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  max-width: 44rem;
+  margin: 0 0 1.4rem;
+  padding: 0;
+  list-style: none;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  color: rgba(var(--color-foreground), 0.7);
+}
+
+.product-form__trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+/* Fixed icon column so the labels start on a common left edge. Sized to the
+   label rather than a step above it — a larger icon reads as the emphasis,
+   which is backwards for a reassurance line. */
+.product-form__trust-item i {
+  flex: 0 0 1.6rem;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+/* ==========================================================================
+   Product info rhythm: vendor → title → price → notes → size → add-to-cart
+
+   The column had accumulated per-block margins from several sources, which
+   left the identity group (title/price/notes) airy while the action cluster
+   (size/stock/trust/button) ran cramped — the opposite of the intended
+   hierarchy. These rules set the gaps explicitly and normalize the type scale
+   so importance decreases down the column.
+   ========================================================================== */
+
+/* The subtitle/caption text block renders its <p> even when its metafield is
+   empty, and the empty element's margins opened a phantom gap under the price. */
+.product__info-container > .product__text:empty {
+  display: none;
+}
+
+/* Secondary utility link — was 1.6rem, heavy enough to compete with the price */
+.product-popup-modal__button {
+  font-size: 1.3rem;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+/* The three small lines above the button now share one size. Low stock was
+   1.4rem — larger than the trust line beneath it — which inverted the
+   hierarchy by making the least important line the most prominent. */
+.product__low-stock {
+  font-size: 1.3rem;
+}
+
+/* Low stock sits between the pills and the trust line; give it an explicit
+   gap, since .product__info-container > * + * outranks its own margin: 0. */
+.product__info-container > .product__low-stock {
+  margin: 1.4rem 0 0;
+}
+
+/* Size pills: same tap height, less horizontal balloon around 1–2 character
+   labels, and a common min-width so S/M/L/XL/2XL read as an even row.
+   Scoped to the product page so quick-add modals keep their own sizing. */
+.product__info-container .product-form__input--pill input[type='radio'] + label {
+  min-width: 5rem;
+  padding: 1.2rem 1.8rem;
+}
+
+@media screen and (max-width: 749px) {
+  .product__info-container > * + * {
+    margin: 1rem 0;
+  }
+
+  /* Price hugs the title group; its inner container's bottom margin was
+     stacking on top of the next block's top margin. */
+  .product__info-container > [id^='price-'] {
+    margin-top: 0.8rem;
+  }
+
+  .product__info-container > [id^='price-'] .price__container {
+    margin-bottom: 0;
+  }
+
+  .product__info-container > .product__text:not(.caption-with-letter-spacing):not(.subtitle) {
+    margin: 1rem 0 0;
+    font-size: 1.3rem;
+  }
+
+  .product-popup-modal__opener {
+    margin-top: 0.8rem;
+  }
+
+  /* A little more air around the divider so it reads as a section break
+     rather than an underline for the sizing-chart link. */
+  .product__info-container variant-selects {
+    margin-top: 2.2rem;
+    padding-top: 2.2rem;
+  }
+
+  .product__info-container > .product__low-stock {
+    margin: 1.2rem 0 0;
+  }
+
+  .product__info-container .product-form {
+    margin: 1.2rem 0 0;
+  }
+
+  .product-form__trust {
+    gap: 0.4rem;
+    margin-bottom: 1.2rem;
   }
 }

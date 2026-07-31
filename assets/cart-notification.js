@@ -76,6 +76,20 @@ class CartNotification extends HTMLElement {
     this.open();
   }
 
+  // Single place both the promotion count and the quantity stepper read the
+  // cart from.
+  //
+  // Keep the URL exactly '/cart.js'. A cache-busting query param (/cart.js?t=…)
+  // does NOT return this session's cart — the shirt count comes back 0 and no
+  // promotion message shows at all. Use the cache option instead: 'no-store'
+  // forces a fresh response on browsers that would otherwise serve a cached
+  // pre-add snapshot, without changing the URL.
+  async fetchCart() {
+    const response = await fetch('/cart.js', { cache: 'no-store' });
+    if (!response.ok) throw new Error(`cart-notification: /cart.js responded ${response.status}`);
+    return response.json();
+  }
+
   updateQuantity(quantity) {
     if (!this.cartItemKey) return;
     if (this.productContainer) this.productContainer.classList.add('is-loading');
@@ -83,8 +97,7 @@ class CartNotification extends HTMLElement {
     // Resolve the item's current line index from the live cart. Line-item keys
     // can go stale, so identifying by line (Dawn's approach) is reliable both
     // when increasing and decreasing quantity.
-    fetch('/cart.js')
-      .then((response) => response.json())
+    this.fetchCart()
       .then((cart) => {
         let line = cart.items.findIndex((item) => item.key === this.cartItemKey);
         if (line === -1) line = cart.items.findIndex((item) => item.variant_id === this.variantId);
@@ -157,8 +170,7 @@ class CartNotification extends HTMLElement {
   async getTotalShirtCountInCart(justAddedIsShirt, justAddedItem) {
     try {
       // Fetch current cart to get all items
-      const response = await fetch('/cart.js');
-      const cart = await response.json();
+      const cart = await this.fetchCart();
 
       console.log('Full cart data from API:', cart);
 

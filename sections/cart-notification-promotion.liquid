@@ -1,0 +1,62 @@
+{%- comment -%}
+  Shirt bundle promotion for the add-to-cart notification.
+
+  Rendered through the Section Rendering API — see getSectionsToRender in
+  assets/cart-notification.js — so the message is computed from the committed
+  cart on the server. The previous approach ran in the browser: fetch /cart.js,
+  then guess which lines were shirts from a hardcoded list of handles and title
+  keywords. /cart.js does not return collection membership, so that guessing was
+  the only option available client-side, and any shirt missing from the list
+  counted as zero. That showed up as the promotion working when two of the same
+  shirt were added but not two different styles.
+
+  Collection membership is the source of truth here, so newly added shirts are
+  picked up with no code change as long as they are in one of these collections.
+{%- endcomment -%}
+
+{%- liquid
+  assign shirt_collections = 'shirts,long-sleeve-western-shirts,fishing-shirts' | split: ','
+  assign shirt_count = 0
+
+  for item in cart.items
+    assign is_shirt = false
+
+    assign item_type = item.product.type | downcase
+    if item_type contains 'shirt'
+      assign is_shirt = true
+    else
+      for collection in item.product.collections
+        if shirt_collections contains collection.handle or collection.id == 478689722404
+          assign is_shirt = true
+          break
+        endif
+      endfor
+    endif
+
+    if is_shirt
+      assign shirt_count = shirt_count | plus: item.quantity
+    endif
+  endfor
+-%}
+
+{%- if shirt_count > 0 -%}
+  <div class="shirt-promotion">
+    {%- if shirt_count == 1 -%}
+      <a
+        href="{{ collections.shirts.url | default: '/collections/shirts' }}"
+        class="shirt-promotion__link"
+      >
+        <strong>Add one more shirt (any style) and save $15</strong>
+        <span class="shirt-promotion__arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    {%- else -%}
+      <strong>You're saving $15 by ordering 2 or more</strong>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Cart promotion"
+}
+{% endschema %}

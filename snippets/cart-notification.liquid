@@ -36,21 +36,11 @@
       </div>
       <div id="cart-notification-product" class="cart-notification-product"></div>
 
-      <!-- Shirt Promotion Section for Cart Notification -->
-      <div id="cart-notification-shirt-promotion" class="shirt-promotion" style="display: none; padding: 1rem; margin: 1rem 0; background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-radius: 8px; border-left: 4px solid #28a745;">
-        <div id="cart-notification-shirt-promotion-encourage" style="display: none;">
-          <a
-            href="{{ collections.shirts.url | default: '/collections/shirts' }}"
-            class="shirt-promotion__link"
-          >
-            <strong>Add one more shirt (any style) and save $15</strong>
-            <span class="shirt-promotion__arrow" aria-hidden="true">&rarr;</span>
-          </a>
-        </div>
-        <div id="cart-notification-shirt-promotion-congratulate" style="display: none;">
-          <strong>You're saving $15 by ordering 2 or more</strong>
-        </div>
-      </div>
+      {%- comment -%}
+        Filled by sections/cart-notification-promotion.liquid on every cart
+        update. Empty on first paint, the same way #cart-notification-product is.
+      {%- endcomment -%}
+      <div id="cart-notification-promotion"></div>
 
       <div class="cart-notification__links">
         <a
@@ -133,6 +123,15 @@
   .cart-notification-product.is-loading {
     opacity: 0.5;
     pointer-events: none;
+  }
+
+  /* Moved off the element's style attribute, which the section render replaced. */
+  .shirt-promotion {
+    padding: 1rem;
+    margin: 1rem 0;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 8px;
+    border-left: 4px solid #28a745;
   }
 
   .shirt-promotion__link {

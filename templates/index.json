@@ -131,6 +131,37 @@
         "padding_bottom": 8
       }
     },
+    "rich_text_dXTXwQ": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_zphYdN": {
+          "type": "heading",
+          "settings": {
+            "heading": "We're on summer break",
+            "heading_size": "h2"
+          }
+        },
+        "text_CERVPJ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We are still accepting orders, but they won't ship until August 18th.  Preorders should go out at the end of the month.  Please contact kevin@shopleftys.com with any questions, and see y'all soon!</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_zphYdN",
+        "text_CERVPJ"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
@@ -401,6 +432,7 @@
   "order": [
     "image_carousel_DTmFXT",
     "value_props",
+    "rich_text_dXTXwQ",
     "featured_collection",
     "featured_collection_WJgfHY",
     "featured_collection_iBXjGH",

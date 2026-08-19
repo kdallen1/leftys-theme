@@ -13,6 +13,10 @@
   <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
 
+{%- if section.settings.show_scroll_progress -%}
+  <script src="{{ 'scroll-progress.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
 
 <style>
   header-drawer {
@@ -293,6 +297,16 @@
       </a>
     </div>
   </header>
+
+  {%- if section.settings.show_scroll_progress -%}
+    <scroll-progress
+      class="header-scroll-progress"
+      style="--scroll-progress-color-start: {{ section.settings.scroll_progress_color_start }}; --scroll-progress-color-end: {{ section.settings.scroll_progress_color_end }}; --scroll-progress-height: {{ section.settings.scroll_progress_height }}px;"
+      aria-hidden="true"
+    >
+      <span class="header-scroll-progress__bar"></span>
+    </scroll-progress>
+  {%- endif -%}
 </{{ header_tag }}>
 
 {%- if settings.cart_type == "notification" -%}
@@ -587,6 +601,39 @@
       "id": "show_line_separator",
       "default": true,
       "label": "t:sections.header.settings.show_line_separator.label"
+    },
+    {
+      "type": "header",
+      "content": "Scroll progress bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scroll_progress",
+      "default": true,
+      "label": "Show scroll progress bar",
+      "info": "Adds a thin bar along the top of the header that fills as the visitor scrolls down the page."
+    },
+    {
+      "type": "color",
+      "id": "scroll_progress_color_start",
+      "default": "#6833a9",
+      "label": "Progress bar gradient start"
+    },
+    {
+      "type": "color",
+      "id": "scroll_progress_color_end",
+      "default": "#d6336c",
+      "label": "Progress bar gradient end"
+    },
+    {
+      "type": "range",
+      "id": "scroll_progress_height",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "unit": "px",
+      "default": 3,
+      "label": "Progress bar height"
     },
     {
       "type": "header",

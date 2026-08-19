@@ -459,3 +459,43 @@ sticky-header.header-wrapper.header--transparent .header__icon--cart:has(.cart-c
     animation: none !important;
   }
 }
+
+/* Scroll progress bar pinned to the top edge of the header */
+scroll-progress.header-scroll-progress {
+  --scroll-progress: 0;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--scroll-progress-height, 3px);
+  z-index: 10000;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.header-scroll-progress__bar {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--scroll-progress-color-start, #6833a9),
+    var(--scroll-progress-color-end, #d6336c)
+  );
+  /* Clip rather than scale so the gradient reveals left-to-right instead of squashing */
+  clip-path: inset(0 calc((1 - var(--scroll-progress)) * 100%) 0 0);
+  opacity: 0;
+  transition: opacity 0.2s linear;
+  will-change: clip-path;
+}
+
+.scroll-progress--visible .header-scroll-progress__bar {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-scroll-progress__bar {
+    transition: none;
+  }
+}

@@ -84,7 +84,7 @@ cart-notification {
 
 /* On non-home pages, push content down to avoid header overlap */
 .is-non-home-page main#MainContent {
-  padding-top: calc(var(--header-height) + var(--announcement-bar-height) + 60px) !important;
+  padding-top: calc(var(--header-height, 120px) + var(--announcement-bar-height, 0px) + 60px) !important;
 }
 
 
@@ -193,9 +193,11 @@ body, p, .body, .rte, .text {
   top: var(--announcement-bar-height, 0px) !important;
 }
 
-/* Set CSS custom property for announcement bar height */
+/* Fallbacks for the header metrics measured by JS. These must resolve to something sane
+   before scripts run, or calc() expressions using them become invalid and collapse. */
 :root {
   --announcement-bar-height: 0px;
+  --header-height: 120px;
 }
 
 

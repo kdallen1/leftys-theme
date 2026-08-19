@@ -13,7 +13,14 @@
   <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
 
-{%- if section.settings.show_scroll_progress -%}
+{%- liquid
+  assign show_scroll_progress = false
+  if section.settings.show_scroll_progress and request.page_type == 'index'
+    assign show_scroll_progress = true
+  endif
+-%}
+
+{%- if show_scroll_progress -%}
   <script src="{{ 'scroll-progress.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
@@ -298,7 +305,7 @@
     </div>
   </header>
 
-  {%- if section.settings.show_scroll_progress -%}
+  {%- if show_scroll_progress -%}
     <scroll-progress
       class="header-scroll-progress"
       style="--scroll-progress-color-start: {{ section.settings.scroll_progress_color_start }}; --scroll-progress-color-end: {{ section.settings.scroll_progress_color_end }}; --scroll-progress-height: {{ section.settings.scroll_progress_height }}px;"
@@ -314,37 +321,8 @@
 {%- endif -%}
 
 {% javascript %}
-  // Set announcement bar height for header positioning
-  function setAnnouncementBarHeight() {
-    const announcementBar = document.querySelector('.announcement-bar-section');
-    if (announcementBar) {
-      const height = announcementBar.offsetHeight;
-      document.documentElement.style.setProperty('--announcement-bar-height', `${height}px`);
-      console.log('Announcement bar height:', height + 'px');
-    } else {
-      document.documentElement.style.setProperty('--announcement-bar-height', '0px');
-      console.log('No announcement bar found');
-    }
-  }
-
-  // Set height on load and resize with longer delay
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(setAnnouncementBarHeight, 500);
-  });
-
-  window.addEventListener('resize', setAnnouncementBarHeight);
-  window.addEventListener('load', () => {
-    setTimeout(setAnnouncementBarHeight, 500);
-  });
-
-  // Also set it immediately if DOM is already loaded
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(setAnnouncementBarHeight, 500);
-    });
-  } else {
-    setTimeout(setAnnouncementBarHeight, 500);
-  }
+  // --announcement-bar-height is set pre-paint by an inline script in theme.liquid and
+  // kept current by a ResizeObserver there.
 
   class StickyHeader extends HTMLElement {
     constructor() {
@@ -357,8 +335,8 @@
       this.headerBounds = {};
 
       this.setHeaderHeight();
-      // Also update announcement bar height when header connects
-      setAnnouncementBarHeight();
+      // Re-sync the announcement bar offset in case the header mounts after a section re-render
+      if (window.setAnnouncementBarHeight) window.setAnnouncementBarHeight();
 
       window.matchMedia('(max-width: 990px)').addEventListener('change', this.setHeaderHeight.bind(this));
 
@@ -611,7 +589,7 @@
       "id": "show_scroll_progress",
       "default": true,
       "label": "Show scroll progress bar",
-      "info": "Adds a thin bar along the top of the header that fills as the visitor scrolls down the page."
+      "info": "Adds a thin bar along the top of the header that fills as the visitor scrolls down. Home page only."
     },
     {
       "type": "color",

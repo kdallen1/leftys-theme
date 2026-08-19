@@ -337,6 +337,41 @@
 
     {% sections 'header-group' %}
 
+    {%- comment -%}
+      The header is position:fixed and offset by --announcement-bar-height. This must be set
+      before first paint, otherwise the header renders at top:0 and the announcement bar
+      (higher z-index) paints over it. Inline and un-deferred on purpose; the announcement
+      bar's stylesheets are render-blocking, so its height is already correct here.
+    {%- endcomment -%}
+    <script>
+      (function () {
+        var observer = 'ResizeObserver' in window ? new ResizeObserver(update) : null;
+        var observed = null;
+
+        function update() {
+          var bar = document.querySelector('.announcement-bar-section');
+          var height = bar ? Math.round(bar.getBoundingClientRect().height) : 0;
+          document.documentElement.style.setProperty('--announcement-bar-height', height + 'px');
+
+          // Re-attach if the bar was added, removed, or re-rendered by the theme editor
+          if (observer && bar !== observed) {
+            if (observed) observer.unobserve(observed);
+            if (bar) observer.observe(bar);
+            observed = bar;
+          }
+        }
+
+        window.setAnnouncementBarHeight = update;
+        update();
+
+        // Covers font swap, text wrapping on mobile, and rotating announcements of
+        // differing lengths. ResizeObserver handles these; resize is the older fallback.
+        if (!observer) window.addEventListener('resize', update, { passive: true });
+        document.addEventListener('shopify:section:load', update);
+        document.addEventListener('shopify:section:unload', update);
+      })();
+    </script>
+
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>

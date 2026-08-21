@@ -85,6 +85,24 @@
         >
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
+          {%- liquid
+            # The sizing popup reads as a throwaway line of its own, so people miss it.
+            # When the product has a size option, the variant picker renders the opener
+            # on the option's label row instead and we suppress the standalone one.
+            assign size_guide_block = section.blocks | where: 'type', 'popup' | first
+            assign inline_size_guide_block = null
+
+            unless product.has_only_default_variant or size_guide_block == blank
+              for option in product.options_with_values
+                assign option_name = option.name | downcase
+                if option_name contains 'size'
+                  assign inline_size_guide_block = size_guide_block
+                  break
+                endif
+              endfor
+            endunless
+          -%}
+
           {%- for block in section.blocks -%}
             {%- case block.type -%}
               {%- when '@app' -%}
@@ -434,20 +452,25 @@
                   {%- endif -%}
                 </div>
               {%- when 'popup' -%}
-                <modal-opener
-                  class="product-popup-modal__opener quick-add-hidden"
-                  data-modal="#PopupModal-{{ block.id }}"
-                  {{ block.shopify_attributes }}
-                >
-                  <button
-                    id="ProductPopup-{{ block.id }}"
-                    class="product-popup-modal__button link"
-                    type="button"
-                    aria-haspopup="dialog"
+                {%- comment -%}
+                  Skipped when the variant picker is showing this opener on the size label row.
+                {%- endcomment -%}
+                {%- unless inline_size_guide_block and block.id == inline_size_guide_block.id -%}
+                  <modal-opener
+                    class="product-popup-modal__opener quick-add-hidden"
+                    data-modal="#PopupModal-{{ block.id }}"
+                    {{ block.shopify_attributes }}
                   >
-                    {{ block.settings.text | default: block.settings.page.title | escape }}
-                  </button>
-                </modal-opener>
+                    <button
+                      id="ProductPopup-{{ block.id }}"
+                      class="product-popup-modal__button link"
+                      type="button"
+                      aria-haspopup="dialog"
+                    >
+                      {{ block.settings.text | default: block.settings.page.title | escape }}
+                    </button>
+                  </modal-opener>
+                {%- endunless -%}
               {%- when 'share' -%}
                 {% liquid
                   assign share_url = product.selected_variant.url | default: product.url | prepend: request.origin
@@ -455,7 +478,12 @@
                 %}
 
               {%- when 'variant_picker' -%}
-                {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+                {% render 'product-variant-picker',
+                  product: product,
+                  block: block,
+                  product_form_id: product_form_id,
+                  size_guide_block: inline_size_guide_block
+                %}
               {%- when 'buy_buttons' -%}
                 {%- render 'buy-buttons',
                   block: block,
@@ -675,17 +703,26 @@
           class="product-popup-modal__content"
           tabindex="-1"
         >
-          <button
-            id="ModalClose-{{ block.id }}"
-            type="button"
-            class="product-popup-modal__toggle"
-            aria-label="{{ 'accessibility.close' | t }}"
-          >
-            {{- 'icon-close.svg' | inline_asset_content -}}
-          </button>
+          <div class="product-popup-modal__header">
+            <h2 class="product-popup-modal__title">
+              {{- block.settings.page.title | default: block.settings.text | escape -}}
+            </h2>
+            <button
+              id="ModalClose-{{ block.id }}"
+              type="button"
+              class="product-popup-modal__toggle"
+              aria-label="{{ 'accessibility.close' | t }}"
+            >
+              {{- 'icon-close.svg' | inline_asset_content -}}
+            </button>
+          </div>
+          {%- comment -%}
+            Page content is pasted by hand in the admin, so it arrives with
+            spacer paragraphs and inline pixel widths on the sizing table. The
+            spacers are dropped here; the widths are neutralized in CSS.
+          {%- endcomment -%}
           <div class="product-popup-modal__content-info">
-            <h1 class="h2">{{ block.settings.page.title | escape }}</h1>
-            {{ block.settings.page.content }}
+            {{- block.settings.page.content | replace: '<p>&nbsp;</p>', '' | replace: '<p> </p>', '' | replace: '<p> </p>', '' -}}
           </div>
         </div>
       </modal-dialog>

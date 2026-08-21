@@ -782,13 +782,12 @@ a.product__text {
   position: fixed;
   visibility: hidden;
   z-index: -1;
-  margin: 0 auto;
-  top: 0;
-  left: 0;
-  overflow: auto;
-  width: 100%;
-  background: rgba(var(--color-foreground), 0.2);
-  height: 100%;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(var(--color-foreground), 0.45);
+  overscroll-behavior: contain;
 }
 
 .product-popup-modal[open] {
@@ -797,19 +796,22 @@ a.product__text {
   z-index: 101;
 }
 
+/* The dialog is a column: a fixed header, then a body that takes the scroll.
+   Sizing to the content (rather than a hard 80% height) keeps a short sizing
+   chart from opening as a mostly empty box. */
 .product-popup-modal__content {
-  border-radius: var(--popup-corner-radius);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* Without this the flex item's automatic minimum size is the sizing
+     table's min-content width, which pushes the dialog past the viewport. */
+  min-width: 0;
+  max-height: 88vh;
+  max-height: 88dvh;
+  overflow: hidden;
   background-color: rgb(var(--color-background));
-  overflow: auto;
-  height: 80%;
-  margin: 0 auto;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 5rem;
-  width: 92%;
-  position: absolute;
-  top: 0;
-  padding: 0 1.5rem 0 3rem;
+  border-radius: var(--popup-corner-radius) var(--popup-corner-radius) 0 0;
   border-color: rgba(var(--color-foreground), var(--popup-border-opacity));
   border-style: solid;
   border-width: var(--popup-border-width);
@@ -829,12 +831,18 @@ a.product__text {
       rgba(var(--color-shadow), var(--popup-shadow-opacity));
 }
 
+/* Bottom sheet on phones, centered card from tablet up. */
 @media screen and (min-width: 750px) {
+  .product-popup-modal {
+    align-items: center;
+    padding: 2rem;
+  }
+
   .product-popup-modal__content {
-    padding-right: 1.5rem;
-    margin-top: 10rem;
-    width: 70%;
-    padding: 0 3rem;
+    width: min(58rem, 100%);
+    max-height: min(80vh, 72rem);
+    max-height: min(80dvh, 72rem);
+    border-radius: var(--popup-corner-radius);
   }
 
   .product-media-modal__dialog .global-media-settings--no-shadow {
@@ -842,19 +850,7 @@ a.product__text {
   }
 }
 
-.product-popup-modal__content img {
-  max-width: 100%;
-}
-
 @media screen and (max-width: 749px) {
-  .product-popup-modal__content table {
-    display: block;
-    max-width: fit-content;
-    overflow-x: auto;
-    white-space: nowrap;
-    margin: 0;
-  }
-
   .product-media-modal__dialog .global-media-settings,
   .product-media-modal__dialog .global-media-settings video,
   .product-media-modal__dialog .global-media-settings model-viewer,
@@ -887,20 +883,145 @@ a.product__text {
   text-decoration-thickness: 0.2rem;
 }
 
-.product-popup-modal__content-info {
-  padding-right: 4.4rem;
+/* Header stays put while the body scrolls, so the chart never scrolls out
+   from under its own title. */
+.product-popup-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.6rem;
+  flex: 0 0 auto;
+  padding: 1.6rem 1.6rem 1.6rem 2rem;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.1);
 }
 
-.product-popup-modal__content-info > * {
+.product-popup-modal__title {
+  margin: 0;
+  font-size: 1.7rem;
+  line-height: 1.3;
+  letter-spacing: 0.02rem;
+  word-break: break-word;
+}
+
+.product-popup-modal__content-info {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 2rem 2rem calc(2rem + env(safe-area-inset-bottom));
+  font-size: 1.4rem;
+  line-height: 1.6;
+}
+
+.product-popup-modal__content-info > *:first-child {
+  margin-top: 0;
+}
+
+.product-popup-modal__content-info > *:last-child {
+  margin-bottom: 0;
+}
+
+.product-popup-modal__content-info p {
+  margin: 0 0 1.4rem;
+}
+
+.product-popup-modal__content-info ul,
+.product-popup-modal__content-info ol {
+  margin: 0 0 1.4rem;
+  padding-left: 2rem;
+}
+
+.product-popup-modal__content-info li {
+  margin-bottom: 0.6rem;
+}
+
+.product-popup-modal__content-info img {
   height: auto;
-  margin: 0 auto;
   max-width: 100%;
-  width: 100%;
+}
+
+/* -- Sizing table ---------------------------------------------------------
+   The page content is pasted from a spreadsheet, so the table carries inline
+   pixel widths/heights on itself, its <colgroup> and every cell. Those are
+   what break the layout on narrow screens; override them rather than trying
+   to lay out around them. */
+.product-popup-modal .product-popup-modal__content-info table {
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 0 1.6rem;
+  table-layout: auto;
+  border-collapse: collapse;
+  box-shadow: none;
+  /* Some charts were pasted with an inline font stack and font-size (0.875rem,
+     which is 8.75px against the theme's 62.5% root), so these have to win
+     against the element's own style attribute. */
+  font-family: inherit !important;
+  font-size: 1.5rem !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.product-popup-modal .product-popup-modal__content-info col {
+  width: auto !important;
+}
+
+.product-popup-modal .product-popup-modal__content-info th,
+.product-popup-modal .product-popup-modal__content-info td {
+  width: auto !important;
+  height: auto !important;
+  padding: 1.1rem 0.8rem;
+  border: 0;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.1);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* The chart has no <thead>; its first row is the size labels. */
+.product-popup-modal .product-popup-modal__content-info tr:first-child > * {
+  padding-top: 0;
+  border-bottom-color: rgba(var(--color-foreground), 0.3);
+  font-size: 1.3rem !important;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+}
+
+.product-popup-modal .product-popup-modal__content-info tr:last-child > * {
+  border-bottom: 0;
+}
+
+/* Row labels ("Chest width") are the one column allowed to wrap, and they
+   stay pinned when the table has to scroll sideways. */
+.product-popup-modal .product-popup-modal__content-info tr > *:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  padding-left: 0;
+  padding-right: 1.2rem;
+  background-color: rgb(var(--color-background));
+  text-align: left;
+  white-space: normal;
+}
+
+.product-popup-modal .product-popup-modal__content-info tr > *:last-child {
+  padding-right: 0;
 }
 
 @media screen and (max-width: 749px) {
-  .product-popup-modal__content-info > * {
-    max-height: 100%;
+  /* Block display gives the table its own horizontal scroller, so a wide
+     chart slides instead of forcing the whole dialog sideways. */
+  .product-popup-modal .product-popup-modal__content-info table {
+    display: block;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+
+  .product-popup-modal .product-popup-modal__content-info th,
+  .product-popup-modal .product-popup-modal__content-info td {
+    padding: 0.8rem 0.5rem;
+    font-size: 1.4rem !important;
+  }
+
+  .product-popup-modal .product-popup-modal__content-info tr:first-child > * {
+    font-size: 1.3rem !important;
   }
 }
 
@@ -913,12 +1034,11 @@ a.product__text {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  position: sticky;
-  padding: 1.2rem;
-  z-index: 2;
-  top: 1.5rem;
-  width: 4rem;
-  margin: 0 0 0 auto;
+  flex: 0 0 auto;
+  padding: 0;
+  height: 3.6rem;
+  width: 3.6rem;
+  margin: 0;
 }
 
 .product-popup-modal__toggle:hover {
@@ -928,7 +1048,7 @@ a.product__text {
 .product-popup-modal__toggle .icon {
   height: auto;
   margin: 0;
-  width: 2.2rem;
+  width: 1.6rem;
 }
 
 .product__media-list .media > * {

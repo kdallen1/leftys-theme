@@ -50,7 +50,7 @@
         "popup_p37qzX": {
           "type": "popup",
           "settings": {
-            "text": "View sizing chart",
+            "text": "Size guide",
             "page": "{{ product.metafields.custom.size_chart.value.sizing_page.value }}"
           }
         },

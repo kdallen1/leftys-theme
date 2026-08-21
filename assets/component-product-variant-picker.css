@@ -150,3 +150,84 @@ variant-selects {
   }
 }
 /* End custom styles for Swatch display type */
+
+/* ==========================================================================
+   Size guide link
+   Sits on the option's label row ("Size   Size guide ?") instead of on a line
+   of its own above the picker, where shoppers were scrolling past it.
+   ========================================================================== */
+.form__label-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.2rem 1.2rem;
+}
+
+/* The option name was 1.3rem — fine print next to 1.4rem pills. It heads the
+   action cluster, so give it a little more weight than the link beside it. */
+:is(.product-form__input--pill, .product-form__input--swatch, .product-form__input--dropdown) .form__label {
+  font-size: 1.5rem;
+  font-weight: var(--font-body-weight-bold);
+  letter-spacing: 0.05rem;
+  color: rgb(var(--color-foreground));
+}
+
+.form__label-row .form__label {
+  margin-bottom: 0;
+}
+
+.product-form__input--dropdown .form__label-row {
+  margin-bottom: 0.6rem;
+}
+
+.size-guide-opener {
+  display: inline-flex;
+  line-height: 1;
+}
+
+.size-guide-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: #6833a9;
+  font-family: inherit;
+  font-size: 1.3rem;
+  letter-spacing: 0.04rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color var(--duration-short) ease;
+}
+
+.size-guide-link__text {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  text-decoration-thickness: 0.1rem;
+  transition: text-decoration-thickness var(--duration-short) ease;
+}
+
+/* Font Awesome kit is loaded globally in theme.liquid; the kit swaps this <i>
+   for an inline SVG sized off font-size, so both forms style the same. */
+.size-guide-link__icon,
+.size-guide-link__icon svg {
+  font-size: 1.5rem;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.size-guide-link:hover {
+  color: #4f2482;
+}
+
+.size-guide-link:hover .size-guide-link__text {
+  text-decoration-thickness: 0.2rem;
+}
+
+.size-guide-link:focus-visible {
+  outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+  outline-offset: 0.4rem;
+  border-radius: 0.2rem;
+}

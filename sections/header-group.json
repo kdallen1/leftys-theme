@@ -61,7 +61,7 @@
         "menu_type_desktop": "dropdown",
         "sticky_header_type": "always",
         "show_line_separator": false,
-        "show_scroll_progress": true,
+        "show_scroll_progress": false,
         "scroll_progress_color_start": "#6833a9",
         "scroll_progress_color_end": "#d6336c",
         "scroll_progress_height": 3,

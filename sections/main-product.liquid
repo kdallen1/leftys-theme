@@ -89,7 +89,12 @@
             # The sizing popup reads as a throwaway line of its own, so people miss it.
             # When the product has a size option, the variant picker renders the opener
             # on the option's label row instead and we suppress the standalone one.
+            # The page comes from the product's size_chart metaobject, so products
+            # without one (the gift card) resolve to blank and get no opener at all.
             assign size_guide_block = section.blocks | where: 'type', 'popup' | first
+            if size_guide_block.settings.page == blank
+              assign size_guide_block = null
+            endif
             assign inline_size_guide_block = null
 
             unless product.has_only_default_variant or size_guide_block == blank
@@ -453,9 +458,10 @@
                 </div>
               {%- when 'popup' -%}
                 {%- comment -%}
-                  Skipped when the variant picker is showing this opener on the size label row.
+                  Skipped when there is no page to open, or when the variant picker is
+                  showing this opener on the size label row.
                 {%- endcomment -%}
-                {%- unless inline_size_guide_block and block.id == inline_size_guide_block.id -%}
+                {%- if block.settings.page != blank and block.id != inline_size_guide_block.id -%}
                   <modal-opener
                     class="product-popup-modal__opener quick-add-hidden"
                     data-modal="#PopupModal-{{ block.id }}"
@@ -470,7 +476,7 @@
                       {{ block.settings.text | default: block.settings.page.title | escape }}
                     </button>
                   </modal-opener>
-                {%- endunless -%}
+                {%- endif -%}
               {%- when 'share' -%}
                 {% liquid
                   assign share_url = product.selected_variant.url | default: product.url | prepend: request.origin
@@ -695,6 +701,9 @@
 
     {% assign popups = section.blocks | where: 'type', 'popup' %}
     {%- for block in popups -%}
+      {%- if block.settings.page == blank -%}
+        {%- continue -%}
+      {%- endif -%}
       <modal-dialog id="PopupModal-{{ block.id }}" class="product-popup-modal" {{ block.shopify_attributes }}>
         <div
           role="dialog"

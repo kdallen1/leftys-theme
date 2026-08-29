@@ -40,19 +40,31 @@
 -%}
 
 {%- if shirt_count > 0 -%}
-  <div class="shirt-promotion">
-    {%- if shirt_count == 1 -%}
+  {%- if shirt_count == 1 -%}
+    <div class="shirt-promotion shirt-promotion--offer">
       <a
         href="{{ collections.shirts.url | default: '/collections/shirts' }}"
         class="shirt-promotion__link"
       >
-        <strong>Add one more shirt (any style) and save $15</strong>
+        <span class="shirt-promotion__icon" aria-hidden="true">
+          <i class="fa-regular fa-message-dollar"></i>
+        </span>
+        <span class="shirt-promotion__text">
+          <strong>Add one more shirt (any style) and save $15</strong>
+        </span>
         <span class="shirt-promotion__arrow" aria-hidden="true">&rarr;</span>
       </a>
-    {%- else -%}
-      <strong>You're saving $15 by ordering 2 or more</strong>
-    {%- endif -%}
-  </div>
+    </div>
+  {%- else -%}
+    <div class="shirt-promotion shirt-promotion--earned">
+      <span class="shirt-promotion__icon" aria-hidden="true">
+        <i class="fa-regular fa-face-cowboy-hat"></i>
+      </span>
+      <span class="shirt-promotion__text">
+        <strong>You're saving $15 by ordering 2 or more</strong>
+      </span>
+    </div>
+  {%- endif -%}
 {%- endif -%}
 
 {% schema %}

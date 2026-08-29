@@ -30,6 +30,14 @@
     assign lazy = 'lazy'
   endunless
 
+  # lazy_load is false for exactly one media item per page -- the featured image, or
+  # the first slide when no variant image is set. That item is the LCP element on a
+  # product page, so it is worth raising above the browser's default image priority.
+  assign fetch_priority = 'auto'
+  if lazy_load == false
+    assign fetch_priority = 'high'
+  endif
+
   assign desktop_columns = 1
   if desktop_layout == 'columns' and media_count > 1
     assign desktop_columns = 2
@@ -84,6 +92,7 @@
         | image_tag:
           class: image_class,
           loading: lazy,
+          fetchpriority: fetch_priority,
           sizes: sizes,
           widths: '246, 493, 600, 713, 823, 990, 1100, 1206, 1346, 1426, 1646, 1946'
       }}
@@ -125,6 +134,7 @@
         | image_url: width: 1946
         | image_tag:
           loading: lazy,
+          fetchpriority: fetch_priority,
           sizes: sizes,
           widths: '246, 493, 600, 713, 823, 990, 1100, 1206, 1346, 1426, 1646, 1946'
       }}

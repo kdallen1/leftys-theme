@@ -143,6 +143,16 @@
         "unit": "%",
         "label": "t:settings_schema.typography.settings.body_scale.label",
         "default": 100
+      },
+      {
+        "type": "header",
+        "content": "Adobe Fonts"
+      },
+      {
+        "type": "text",
+        "id": "adobe_fonts_kit_id",
+        "label": "Adobe Fonts kit ID",
+        "info": "Superclarendon is licensed through Adobe Fonts, not Google Fonts. Create a Web Project at fonts.adobe.com containing Superclarendon Regular and Bold, set Font Display to \"swap\", then paste the kit ID here (the 7-character code from the embed URL, e.g. abc1def). Leave blank to load no Adobe font and fall back to Clarendon then Times New Roman."
       }
     ]
   },

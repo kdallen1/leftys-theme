@@ -30,11 +30,31 @@
 
     {% render 'meta-tags' %}
 
+    {%- comment -%}
+      The Font Awesome kit is a loader: this script runs, then injects a stylesheet from
+      ka-p.fontawesome.com, which then pulls the webfonts from the same host. The browser
+      cannot discover that second host until the script executes, so warming the connection
+      here removes a DNS + TCP + TLS handshake from the critical path for the icons in the
+      nav, cart, carousel arrows and review stars. Two entries on purpose -- the injected
+      stylesheet is a non-CORS request, the webfonts it references are CORS, and those use
+      separate connection pools.
+    {%- endcomment -%}
+    <link rel="preconnect" href="https://ka-p.fontawesome.com">
+    <link rel="preconnect" href="https://ka-p.fontawesome.com" crossorigin>
     <script src="https://kit.fontawesome.com/df55310a74.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=SuperClarendon:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=SuperClarendon:wght@400;700&display=swap" rel="stylesheet"></noscript>
+    {%- comment -%}
+      Superclarendon is a Typodermic font licensed through Adobe Fonts -- it is not on
+      Google Fonts, and the copy bundled with macOS is embedding-restricted, so it cannot
+      be self-hosted from assets/. Set the kit ID in Theme settings > Typography.
+      When blank, headings fall back to Clarendon and then Times New Roman.
+    {%- endcomment -%}
+    {%- if settings.adobe_fonts_kit_id != blank -%}
+      <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+      <link rel="preconnect" href="https://p.typekit.net" crossorigin>
+      <link rel="stylesheet" href="https://use.typekit.net/{{ settings.adobe_fonts_kit_id }}.css">
+    {%- endif -%}
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
@@ -373,6 +393,17 @@
     </script>
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      {%- comment -%}
+        The homepage has no visible H1: the logo is an image and the carousel slide
+        headings are H2s. This gives crawlers one descriptive H1 for the store without
+        changing the design. Every other template supplies its own visible H1.
+      {%- endcomment -%}
+      {%- if request.page_type == 'index' -%}
+        <h1 class="visually-hidden">
+          Lefty's Western Wear &mdash; Men's Western Shirts, Pearl Snaps &amp; Fishing Shirts
+        </h1>
+      {%- endif -%}
+
       {{ content_for_layout }}
     </main>
 

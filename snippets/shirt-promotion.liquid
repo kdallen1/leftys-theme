@@ -1,0 +1,89 @@
+{%- comment -%}
+  Renders the shirt bundle promotion callout.
+
+  Accepts:
+  - show_subtext: {Boolean} adds a supporting line under the headline. The cart
+    page and drawer have room for it; the add-to-cart notification does not.
+
+  Usage:
+  {% render 'shirt-promotion', show_subtext: true %}
+
+  The shirt count is computed here from cart.items rather than in JavaScript.
+  The previous approach counted DOM rows: each cart row carried a data-is-shirt
+  attribute and a ShirtPromotion class in cart.js / cart-drawer.js summed them,
+  then toggled a #shirt-promotion-section element. Two bugs came out of that.
+  Both the drawer and the cart page emitted those same ids, so on /cart with the
+  drawer enabled getElementById only ever found the drawer's copy and the cart
+  page's callout never appeared; and the row query was unscoped, so it summed
+  drawer rows and cart-page rows together and double-counted every shirt.
+
+  Counting server-side removes that whole class of bug: no ids, no global
+  queries, and collection membership as the source of truth. Every surface that
+  renders this sits inside a container the Section Rendering API replaces on
+  cart change (.js-contents on the cart page, .drawer__inner in the drawer, the
+  notification's own section), so the message stays in sync with the cart.
+
+  Collection membership means newly added shirts are picked up with no code
+  change, as long as they are in one of these collections.
+{%- endcomment -%}
+
+{%- liquid
+  assign shirt_collections = 'shirts,long-sleeve-western-shirts,fishing-shirts' | split: ','
+  assign shirt_count = 0
+
+  for item in cart.items
+    assign is_shirt = false
+
+    assign item_type = item.product.type | downcase
+    if item_type contains 'shirt'
+      assign is_shirt = true
+    else
+      for collection in item.product.collections
+        if shirt_collections contains collection.handle or collection.id == 478689722404
+          assign is_shirt = true
+          break
+        endif
+      endfor
+    endif
+
+    if is_shirt
+      assign shirt_count = shirt_count | plus: item.quantity
+    endif
+  endfor
+-%}
+
+{%- if shirt_count > 0 -%}
+  {%- if shirt_count == 1 -%}
+    <a
+      href="{{ collections.shirts.url | default: '/collections/shirts' }}"
+      class="shirt-promotion shirt-promotion--offer"
+    >
+      <span class="shirt-promotion__icon" aria-hidden="true">
+        <i class="fa-regular fa-message-dollar"></i>
+      </span>
+      <span class="shirt-promotion__text">
+        <strong>Add one more shirt (any style) and save $15</strong>
+        {%- if show_subtext -%}
+          <span class="shirt-promotion__subtext">
+            You have 1 shirt in your cart — add another to unlock $15 off.
+          </span>
+        {%- endif -%}
+      </span>
+      <span class="shirt-promotion__arrow" aria-hidden="true">&rarr;</span>
+    </a>
+  {%- else -%}
+    <div class="shirt-promotion shirt-promotion--earned">
+      <span class="shirt-promotion__icon" aria-hidden="true">
+        <i class="fa-regular fa-face-cowboy-hat"></i>
+      </span>
+      <span class="shirt-promotion__text">
+        <strong>You're saving $15 by ordering 2 or more</strong>
+        {%- if show_subtext -%}
+          <span class="shirt-promotion__subtext">
+            Nice pick. 2 or more shirts means $15 off your order.
+          </span>
+        {%- endif -%}
+      </span>
+    </div>
+  {%- endif -%}
+{%- endif -%}

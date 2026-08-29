@@ -1,4 +1,3 @@
-{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
 {{ 'newsletter-popup.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'newsletter-popup.js' | asset_url }}" defer="defer"></script>
 
@@ -24,7 +23,7 @@
         <div class="newsletter-popup__overlay" data-popup-close></div>
 
         <div
-          class="newsletter-popup__content color-{{ section.settings.color_scheme }} gradient"
+          class="newsletter-popup__content color-{{ section.settings.color_scheme }} gradient{% if section.settings.image != blank %} newsletter-popup__content--with-media{% endif %}"
           role="dialog"
           aria-modal="true"
           aria-labelledby="NewsletterPopupHeading-{{ section.id }}"
@@ -41,18 +40,24 @@
           </button>
 
           {%- if section.settings.image != blank -%}
-            {{
-              section.settings.image
-              | image_url: width: 1000
-              | image_tag:
-                loading: 'lazy',
-                class: 'newsletter-popup__media',
-                widths: '500, 700, 1000',
-                sizes: '(min-width: 750px) 46rem, 100vw'
-            }}
+            <div class="newsletter-popup__media-wrapper">
+              {{
+                section.settings.image
+                | image_url: width: 1200
+                | image_tag:
+                  loading: 'lazy',
+                  class: 'newsletter-popup__media',
+                  widths: '400, 600, 800, 1200',
+                  sizes: '(min-width: 750px) 24rem, 100vw'
+              }}
+            </div>
           {%- endif -%}
 
           <div class="newsletter-popup__inner">
+            {%- if section.settings.badge != blank -%}
+              <p class="newsletter-popup__badge">{{ section.settings.badge | escape }}</p>
+            {%- endif -%}
+
             <h2 class="newsletter-popup__heading {{ section.settings.heading_size }}" id="NewsletterPopupHeading-{{ section.id }}">
               {{ section.settings.heading }}
             </h2>
@@ -61,54 +66,61 @@
               <div class="newsletter-popup__text rte">{{ section.settings.text }}</div>
             {%- endif -%}
 
-            {%- form 'customer', class: 'newsletter-form newsletter-popup__form' -%}
+            {%- liquid
+              assign placeholder_text = section.settings.placeholder
+              if placeholder_text == blank
+                assign placeholder_text = 'newsletter.label' | t
+              endif
+            -%}
+
+            {%- form 'customer', class: 'newsletter-popup__form' -%}
               <input type="hidden" name="contact[tags]" value="newsletter">
 
               <div class="newsletter-popup__fields" data-popup-fields {% if form.posted_successfully? %}hidden{% endif %}>
-                <div class="newsletter-form__field-wrapper">
-                  <div class="field">
-                    <input
-                      id="NewsletterPopupEmail-{{ section.id }}"
-                      type="email"
-                      name="contact[email]"
-                      class="field__input"
-                      value="{{ form.email }}"
-                      aria-required="true"
-                      autocorrect="off"
-                      autocapitalize="off"
-                      autocomplete="email"
-                      {% if form.errors %}
-                        aria-invalid="true"
-                        aria-describedby="NewsletterPopupError-{{ section.id }}"
-                      {% endif %}
-                      placeholder="{{ 'newsletter.label' | t }}"
-                      required
-                    >
-                    <label class="field__label" for="NewsletterPopupEmail-{{ section.id }}">
-                      {{ 'newsletter.label' | t }}
-                    </label>
-                    <button
-                      type="submit"
-                      class="newsletter-form__button field__button"
-                      name="commit"
-                      aria-label="{{ section.settings.button_label | escape }}"
-                    >
-                      <span class="svg-wrapper newsletter-popup__button-icon">
-                        {{- 'icon-plane.svg' | inline_asset_content -}}
-                      </span>
-                      <span class="newsletter-popup__spinner" aria-hidden="true"></span>
-                    </button>
-                  </div>
-                  {%- if form.errors -%}
-                    <small class="newsletter-form__message form__message" data-popup-error id="NewsletterPopupError-{{ section.id }}">
-                      <span class="svg-wrapper">
-                        {{- 'icon-error.svg' | inline_asset_content -}}
-                      </span>
-                      {{- form.errors.translated_fields.email | capitalize }}
-                      {{ form.errors.messages.email -}}
-                    </small>
-                  {%- endif -%}
+                <div class="newsletter-popup__field">
+                  <label class="visually-hidden" for="NewsletterPopupEmail-{{ section.id }}">
+                    {{ 'newsletter.label' | t }}
+                  </label>
+                  <input
+                    id="NewsletterPopupEmail-{{ section.id }}"
+                    type="email"
+                    name="contact[email]"
+                    class="newsletter-popup__input"
+                    value="{{ form.email }}"
+                    aria-required="true"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    autocomplete="email"
+                    {% if form.errors %}
+                      aria-invalid="true"
+                      aria-describedby="NewsletterPopupError-{{ section.id }}"
+                    {% endif %}
+                    placeholder="{{ placeholder_text | escape }}"
+                    required
+                  >
                 </div>
+
+                <button
+                  type="submit"
+                  class="newsletter-popup__submit"
+                  name="commit"
+                >
+                  <span>{{ section.settings.button_label | escape }}</span>
+                  <span class="newsletter-popup__button-icon" aria-hidden="true">
+                    <i class="fa-regular fa-face-cowboy-hat"></i>
+                  </span>
+                  <span class="newsletter-popup__spinner" aria-hidden="true"></span>
+                </button>
+
+                {%- if form.errors -%}
+                  <small class="newsletter-popup__error form__message" data-popup-error id="NewsletterPopupError-{{ section.id }}">
+                    <span class="svg-wrapper">
+                      {{- 'icon-error.svg' | inline_asset_content -}}
+                    </span>
+                    {{- form.errors.translated_fields.email | capitalize }}
+                    {{ form.errors.messages.email -}}
+                  </small>
+                {%- endif -%}
 
                 {%- if section.settings.disclaimer != blank -%}
                   <p class="newsletter-popup__disclaimer">{{ section.settings.disclaimer }}</p>
@@ -116,7 +128,7 @@
               </div>
 
               <h3
-                class="newsletter-form__message newsletter-form__message--success newsletter-popup__message--success form__message"
+                class="newsletter-popup__message--success form__message"
                 data-popup-success
                 tabindex="-1"
                 {% unless form.posted_successfully? %}hidden{% endunless %}
@@ -153,13 +165,20 @@
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Image (optional)"
+      "label": "Image (optional)",
+      "info": "Shown beside the copy on desktop, above it on mobile. A vertical or square crop works best."
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Eyebrow label (optional)",
+      "default": "Limited drops"
     },
     {
       "type": "inline_richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "Get 10% off"
+      "default": "Get 10% off your first order"
     },
     {
       "type": "select",
@@ -176,13 +195,19 @@
       "type": "richtext",
       "id": "text",
       "label": "Text",
-      "default": "<p>Join the list for 10% off your first order and be first to know about new drops. We make super limited quantities — don't miss out.</p>"
+      "default": "<p>Join the list and we'll send your code right over. You'll also be first to know about new drops — we make super limited quantities.</p>"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Email field placeholder",
+      "default": "you@email.com"
     },
     {
       "type": "text",
       "id": "button_label",
-      "label": "Submit button label (for accessibility)",
-      "default": "Subscribe"
+      "label": "Submit button label",
+      "default": "Get my 10% off"
     },
     {
       "type": "text",

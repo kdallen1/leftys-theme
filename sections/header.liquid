@@ -2,7 +2,17 @@
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'header-custom.css' | asset_url }}" media="print" onload="this.media='all'">
+{%- comment -%}
+  Render-blocking on purpose. This file is not cosmetic: it holds the rules that position
+  the fixed header relative to the announcement bar --
+    .announcement-bar-section          { position: sticky; z-index: 10000 }
+    ... + .section-header .header-wrapper { top: var(--announcement-bar-height) }
+  Loaded async (media="print"), those rules miss first paint, so the header renders at
+  top:0 on top of the announcement bar until the stylesheet lands. The inline script in
+  theme.liquid sets the variable correctly before paint; it is this rule that has to be
+  there to consume it.
+{%- endcomment -%}
+{{ 'header-custom.css' | asset_url | stylesheet_tag }}
 <link rel="stylesheet" href="{{ 'fontawesome-icons.css' | asset_url }}" media="print" onload="this.media='all'">
 
 {%- if settings.predictive_search_enabled -%}

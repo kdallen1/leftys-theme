@@ -361,7 +361,8 @@
       The header is position:fixed and offset by --announcement-bar-height. This must be set
       before first paint, otherwise the header renders at top:0 and the announcement bar
       (higher z-index) paints over it. Inline and un-deferred on purpose; the announcement
-      bar's stylesheets are render-blocking, so its height is already correct here.
+      bar's stylesheets are render-blocking, so its CSS-driven height is correct here.
+      Webfonts are NOT covered by that guarantee -- see the fonts.ready hook below.
     {%- endcomment -%}
     <script>
       (function () {
@@ -384,8 +385,19 @@
         window.setAnnouncementBarHeight = update;
         update();
 
-        // Covers font swap, text wrapping on mobile, and rotating announcements of
-        // differing lengths. ResizeObserver handles these; resize is the older fallback.
+        // The announcement text is .h5, which header-custom.css renders in Superclarendon --
+        // an Adobe Fonts webfont loaded with font-display: swap. The measurement above runs
+        // against fallback metrics, and Superclarendon is wider, so when the webfont lands
+        // the text can re-wrap and grow the bar. Re-measure once fonts settle: leaving a
+        // stale (too small) height here tucks the fixed header under the bar, which has a
+        // higher z-index. ResizeObserver should also catch this, but it is the only thing
+        // standing between a slow font response and a visibly broken header, so pin it.
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(update).catch(function () {});
+        }
+
+        // Covers text wrapping on mobile and rotating announcements of differing lengths.
+        // ResizeObserver handles these; resize is the older fallback.
         if (!observer) window.addEventListener('resize', update, { passive: true });
         document.addEventListener('shopify:section:load', update);
         document.addEventListener('shopify:section:unload', update);

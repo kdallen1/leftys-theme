@@ -702,6 +702,61 @@ sticky-header.header-wrapper.header--transparent .header__submenu.list-menu summ
   padding-right: 2.2rem;
 }
 
+/* --------------------------------------------------------------------------
+   "All products": the catch-all row, dressed as a small call to action rather
+   than a sixth category. Divider is drawn edge to edge with a pseudo-element
+   because the rows are inset pills inside the panel's padding.
+   Sits after the generic row rules above so it wins the hover cascade.
+   -------------------------------------------------------------------------- */
+.header__inline-menu .header__submenu .header__submenu-item--all {
+  position: relative;
+  margin-top: 0.9rem;
+}
+
+.header__inline-menu .header__submenu .header__submenu-item--all::before {
+  content: '';
+  position: absolute;
+  top: -0.45rem;
+  left: -0.6rem;
+  right: -0.6rem;
+  height: 1px;
+  background-color: rgba(26, 26, 26, 0.09);
+}
+
+.header__inline-menu .header__submenu .header__submenu-item--all .menu-link-icon {
+  color: #6833a9;
+}
+
+.header__inline-menu .header__submenu .header__submenu-arrow {
+  margin-left: auto;
+  padding-left: 1.2rem;
+  font-size: 1.1rem;
+  color: #6833a9;
+  opacity: 0.5;
+  transition: transform 0.18s ease, opacity 0.18s ease, color 0.18s ease;
+}
+
+/* Hover fills the row instead of tinting it, so it reads as the action it is */
+.header__inline-menu .header__submenu .header__submenu-item--all:hover,
+.header__inline-menu .header__submenu .header__submenu-item--all:focus-visible {
+  background-color: #6833a9;
+  transform: none;
+}
+
+.header__inline-menu .header__submenu .header__submenu-item--all:hover .header__submenu-label,
+.header__inline-menu .header__submenu .header__submenu-item--all:focus-visible .header__submenu-label,
+.header__inline-menu .header__submenu .header__submenu-item--all:hover .menu-link-icon,
+.header__inline-menu .header__submenu .header__submenu-item--all:focus-visible .menu-link-icon {
+  color: #ffffff !important;
+}
+
+.header__inline-menu .header__submenu .header__submenu-item--all:hover .header__submenu-arrow,
+.header__inline-menu .header__submenu .header__submenu-item--all:focus-visible .header__submenu-arrow {
+  color: #ffffff;
+  opacity: 1;
+  transform: translateX(0.3rem);
+}
+
 /* ==========================================================================
    Mobile drawer submenu
    The drawer's parent-item markup renders a right and a down chevron in the
@@ -794,4 +849,14 @@ sticky-header.header-wrapper.header--transparent .header__submenu.list-menu summ
 #menu-drawer .menu-drawer__menu-item--active .menu-drawer__label,
 #menu-drawer .menu-drawer__menu-item:hover .menu-drawer__label {
   color: #6833a9 !important;
+}
+
+/* Drawer counterpart of the desktop "all products" CTA row — kept quieter
+   since every drawer row already carries a divider. */
+#menu-drawer .menu-drawer__submenu .menu-drawer__menu-item--all {
+  background-color: rgba(104, 51, 169, 0.05) !important;
+}
+
+.menu-drawer__submenu .menu-drawer__menu-item--all .menu-link-icon {
+  color: #6833a9;
 }

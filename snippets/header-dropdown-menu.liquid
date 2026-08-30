@@ -32,18 +32,31 @@
                 tabindex="-1"
               >
                 {%- for childlink in link.links -%}
+                  {%- liquid
+                    # The catch-all "all products" entry is set apart from the
+                    # categories above it. Matched on handle/url rather than
+                    # position so reordering the menu can't break the styling.
+                    assign childlink_key = childlink.handle | append: ' ' | append: childlink.url | downcase
+                    assign childlink_modifier = ''
+                    if childlink_key contains 'all-products' or childlink_key contains 'collections/all'
+                      assign childlink_modifier = ' header__submenu-item--all'
+                    endif
+                  -%}
                   <li>
                     {%- if childlink.links == blank -%}
                       <a
                         id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
                         href="{{ childlink.url }}"
-                        class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
+                        class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}{{ childlink_modifier }}"
                         {% if childlink.current %}
                           aria-current="page"
                         {% endif %}
                       >
                         {%- render 'menu-link-icon', link: childlink -%}
                         <span class="header__submenu-label">{{ childlink.title | escape }}</span>
+                        {%- if childlink_modifier != blank -%}
+                          <i class="header__submenu-arrow fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        {%- endif -%}
                       </a>
                     {%- else -%}
                       <details id="Details-HeaderSubMenu-{{ link.handle }}-{{ childlink.handle }}">

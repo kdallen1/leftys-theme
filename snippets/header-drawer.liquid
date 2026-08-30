@@ -45,12 +45,22 @@
                           </button>
                           <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
                             {%- for childlink in link.links -%}
+                              {%- liquid
+                                # Matches the desktop dropdown: the catch-all
+                                # "all products" entry is styled apart from the
+                                # categories. See header-dropdown-menu.liquid.
+                                assign childlink_key = childlink.handle | append: ' ' | append: childlink.url | downcase
+                                assign childlink_modifier = ''
+                                if childlink_key contains 'all-products' or childlink_key contains 'collections/all'
+                                  assign childlink_modifier = ' menu-drawer__menu-item--all'
+                                endif
+                              -%}
                               <li>
                                 {%- if childlink.links == blank -%}
                                   <a
                                     id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
                                     href="{{ childlink.url }}"
-                                    class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
+                                    class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}{{ childlink_modifier }}"
                                     {% if childlink.current %}
                                       aria-current="page"
                                     {% endif %}

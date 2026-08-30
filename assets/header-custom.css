@@ -501,3 +501,297 @@ scroll-progress.header-scroll-progress {
     transition: none;
   }
 }
+/* ==========================================================================
+   Desktop dropdown submenu (main menu items with children, e.g. SHOP)
+   Two things make this need explicit styling rather than the Dawn defaults:
+   1. section.settings.menu_color_scheme is unset, so the panel only gets a
+      `color-` (no-op) class and inherits whatever the header is using.
+   2. On the home page the header is transparent over the hero carousel and
+      base.css forces *every* link/span inside .header to white !important.
+      The panel is opaque, so those rules have to be undone inside it or the
+      child links render white-on-white and disappear.
+   ========================================================================== */
+
+.header__inline-menu .header__submenu.list-menu {
+  left: -0.4rem;
+  /* Clears the header's bottom edge (nav item is centred in a logo-height row,
+     so the summary bottom sits ~1.4rem above it) — nudge if the header padding
+     changes. */
+  margin-top: 1.4rem;
+  width: max-content;
+  min-width: 24rem;
+  max-width: 34rem;
+  padding: 0.6rem;
+  background: #ffffff;
+  background-color: #ffffff;
+  border: 1px solid rgba(26, 26, 26, 0.07);
+  border-radius: 0.4rem;
+  box-shadow: 0 1.4rem 3.6rem rgba(0, 0, 0, 0.16), 0 0.2rem 0.6rem rgba(0, 0, 0, 0.05);
+}
+
+/* Small pointer tying the panel to the menu item it belongs to */
+.header__inline-menu .header__submenu.list-menu::before {
+  content: '';
+  position: absolute;
+  top: -0.55rem;
+  left: 2rem;
+  width: 1rem;
+  height: 1rem;
+  background: #ffffff;
+  border-top: 1px solid rgba(26, 26, 26, 0.07);
+  border-left: 1px solid rgba(26, 26, 26, 0.07);
+  border-top-left-radius: 0.2rem;
+  transform: rotate(45deg);
+}
+
+.header__inline-menu .header__submenu.list-menu .header__submenu::before {
+  content: none;
+}
+
+/* Rows are pills inside the panel's padding, so hover reads as a soft
+   highlight rather than a full-bleed band. */
+.header__inline-menu .header__submenu .header__menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.2rem;
+  padding: 1.15rem 1.6rem 1.15rem 1.2rem;
+  border-radius: 0.3rem;
+  transition: color 0.18s ease, background-color 0.18s ease, transform 0.18s ease;
+}
+
+/* Child labels: same SuperClarendon voice as the top level, a touch smaller
+   and wider tracked so the stacked list reads as a secondary level. The
+   transparent-header selectors below repeat the colour with enough
+   specificity to beat base.css's `color: white !important`. */
+.header__inline-menu .header__submenu .header__menu-item,
+.header__inline-menu .header__submenu .header__submenu-label,
+sticky-header.header-wrapper.header--transparent .header__submenu.list-menu a,
+sticky-header.header-wrapper.header--transparent .header__submenu.list-menu span,
+sticky-header.header-wrapper.header--transparent .header__submenu.list-menu summary,
+sticky-header.header-wrapper.header--transparent .header__submenu.list-menu svg {
+  font-family: 'SuperClarendon', 'Clarendon', 'Times New Roman', serif !important;
+  font-weight: 400 !important;
+  font-size: 1.35rem !important;
+  letter-spacing: 0.07em;
+  line-height: 1.2;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  color: #1a1a1a !important;
+  fill: #1a1a1a !important;
+}
+
+/* Fixed-width icon gutter keeps every label on the same left edge */
+.header__inline-menu .header__submenu .menu-link-icon {
+  flex: 0 0 1.9rem;
+  width: 1.9rem;
+  font-size: 1.5rem;
+  line-height: 1;
+  text-align: center;
+  color: rgba(104, 51, 169, 0.55);
+  transition: color 0.18s ease, transform 0.18s ease;
+}
+
+.header__inline-menu .header__submenu .header__menu-item:hover,
+.header__inline-menu .header__submenu .header__menu-item:focus-visible,
+.header__inline-menu .header__submenu .header__menu-item:hover .header__submenu-label,
+sticky-header.header-wrapper.header--transparent .header__submenu.list-menu a:hover,
+sticky-header.header-wrapper.header--transparent .header__submenu.list-menu a:hover span,
+sticky-header.header-wrapper.header--transparent .header__submenu.list-menu summary:hover span {
+  /* Weight stays 400 on purpose — bolding on hover reflows the whole panel */
+  font-weight: 400 !important;
+  color: #6833a9 !important;
+  background-color: rgba(104, 51, 169, 0.07);
+  text-decoration: none !important;
+}
+
+.header__inline-menu .header__submenu .header__menu-item:hover {
+  transform: translateX(0.2rem);
+}
+
+.header__inline-menu .header__submenu .header__menu-item:hover .menu-link-icon,
+.header__inline-menu .header__submenu .header__menu-item:focus-visible .menu-link-icon {
+  color: #6833a9;
+  transform: scale(1.08);
+}
+
+/* Current page inside the panel. component-list-menu.css centres a small
+   underline dot beneath active items, which is meant for the horizontal top
+   level; in a vertical panel it reads as a stray dash. */
+.header__inline-menu .header__submenu .list-menu__item--active,
+.header__inline-menu .header__submenu .list-menu__item--active .header__submenu-label {
+  color: #6833a9 !important;
+  background-color: rgba(104, 51, 169, 0.09);
+}
+
+.header__inline-menu .header__submenu .list-menu__item--active .menu-link-icon {
+  color: #6833a9;
+}
+
+.header__inline-menu .header__submenu .list-menu__item--active::after {
+  display: none;
+}
+
+/* Third level (a child that itself has children) nests inside the panel */
+.header__inline-menu .header__submenu .header__submenu {
+  position: static;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  margin: 0.3rem 0 0.3rem 1.6rem;
+  padding: 0.3rem 0;
+  border: 0;
+  border-left: 1px solid rgba(26, 26, 26, 0.1);
+  border-radius: 0;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.header__inline-menu .header__submenu .header__submenu .header__menu-item {
+  padding: 0.9rem 1.6rem 0.9rem 1.2rem;
+}
+
+.header__inline-menu .header__submenu .header__submenu .header__submenu-label {
+  font-size: 1.25rem !important;
+}
+
+.header__inline-menu .header__submenu .icon-caret {
+  height: 0.6rem;
+  margin-left: auto;
+  padding-left: 1rem;
+  opacity: 0.45;
+}
+
+/* The open parent gets no underline — the rotated caret (base.css) plus the
+   panel's pointer are the affordance. base.css underlines both the open and
+   the child-active state, so both are cleared here. */
+.header__inline-menu details[open] > .header__menu-item,
+.header__inline-menu details[open] > .header__menu-item span,
+.header__inline-menu details[open]:hover > .header__menu-item,
+.header__inline-menu details[open]:hover > .header__menu-item span,
+.header__inline-menu .header__menu-item .header__active-menu-item,
+.header__inline-menu .header__menu-item:hover .header__active-menu-item {
+  text-decoration: none !important;
+  text-underline-offset: 0 !important;
+  text-decoration-thickness: 0 !important;
+}
+
+.header__inline-menu details > .header__menu-item .icon-caret {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  opacity: 0.6;
+}
+
+.header__inline-menu details[open] > .header__menu-item .icon-caret {
+  opacity: 1;
+}
+
+/* Caret weight: icon-caret.svg is a filled chevron, so stroking the same path
+   in currentColor thickens it without scaling the glyph. Scoped to the header
+   nav — the asset is shared with accordions and the locale pickers. */
+.header__inline-menu .icon-caret path {
+  stroke: currentColor;
+  stroke-width: 0.6;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+/* Pull the caret in toward the label. It is anchored to the summary's right
+   edge (base.css, right: 0.8rem), so trimming the padding the section's inline
+   <style> sets closes the gap and drops the dead space at the same time. */
+.header__inline-menu summary.list-menu__item {
+  padding-right: 2.2rem;
+}
+
+/* ==========================================================================
+   Mobile drawer submenu
+   The drawer's parent-item markup renders a right and a down chevron in the
+   same summary; without these rules both are visible at once.
+   ========================================================================== */
+
+.menu-drawer summary.menu-drawer__menu-item {
+  position: relative;
+}
+
+.menu-drawer summary.menu-drawer__menu-item > .fa-chevron-right,
+.menu-drawer summary.menu-drawer__menu-item > .fa-chevron-down {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+  color: rgba(26, 26, 26, 0.45);
+}
+
+.menu-drawer details:not([open]) > summary.menu-drawer__menu-item > .fa-chevron-down,
+.menu-drawer details[open] > summary.menu-drawer__menu-item > .fa-chevron-right {
+  display: none;
+}
+
+/* Child items sit one level down: smaller, tracked out, no heavy divider, and
+   the same icon gutter as the desktop panel so the two read as one system. */
+#menu-drawer .menu-drawer__submenu .menu-drawer__menu-item,
+#menu-drawer .menu-drawer__submenu summary.menu-drawer__menu-item,
+.menu-drawer__submenu .menu-drawer__menu-item {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  font-size: 1.5rem !important;
+  letter-spacing: 0.06em;
+  padding: 1.3rem 2rem 1.3rem 2.4rem !important;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.06) !important;
+}
+
+#menu-drawer .menu-drawer__submenu .menu-drawer__menu-item--active,
+.menu-drawer__submenu .menu-drawer__menu-item--active {
+  color: #6833a9 !important;
+  background-color: rgba(104, 51, 169, 0.05) !important;
+  box-shadow: inset 0.3rem 0 0 0 #6833a9;
+}
+
+.menu-drawer__close-button i.fas {
+  margin-right: 1rem;
+  font-size: 1.3rem;
+  color: #6833a9;
+}
+
+.menu-drawer__close-button {
+  border-bottom: 1px solid rgba(26, 26, 26, 0.1) !important;
+}
+
+
+.menu-drawer__submenu .menu-link-icon {
+  flex: 0 0 2.1rem;
+  width: 2.1rem;
+  font-size: 1.6rem;
+  line-height: 1;
+  text-align: center;
+  color: rgba(104, 51, 169, 0.6);
+}
+
+.menu-drawer__submenu .menu-drawer__menu-item--active .menu-link-icon,
+.menu-drawer__submenu .menu-drawer__menu-item:active .menu-link-icon {
+  color: #6833a9;
+}
+
+/* The label span needs both of these undone:
+   - the legacy `.menu-drawer__menu-item span` rule above hands it padding, a
+     1.8rem size and a border-bottom (harmless while no drawer item contained a
+     span, an inline underline now that one does);
+   - base.css forces `color: white !important` on every span inside .header
+     while the header is transparent, which the anchors only escape because the
+     rule above them is ID-scoped. Same trick here.
+   ========================================================================== */
+#menu-drawer .menu-drawer__label,
+.menu-drawer .menu-drawer__label {
+  padding: 0 !important;
+  border: 0 !important;
+  font-size: inherit !important;
+  letter-spacing: inherit;
+  background: transparent !important;
+  color: #1a1a1a !important;
+}
+
+#menu-drawer .menu-drawer__menu-item--active .menu-drawer__label,
+#menu-drawer .menu-drawer__menu-item:hover .menu-drawer__label {
+  color: #6833a9 !important;
+}

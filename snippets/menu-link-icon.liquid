@@ -1,0 +1,57 @@
+{% comment %}
+  Renders a Font Awesome (Pro kit, loaded in theme.liquid) icon for a menu link.
+
+  Handles are matched first so the four current Shop children get hand-picked
+  icons; the keyword fallbacks below mean a link added in the Shopify nav editor
+  still comes out with something sensible instead of a blank gutter.
+
+  Accepts:
+  - link: {Object} a linklist link (link, childlink, grandchildlink)
+
+  Usage:
+  {% render 'menu-link-icon', link: childlink %}
+{% endcomment %}
+
+{%- liquid
+  assign key = link.handle | append: ' ' | append: link.title | append: ' ' | append: link.url | downcase
+  assign icon = ''
+
+  case link.handle
+    when 'western-shirts'
+      assign icon = 'fa-solid fa-skull-cow'
+    when 'fishing-shirts'
+      assign icon = 'fa-solid fa-fish-fins'
+    when 'special-releases'
+      assign icon = 'fa-solid fa-sparkles'
+    when 'not-a-shirt'
+      assign icon = 'fa-solid fa-gift'
+  endcase
+
+  if icon == blank
+    if key contains 'fish'
+      assign icon = 'fa-solid fa-fish-fins'
+    elsif key contains 'western'
+      assign icon = 'fa-solid fa-skull-cow'
+    elsif key contains 'long-sleeve'
+      assign icon = 'fa-solid fa-shirt-long-sleeve'
+    elsif key contains 'special' or key contains 'release' or key contains 'limited' or key contains 'drop'
+      assign icon = 'fa-solid fa-sparkles'
+    elsif key contains 'hat' or key contains 'cap'
+      assign icon = 'fa-solid fa-hat-cowboy'
+    elsif key contains 'shirt' or key contains 'tee'
+      assign icon = 'fa-solid fa-shirt'
+    elsif key contains 'sale' or key contains 'clearance'
+      assign icon = 'fa-solid fa-tag'
+    elsif key contains 'gift'
+      assign icon = 'fa-solid fa-gift'
+    elsif key contains 'sticker' or key contains 'other' or key contains 'accessor'
+      assign icon = 'fa-solid fa-gift'
+    elsif key contains 'all' or key contains 'collections/all'
+      assign icon = 'fa-solid fa-grid-2'
+    else
+      assign icon = 'fa-solid fa-tag'
+    endif
+  endif
+-%}
+
+<i class="menu-link-icon {{ icon }}" aria-hidden="true"></i>

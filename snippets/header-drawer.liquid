@@ -55,7 +55,8 @@
                                       aria-current="page"
                                     {% endif %}
                                   >
-                                    {{ childlink.title | escape }}
+                                    {%- render 'menu-link-icon', link: childlink -%}
+                                    <span class="menu-drawer__label">{{ childlink.title | escape }}</span>
                                   </a>
                                 {%- else -%}
                                   <details id="Details-menu-drawer-{{ link.handle }}-{{ childlink.handle }}">

@@ -1,0 +1,50 @@
+{% comment %}
+  Renders a row of links to the individual collections. Intended for the
+  catch-all "all products" page, where the grid is otherwise undifferentiated.
+
+  The list is built from the main menu's dropdown children, minus the catch-all
+  entry itself, so it can't drift out of step with the header. Icons come from
+  the same snippet the nav and dropdown use.
+
+  Accepts:
+  - heading: {String} optional, defaults to "Shop By Collection"
+
+  Usage:
+  {% render 'collection-links' %}
+{% endcomment %}
+
+{%- liquid
+  assign menu = linklists['main-menu']
+  assign links_heading = heading | default: 'Shop By Collection'
+-%}
+
+{%- capture collection_links_items -%}
+  {%- for link in menu.links -%}
+    {%- if link.links == blank -%}
+      {%- continue -%}
+    {%- endif -%}
+    {%- for childlink in link.links -%}
+      {%- assign childlink_key = childlink.handle | append: ' ' | append: childlink.url | downcase -%}
+      {%- if childlink_key contains 'all-products' or childlink_key contains 'collections/all' -%}
+        {%- continue -%}
+      {%- endif -%}
+      <li class="collection-links__item">
+        <a class="collection-links__link" href="{{ childlink.url }}">
+          {%- render 'menu-link-icon', link: childlink -%}
+          <span class="collection-links__label">{{ childlink.title | escape }}</span>
+        </a>
+      </li>
+    {%- endfor -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- if collection_links_items != blank -%}
+  {{ 'component-collection-links.css' | asset_url | stylesheet_tag }}
+
+  <nav class="collection-links page-width" aria-label="{{ links_heading | escape }}">
+    <h2 class="collection-links__heading">{{ links_heading | escape }}</h2>
+    <ul class="collection-links__list" role="list">
+      {{ collection_links_items }}
+    </ul>
+  </nav>
+{%- endif -%}

@@ -47,6 +47,17 @@
   </div>
 </div>
 
+{%- comment -%}
+  Shortcuts to the individual collections, on the catch-all page only — the
+  grid there spans every collection, so it needs a way back into them.
+{%- endcomment -%}
+{%- if collection.url == routes.all_products_collection_url
+  or request.path == routes.all_products_collection_url
+  or collection.handle == 'all'
+-%}
+  {% render 'collection-links' %}
+{%- endif -%}
+
 {% schema %}
 {
   "name": "t:sections.main-collection-banner.name",

@@ -223,7 +223,7 @@
       "settings": {
         "collection": "other-stuff",
         "products_to_show": 4,
-        "title": "Other Stuff",
+        "title": "Not A Shirt",
         "heading_size": "h2",
         "description": "<p>Things that aren't shirts.</p>",
         "show_description": false,

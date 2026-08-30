@@ -10,6 +10,15 @@ if (!customElements.get('media-gallery')) {
           thumbnails: this.querySelector('[id^="GalleryThumbnails"]'),
         };
         this.mql = window.matchMedia('(min-width: 750px)');
+
+        // Track which slide the mobile scroller is on so overlay controls (the
+        // zoom affordance) only render on it, not on the next image peeking in.
+        if (this.elements.viewer) {
+          this.elements.viewer.addEventListener('slideChanged', (event) =>
+            this.setCurrentSlide(event.detail.currentElement)
+          );
+        }
+
         if (!this.elements.thumbnails) return;
 
         this.elements.viewer.addEventListener('slideChanged', debounce(this.onSlideChanged.bind(this), 500));
@@ -28,6 +37,21 @@ if (!customElements.get('media-gallery')) {
         this.setActiveThumbnail(thumbnail);
       }
 
+      // Class writes belong here rather than the constructor, which per spec
+      // must not add attributes to the element
+      connectedCallback() {
+        if (!this.elements.viewer) return;
+        this.classList.add('gallery-slide-tracking');
+        this.setCurrentSlide(this.elements.viewer.querySelector('[data-media-id]'));
+      }
+
+      setCurrentSlide(slide) {
+        if (!slide) return;
+        this.elements.viewer.querySelectorAll('[data-media-id]').forEach((element) => {
+          element.classList.toggle('is-current-slide', element === slide);
+        });
+      }
+
       setActiveMedia(mediaId, prepend) {
         const activeMedia =
           this.elements.viewer.querySelector(`[data-media-id="${mediaId}"]`) ||
@@ -39,6 +63,8 @@ if (!customElements.get('media-gallery')) {
           element.classList.remove('is-active');
         });
         activeMedia?.classList?.add('is-active');
+        // Prepending can land on the same page index, so slideChanged may not fire
+        this.setCurrentSlide(activeMedia);
 
         if (prepend) {
           activeMedia.parentElement.firstChild !== activeMedia && activeMedia.parentElement.prepend(activeMedia);

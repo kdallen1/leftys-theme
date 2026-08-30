@@ -440,6 +440,117 @@ a.product__text {
   .product--mobile-columns .product__media-item {
     width: calc(50% - 1.5rem - var(--grid-mobile-horizontal-spacing));
   }
+
+  /*
+   * Mobile gallery scroller: carets inlaid in the bottom corners of the image
+   * instead of a control bar underneath. slider-component is the containing
+   * block (position: relative) and the gallery <ul> is its only in-flow child,
+   * so top/bottom 0 spans exactly the image height.
+   */
+  .product__media-wrapper .slider-buttons {
+    --gallery-nav-accent: 74, 144, 164;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 2.2rem 1.8rem;
+    pointer-events: none;
+  }
+
+  .product__media-wrapper .slider-buttons .slider-button {
+    pointer-events: auto;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    color: rgb(var(--gallery-nav-accent));
+    background-color: rgba(var(--color-background), 0.85);
+    box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(1rem);
+    -webkit-backdrop-filter: blur(1rem);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  /* Stroking the filled chevron path thickens it. stroke-width is in viewBox
+     units (10x6 here), so it scales up as the glyph shrinks to hold its weight. */
+  .product__media-wrapper .slider-buttons .slider-button .icon {
+    height: 1.4rem;
+    width: 1.4rem;
+    stroke: currentColor;
+    stroke-width: 0.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .product__media-wrapper .slider-buttons .slider-button:not([disabled]):active {
+    transform: scale(0.92);
+  }
+
+  /* Fade rather than hide, so the control never shifts position at either end */
+  .product__media-wrapper .slider-buttons .slider-button[disabled] {
+    opacity: 0.25;
+  }
+
+  /* Counter sits clear of the carets: small pill in the top-right of the image.
+     2.8rem centres its ~2rem height against the 4rem zoom circle opposite it. */
+  .product__media-wrapper .slider-buttons .slider-counter {
+    position: absolute;
+    right: 2.2rem;
+    top: 2.8rem;
+    min-width: 0;
+    gap: 0.2rem;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    font-size: 1.2rem;
+    line-height: 1;
+    letter-spacing: 0.02rem;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(1rem);
+    -webkit-backdrop-filter: blur(1rem);
+  }
+
+  .product__media-wrapper .slider-buttons .slider-counter--current {
+    font-weight: 600;
+  }
+
+  /* Zoom affordance gets the same treatment as the carets, in the top-left of
+     the image. Positioned against .product-media-container, which is the image
+     box itself, so 0.7rem matches the carets' inset from the image edge. */
+  .product__media-wrapper .product__media-icon {
+    --gallery-nav-accent: 74, 144, 164;
+    left: 0.7rem;
+    top: 1.8rem;
+    height: 4rem;
+    width: 4rem;
+    color: rgb(var(--gallery-nav-accent));
+    background-color: rgba(var(--color-background), 0.85);
+    border: 0;
+    box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(1rem);
+    -webkit-backdrop-filter: blur(1rem);
+  }
+
+  .product__media-wrapper .product__media-icon .icon {
+    height: 1.5rem;
+    width: 1.5rem;
+    stroke: currentColor;
+    stroke-width: 0.85;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* Only the slide in view gets a zoom affordance, so it doesn't peek in from
+     the next image. Scoped to .gallery-slide-tracking, which media-gallery.js
+     adds, so the icons stay visible if that script never runs. */
+  .gallery-slide-tracking .product__media-item:not(.is-current-slide) .product__media-icon {
+    opacity: 0;
+    pointer-events: none;
+  }
+
 }
 
 @media screen and (min-width: 750px) {
@@ -772,6 +883,33 @@ a.product__text {
   height: auto;
   margin: 0;
   width: 2.2rem;
+}
+
+/* Zoom-modal close button, matching the gallery carets. Must come after the
+   base rules above, which share its specificity. */
+@media screen and (max-width: 749px) {
+  .product-media-modal__toggle {
+    --gallery-nav-accent: 74, 144, 164;
+    box-sizing: border-box;
+    height: 4.4rem;
+    width: 4.4rem;
+    padding: 0;
+    color: rgb(var(--gallery-nav-accent));
+    background-color: rgba(var(--color-background), 0.85);
+    border: 0;
+    box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(1rem);
+    -webkit-backdrop-filter: blur(1rem);
+  }
+
+  .product-media-modal__toggle .icon {
+    height: 1.5rem;
+    width: 1.5rem;
+    stroke: currentColor;
+    stroke-width: 0.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
 }
 
 /* Product popup */

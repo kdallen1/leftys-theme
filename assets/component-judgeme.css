@@ -206,9 +206,87 @@
   min-block-size: 4.4rem;
 }
 
+/* Icon-only controls: true circles.
+   Judge.me derives their width from em-based padding plus the gutter that sits
+   after the icon -- spacing that belongs to the "Filters" label, which the
+   compact variant hides. The result was a box wider than it was tall with the
+   glyph pushed left of centre, so the outline read as a squashed oval rather
+   than a circle. Pinning the height, zeroing the padding and dropping the
+   orphaned gutter makes the box square, and a pill radius on a square box
+   resolves to a circle.
+
+   min-inline-size rather than a fixed width, and 4rem rather than 50%, so that
+   if the label is ever shown the control grows into a pill instead of clipping
+   the text or stretching into an ellipse. */
+#judgeme_product_reviews .jm-custom-answer-filter--compact,
+#judgeme_product_reviews .jm-sort-filter--compact .jm-sort-filter__select {
+  block-size: 4.4rem;
+  min-inline-size: 4.4rem;
+  padding-inline: 0;
+  padding-block: 0;
+  border-radius: 4rem;
+}
+
 #judgeme_product_reviews .jm-sort-filter--compact .jm-sort-filter__select {
   inline-size: 4.4rem;
-  min-inline-size: 4.4rem;
+}
+
+#judgeme_product_reviews .jm-custom-answer-filter--compact .jm-with-icon {
+  inline-size: 100%;
+  justify-content: center;
+}
+
+#judgeme_product_reviews .jm-custom-answer-filter--compact .jm-with-icon > svg {
+  margin-inline-end: 0;
+}
+
+/* The 1.3rem above is sized for the "Filters" label; left to inherit it, the
+   glyph came out small against a 4.4rem circle. */
+#judgeme_product_reviews .jm-custom-answer-filter--compact .jm-custom-answer-filter__icon {
+  --jm-icon-size: 1.6rem;
+}
+
+/* Narrow layouts: let "Write a review" sit at its natural width against the
+   left edge. Judge.me stretches it -- flex: 1 1 0 on the wrapper, then
+   display: block and inline-size: 100% on the button -- which reads as a
+   second add-to-cart rather than the secondary action it is.
+
+   A container query, not a media query, and unnamed so it resolves against
+   .jm-review-widget-minimal-header exactly as Judge.me's own 768px breakpoint
+   does. A 749px media query would disagree with it between roughly 750 and
+   800px viewport and leave the button half-converted. */
+@container (max-width: 768px) {
+  #judgeme_product_reviews .jm-review-widget-minimal-header__button-and-filters {
+    justify-content: flex-start;
+  }
+
+  #judgeme_product_reviews .jm-review-widget-minimal-header__action-buttons {
+    flex: 0 0 auto;
+    inline-size: auto;
+    justify-content: flex-start;
+  }
+
+  #judgeme_product_reviews .jm-review-widget-minimal-header__action-buttons > * {
+    flex-grow: 0;
+  }
+
+  #judgeme_product_reviews .jm-review-widget-minimal-header__action-buttons .jm-button {
+    display: inline-flex;
+    inline-size: auto;
+    min-inline-size: 0;
+  }
+
+  /* Filter and sort take the opposite end of the same row. The auto margin
+     rather than space-between on the parent, so that if the row runs out of
+     width the pair wraps and stays right-anchored on its own line instead of
+     being pulled back against the button. */
+  #judgeme_product_reviews .jm-review-widget-minimal-header__filters {
+    margin-inline-start: auto;
+  }
+
+  #judgeme_product_reviews .jm-filters {
+    justify-content: flex-end;
+  }
 }
 
 /* ==========================================================================
@@ -357,9 +435,14 @@
 /* ==========================================================================
    8. Font Awesome Pro icons
    ==========================================================================
-   Same approach as assets/fontawesome-icons.css: hide the vendor SVG and draw
-   the Pro glyph from the kit loaded in layout/theme.liquid. Weight 900 is
-   solid, 400 is regular. */
+   Same approach as assets/fontawesome-icons.css: draw the Pro glyph from the
+   kit loaded in layout/theme.liquid. Weight 900 is solid, 400 is regular.
+
+   The filter and sort controls deliberately keep Judge.me's own inline SVGs.
+   Those were swapped for fa-filter and fa-arrow-down-wide-short at one point;
+   the glyphs read worse than the originals at the ~16px the icon-only buttons
+   give them, and the vendor SVGs already inherit currentColor and pick up the
+   theme's border and pill treatment in section 4. Leave them alone. */
 
 /* Pen on the "Write a review" button */
 #judgeme_product_reviews .jm-action-buttons__button::before {
@@ -368,47 +451,6 @@
   font-weight: 900;
   font-size: 0.9em;
   margin-right: 0.7em;
-}
-
-/* Funnel on the Filters button -- fa-filter, as used by .filter-toggle */
-#judgeme_product_reviews .jm-custom-answer-filter__icon > svg,
-#judgeme_product_reviews .jm-search-filter__toggle > svg {
-  display: none;
-}
-
-#judgeme_product_reviews .jm-custom-answer-filter__icon::before {
-  content: '\f0b0'; /* fa-filter */
-  font-family: 'Font Awesome 6 Pro';
-  font-weight: 900;
-  font-size: 0.9em;
-  margin-inline-end: var(--jm-icon-space, 0.5em);
-}
-
-/* Sort control: the compact variant centres a single icon over the select */
-#judgeme_product_reviews .jm-sort-filter__icon > svg {
-  display: none;
-}
-
-#judgeme_product_reviews .jm-sort-filter__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-}
-
-#judgeme_product_reviews .jm-sort-filter__icon--sort::before {
-  content: '\f160'; /* fa-arrow-down-wide-short -- fa-sort's stacked
-     triangles muddy together at this size, this one stays legible */
-  font-family: 'Font Awesome 6 Pro';
-  font-weight: 900;
-  font-size: 0.95em;
-}
-
-#judgeme_product_reviews .jm-sort-filter__icon--chevron::before {
-  content: '\f078'; /* fa-chevron-down */
-  font-family: 'Font Awesome 6 Pro';
-  font-weight: 900;
-  font-size: 0.75em;
 }
 
 /* ==========================================================================

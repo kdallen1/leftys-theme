@@ -306,6 +306,17 @@
     {{ 'base.css' | asset_url | stylesheet_tag }}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
+    {%- comment -%}
+      Judge.me review widget skin. Loaded here rather than from main-product.liquid
+      because the widget is a separate app block, not part of that section -- and it
+      has to land after content_for_header, where the Judge.me app embed writes its
+      own :root colour settings. If the widget is ever added to another template,
+      add that page type to this condition.
+    {%- endcomment -%}
+    {%- if request.page_type == 'product' -%}
+      {{ 'component-judgeme.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
+
     {%- if settings.cart_type == 'drawer' -%}
       {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
       {{ 'component-cart.css' | asset_url | stylesheet_tag }}

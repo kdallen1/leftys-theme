@@ -1,0 +1,623 @@
+/* ==========================================================================
+   Judge.me customer reviews -- theme skin
+   ==========================================================================
+
+   The review widget is an app block (templates/product.json), so its markup
+   comes from Judge.me, not this theme. Two generations can render:
+
+   1. The current "revamp" widget (widget_version 3.0): a Vue app that mounts
+      into #judgeme_product_reviews, adds .jdgm-widget-revamp, and uses
+      .jm-* classes. Nearly everything it draws reads from a set of
+      --jm-* custom properties, which it writes as an INLINE style attribute
+      on .jm-review-widget and again on each .jm-review-item. Overriding those
+      properties is the main lever here -- and because they are inline, the
+      overrides need !important.
+   2. The legacy widget (.jdgm-rev-widg), still server-rendered into a hidden
+      .jdgm-legacy-widget-content wrapper during Judge.me's dual-publish
+      period. It is driven by --jdgm-* properties that the app sets on :root.
+      Styled at the bottom of this file so a rollback doesn't ship unstyled.
+
+   Judge.me appends its own stylesheets at runtime, so they always land after
+   this file in the cascade. Every rule below is therefore prefixed with the
+   #judgeme_product_reviews ID, which outranks their class/attribute selectors
+   without needing !important. !important appears only where Judge.me sets the
+   value as an inline style (the token blocks) or where a theme rule already
+   uses it (header-custom.css forces a body font on every <p>).
+
+   Palette and type come from the product page: #6833A9 purple for the CTA
+   (matching .product-form__submit), SuperClarendon for headings, Source Sans
+   Pro for body copy, and #f5a623 stars to match the homepage reviews section.
+   ========================================================================== */
+
+:root {
+  --reviews-accent: #6833a9;
+  --reviews-accent-hover: #562b8a;
+  --reviews-star: #f5a623;
+  --reviews-serif: 'SuperClarendon', 'Clarendon', 'Times New Roman', serif;
+  --reviews-sans: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ==========================================================================
+   1. Design tokens
+   ==========================================================================
+   The universal selector is deliberate: Judge.me repeats the same inline token
+   block on the widget root AND on every review card, so overriding only the
+   root would leave the cards on Judge.me's teal. Custom properties cost
+   nothing until something reads them, and the selector is scoped to the
+   widget subtree.
+
+   The same tokens are also declared on :root, unscoped, because the
+   "Write a review" modal (.jdgm-modal) is position: fixed and mounts outside
+   the widget container. */
+:root,
+#judgeme_product_reviews,
+#judgeme_product_reviews * {
+  /* Text */
+  --jm-review-widget-text-color: rgb(var(--color-foreground)) !important;
+  --jm-review-widget-lighter-text-color: rgba(var(--color-foreground), 0.6) !important;
+
+  /* Stars, histogram bars and the tints derived from them */
+  --jm-review-widget-star-and-histogram-color: var(--reviews-star) !important;
+  --jm-progress-fill: var(--reviews-star) !important;
+  --jm-progress-track: rgba(var(--color-foreground), 0.1) !important;
+  --jm-review-widget-bar-chart-height: 4px !important;
+
+  /* Buttons and accents */
+  --jm-review-widget-button-color: var(--reviews-accent) !important;
+  --jm-review-widget-button-text-color: #ffffff !important;
+  --jm-widget-primary-color: var(--reviews-accent) !important;
+
+  /* Corners: theme cards and media are square, buttons and badges are pills */
+  --jm-widget-border-radius: 0 !important;
+  --jm-widget-border-radius-simplified: 4rem !important;
+  --jm-btn-border-radius: var(--buttons-radius, 4rem) !important;
+
+  /* Review form modal */
+  --jm-review-widget-form-background-color: rgb(var(--color-background)) !important;
+  --jm-review-widget-form-text-color: rgb(var(--color-foreground)) !important;
+  --jm-review-widget-form-field-background-color: #f8f9fa !important;
+  --jm-review-widget-form-button-color: var(--reviews-accent) !important;
+  --jm-review-widget-form-button-text-color: #ffffff !important;
+  --jm-review-widget-form-border-radius: var(--inputs-radius, 0) !important;
+  --jm-review-widget-form-modal-overlay-color: #1a1a1a !important;
+}
+
+/* ==========================================================================
+   2. Section rhythm
+   ==========================================================================
+   The app block sits in a `.section` wrapper, so `.section + .section` already
+   supplies the 36px/52px gap the rest of the page uses. The widget's own
+   3em block padding stacked on top of that and pushed the reviews adrift from
+   the sections above and below. */
+#judgeme_product_reviews .jm-review-widget,
+#judgeme_product_reviews .jdgm-rev-widg {
+  padding-block: 0;
+}
+
+#judgeme_product_reviews {
+  font-family: var(--reviews-sans);
+  color: rgb(var(--color-foreground));
+}
+
+/* ==========================================================================
+   3. Typography
+   ========================================================================== */
+
+/* "Customer Reviews" -- matched to the `.h2` used by the "You may also like"
+   heading below it. Judge.me renders it as a <p role="heading">, which
+   header-custom.css has already claimed with a body-font !important rule, so
+   the font-family override has to match that weight. */
+#judgeme_product_reviews .jm-review-widget-minimal-header__title,
+#judgeme_product_reviews .jm-review-widget-header__title,
+#judgeme_product_reviews .jm-review-widget-sidebar-header__title,
+#judgeme_product_reviews .jdgm-rev-widg__title {
+  font-family: var(--reviews-serif) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  font-size: calc(var(--font-heading-scale) * 2rem);
+  letter-spacing: calc(var(--font-heading-scale) * 0.06rem);
+  line-height: calc(1 + 0.3 / max(1, var(--font-heading-scale)));
+  color: rgb(var(--color-foreground));
+}
+
+@media screen and (min-width: 750px) {
+  #judgeme_product_reviews .jm-review-widget-minimal-header__title,
+  #judgeme_product_reviews .jm-review-widget-header__title,
+  #judgeme_product_reviews .jm-review-widget-sidebar-header__title,
+  #judgeme_product_reviews .jdgm-rev-widg__title {
+    font-size: calc(var(--font-heading-scale) * 2.4rem);
+  }
+}
+
+/* The average score reads as a display figure, so it gets the serif too.
+   It is the first <p> in the rating cluster; the review count follows it. */
+#judgeme_product_reviews .jm-average-rating-display p.jm-text:first-of-type {
+  font-family: var(--reviews-serif) !important;
+  font-weight: 700 !important;
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+/* Review body copy: the theme's line-height rather than Judge.me's `normal` */
+#judgeme_product_reviews .jm-review-content__body,
+#judgeme_product_reviews .jdgm-rev__body {
+  line-height: 1.5;
+}
+
+#judgeme_product_reviews .jm-review-content__title,
+#judgeme_product_reviews .jdgm-rev__title {
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   4. Buttons
+   ========================================================================== */
+
+#judgeme_product_reviews .jm-button {
+  letter-spacing: 0.1rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+#judgeme_product_reviews .jm-button:not(:disabled):hover {
+  transform: translateY(-0.2rem);
+}
+
+/* "Write a review" -- the same purple pill as the add-to-cart button, one
+   step down in size so it doesn't compete with the CTA further up the page. */
+#judgeme_product_reviews .jm-action-buttons .jm-button--primary {
+  --action-button-padding-inline: 2em;
+  --action-button-padding-block: 1em;
+  font-family: var(--reviews-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+#judgeme_product_reviews .jm-action-buttons .jm-button--primary:hover,
+#judgeme_product_reviews .jm-action-buttons .jm-button--primary:focus-visible {
+  background-color: var(--reviews-accent-hover);
+  border-color: var(--reviews-accent-hover);
+}
+
+/* Secondary controls (Filters, pagination) follow the variant-pill vocabulary:
+   pill, hairline border at the theme's input-border opacity, body font. */
+#judgeme_product_reviews .jm-button--secondary {
+  border-color: rgba(var(--color-foreground), var(--inputs-border-opacity, 0.55));
+  font-size: 1.3rem;
+}
+
+#judgeme_product_reviews .jm-button--secondary:hover,
+#judgeme_product_reviews .jm-button--secondary:focus-visible {
+  border-color: rgb(var(--color-foreground));
+  background-color: rgba(104, 51, 169, 0.06);
+}
+
+#judgeme_product_reviews .jm-pagination-controls__button {
+  min-inline-size: 3.2rem;
+  min-block-size: 3.2rem;
+}
+
+/* The header's three controls -- Write a review, Filters, sort -- read as one
+   group, so they share the CTA's height. Judge.me sizes the icon-only pair
+   from its own padding tokens, which left them a third shorter. */
+#judgeme_product_reviews .jm-filters .jm-button,
+#judgeme_product_reviews .jm-sort-filter__select {
+  min-block-size: 4.4rem;
+}
+
+#judgeme_product_reviews .jm-sort-filter--compact .jm-sort-filter__select {
+  inline-size: 4.4rem;
+  min-inline-size: 4.4rem;
+}
+
+/* ==========================================================================
+   5. Sort dropdown
+   ==========================================================================
+   Judge.me borders the select in full-strength foreground; the theme's inputs
+   and pills use a 55% hairline. */
+#judgeme_product_reviews .jm-sort-filter__select,
+#judgeme_product_reviews .jdgm-sort-dropdown {
+  border-color: rgba(var(--color-foreground), var(--inputs-border-opacity, 0.55));
+  border-radius: var(--buttons-radius, 4rem);
+  font-size: 1.3rem;
+}
+
+#judgeme_product_reviews .jm-sort-filter__select:hover {
+  border-color: rgb(var(--color-foreground));
+}
+
+/* ==========================================================================
+   6. Review cards
+   ========================================================================== */
+
+/* Judge.me divides cards with the foreground at 20%; the theme's dividers
+   (variant group, cart lines, reviews modal) all sit at 10%. */
+#judgeme_product_reviews .jm-review-item,
+#judgeme_product_reviews .jm-align-review-item,
+#judgeme_product_reviews .jdgm-rev {
+  border-block-end-color: rgba(var(--color-foreground), 0.1);
+}
+
+/* Initial-letter avatar: brand tint rather than a wash of the star gold */
+#judgeme_product_reviews .jm-reviewer-avatar--with-initial {
+  background-color: rgba(104, 51, 169, 0.08);
+}
+
+/* The shop's reply is set off by a rule down its left edge */
+#judgeme_product_reviews .jm-shop-reply {
+  border-inline-start-color: rgba(var(--color-foreground), 0.15);
+}
+
+/* Judge.me's own "Verified" chip ships in its brand teal */
+#judgeme_product_reviews .jm-verified-badge {
+  background-color: rgba(104, 51, 169, 0.08);
+  color: rgb(var(--color-foreground));
+}
+
+#judgeme_product_reviews .jm-verified-badge--no-bg .jm-verified-badge__icon,
+#judgeme_product_reviews .jm-verified-badge__icon {
+  color: var(--reviews-accent);
+}
+
+/* Media thumbnails inherit the theme's square media corners via
+   --jm-widget-border-radius, but keep the theme's hairline frame too. */
+#judgeme_product_reviews .jm-media-thumbnail-list__thumbnail {
+  border: var(--media-border-width, 0.1rem) solid rgba(var(--color-foreground), var(--media-border-opacity, 0.05));
+}
+
+/* Purchased-variant chip
+   ----------------------
+   Judge.me closes each review with the variant the reviewer bought, drawn as a
+   full-bleed tinted banner around a 48px product thumbnail and a bare option
+   value ("S"). At the foot of a review that reads as a stray bar, and the
+   thumbnail only repeats the gallery image higher up the page. Collapsed here
+   to a metadata chip in the theme's filled-badge vocabulary.
+
+   The label comes from --reviews-variant-label, which layout/theme.liquid sets
+   from the product's own option name, so it reads "Purchased size S" here and
+   stays honest on a product whose option isn't size. */
+#judgeme_product_reviews .jm-product-variant-card {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  width: auto;
+  inline-size: auto;
+  padding: 0.6rem 1.4rem;
+  border: 0;
+  border-radius: var(--badge-corner-radius, 4rem);
+  background-color: rgba(var(--color-foreground), 0.06);
+  color: rgba(var(--color-foreground), 0.75);
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+#judgeme_product_reviews .jm-product-variant-card__thumbnail {
+  display: none;
+}
+
+/* Judge.me leaves the product link in the markup and empty when the review is
+   for the product being viewed; its min-height would pad the chip out. */
+#judgeme_product_reviews .jm-product-variant-card__product-link:empty {
+  display: none;
+}
+
+#judgeme_product_reviews .jm-product-variant-card__content {
+  max-width: none;
+}
+
+#judgeme_product_reviews .jm-product-variant-card__variant-title,
+#judgeme_product_reviews .jm-product-variant-card__product-link {
+  min-height: 0;
+}
+
+#judgeme_product_reviews .jm-product-variant-card__variant-title::before {
+  content: var(--reviews-variant-label, 'Purchased size ');
+}
+
+/* ==========================================================================
+   7. Empty state
+   ==========================================================================
+   A row of outline stars gives the empty widget something to look at, in the
+   same Font Awesome Pro vocabulary as the homepage reviews section. */
+#judgeme_product_reviews .jm-no-reviews-state::before {
+  content: '\f005\f005\f005\f005\f005';
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 400;
+  font-size: 1.8rem;
+  letter-spacing: 0.4rem;
+  line-height: 1;
+  color: var(--reviews-star);
+  margin-bottom: 1.2rem;
+}
+
+#judgeme_product_reviews .jm-no-reviews-state__text {
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+/* The button block is right-aligned by default, which reads as a stray edge
+   inside an otherwise centred column. */
+#judgeme_product_reviews .jm-no-reviews-state__action-buttons {
+  justify-content: center;
+  inline-size: auto;
+}
+
+#judgeme_product_reviews .jm-no-reviews-state__action-buttons > * {
+  flex-grow: 0;
+}
+
+/* With no reviews, Judge.me renders its "Be the first to write a review"
+   prompt in the header AND a bare "No items found" in the body. Hide the
+   second one, but only in that case -- it is the correct message when a
+   filter returns nothing. */
+#judgeme_product_reviews .jm-review-widget:has(.jm-no-reviews-state) .jdgm-empty-state {
+  display: none;
+}
+
+/* ==========================================================================
+   8. Font Awesome Pro icons
+   ==========================================================================
+   Same approach as assets/fontawesome-icons.css: hide the vendor SVG and draw
+   the Pro glyph from the kit loaded in layout/theme.liquid. Weight 900 is
+   solid, 400 is regular. */
+
+/* Pen on the "Write a review" button */
+#judgeme_product_reviews .jm-action-buttons__button::before {
+  content: '\f044'; /* fa-pen-to-square */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
+  font-size: 0.9em;
+  margin-right: 0.7em;
+}
+
+/* Funnel on the Filters button -- fa-filter, as used by .filter-toggle */
+#judgeme_product_reviews .jm-custom-answer-filter__icon > svg,
+#judgeme_product_reviews .jm-search-filter__toggle > svg {
+  display: none;
+}
+
+#judgeme_product_reviews .jm-custom-answer-filter__icon::before {
+  content: '\f0b0'; /* fa-filter */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
+  font-size: 0.9em;
+  margin-inline-end: var(--jm-icon-space, 0.5em);
+}
+
+/* Sort control: the compact variant centres a single icon over the select */
+#judgeme_product_reviews .jm-sort-filter__icon > svg {
+  display: none;
+}
+
+#judgeme_product_reviews .jm-sort-filter__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+#judgeme_product_reviews .jm-sort-filter__icon--sort::before {
+  content: '\f160'; /* fa-arrow-down-wide-short -- fa-sort's stacked
+     triangles muddy together at this size, this one stays legible */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
+  font-size: 0.95em;
+}
+
+#judgeme_product_reviews .jm-sort-filter__icon--chevron::before {
+  content: '\f078'; /* fa-chevron-down */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
+  font-size: 0.75em;
+}
+
+/* ==========================================================================
+   9. Legacy widget fallback
+   ==========================================================================
+   Only paints if Judge.me falls back to the pre-3.0 widget. The app sets
+   these on :root from its own dashboard settings, in a <style> block inside
+   content_for_header -- earlier in the head than this file, so plain
+   declarations win. */
+:root {
+  --jdgm-primary-color: var(--reviews-accent);
+  --jdgm-secondary-color: rgba(104, 51, 169, 0.1);
+  --jdgm-star-color: var(--reviews-star);
+  --jdgm-write-review-bg-color: var(--reviews-accent);
+  --jdgm-write-review-text-color: #ffffff;
+  --jdgm-paginate-color: var(--reviews-accent);
+  --jdgm-border-radius: 0;
+  --jdgm-reviewer-name-color: rgb(var(--color-foreground));
+}
+
+/* Hardcoded in the app's settings block, so no property to reach for */
+#judgeme_product_reviews .jdgm-histogram__bar-content {
+  background-color: var(--reviews-star);
+}
+
+#judgeme_product_reviews .jdgm-rev[data-verified-buyer='true'] .jdgm-rev__icon.jdgm-rev__icon::after,
+#judgeme_product_reviews .jdgm-rev__buyer-badge.jdgm-rev__buyer-badge {
+  background-color: var(--reviews-accent);
+  color: #ffffff;
+}
+
+#judgeme_product_reviews .jdgm-star {
+  color: var(--reviews-star);
+}
+
+#judgeme_product_reviews .jdgm-write-rev-link,
+#judgeme_product_reviews .jdgm-btn {
+  font-family: var(--reviews-serif);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  border-radius: var(--buttons-radius, 4rem);
+}
+
+/* ==========================================================================
+   10. Review form modal
+   ==========================================================================
+   The "Write a review" flow is a separate multi-step modal
+   (.jdgm-write-review-modal) that Judge.me appends to <body>, outside the
+   widget container -- so none of the rules above reach it, and it does not
+   read the --jm-* tokens either. Judge.me paints it from a generated <style>
+   block of hardcoded hex values (its dashboard's review-form colour settings)
+   injected at runtime, three classes deep via CSS nesting. There is no
+   property to reach for and no way to outrank it on load order, so this
+   section uses !important throughout. That is deliberate, not drift.
+
+   The alternative is to set these colours in the Judge.me dashboard instead
+   (Settings > Review form), which would make this section redundant -- but it
+   would also live outside version control, so the theme keeps ownership. */
+
+.jdgm-write-review-modal,
+.jdgm-write-review-modal .jdgm-write-review-modal__intro,
+.jdgm-write-review-modal .jdgm-write-review-modal__text,
+.jdgm-write-review-modal .jdgm-write-review-modal__field-label,
+.jdgm-write-review-modal .jdgm-write-review-modal__field-label-help,
+.jdgm-write-review-modal .jdgm-write-review-modal__checkbox-text,
+.jdgm-write-review-modal .jdgm-write-review-modal__gdpr-statement {
+  font-family: var(--reviews-sans) !important;
+  color: rgb(var(--color-foreground)) !important;
+}
+
+.jdgm-write-review-modal .jdgm-write-review-modal__overlay {
+  background-color: #1a1a1a !important;
+}
+
+.jdgm-write-review-modal .jdgm-write-review-modal__content {
+  background-color: rgb(var(--color-background)) !important;
+}
+
+/* Step headings and the product name follow the page's heading voice */
+.jdgm-write-review-modal .jdgm-write-review-modal__title,
+.jdgm-write-review-modal .jdgm-write-review-modal__product-title,
+.jdgm-write-review-modal .jdgm-write-review-modal__other-products-title {
+  font-family: var(--reviews-serif) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  color: rgb(var(--color-foreground)) !important;
+  letter-spacing: calc(var(--font-heading-scale) * 0.06rem) !important;
+}
+
+.jdgm-write-review-modal .jdgm-write-review-modal__title {
+  font-size: 2.2rem !important;
+}
+
+.jdgm-write-review-modal .jdgm-write-review-modal__product-title,
+.jdgm-write-review-modal .jdgm-write-review-modal__other-product-title {
+  font-size: 1.7rem !important;
+}
+
+/* Rating stars, in the same gold as the published reviews */
+.jdgm-write-review-modal .jdgm-write-review-modal__stars .jdgm-star,
+.jdgm-write-review-modal .jdgm-write-review-modal__other-product-stars .jdgm-star {
+  color: var(--reviews-star) !important;
+}
+
+/* The "Poor" / "Great" scale labels read as captions, not headings */
+.jdgm-write-review-modal .jdgm-write-review-modal__stars::before,
+.jdgm-write-review-modal .jdgm-write-review-modal__stars::after {
+  font-family: var(--reviews-sans) !important;
+  color: rgba(var(--color-foreground), 0.6) !important;
+}
+
+/* Next / Submit: the purple pill again */
+.jdgm-write-review-modal .jdgm-write-review-modal__nav-btn,
+.jdgm-write-review-modal .jdgm-write-review-modal__btn--contact-us {
+  background-color: var(--reviews-accent) !important;
+  color: #ffffff !important;
+  border-color: var(--reviews-accent) !important;
+  border-radius: var(--buttons-radius, 4rem) !important;
+  font-family: var(--reviews-serif) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1rem !important;
+}
+
+.jdgm-write-review-modal .jdgm-write-review-modal__nav-btn:hover,
+.jdgm-write-review-modal .jdgm-write-review-modal__btn--contact-us:hover {
+  background-color: var(--reviews-accent-hover) !important;
+  border-color: var(--reviews-accent-hover) !important;
+}
+
+.jdgm-write-review-modal .jdgm-write-review-modal__btn--leave-review {
+  color: var(--reviews-accent) !important;
+  border: 0.2rem solid var(--reviews-accent) !important;
+  border-radius: var(--buttons-radius, 4rem) !important;
+}
+
+.jdgm-write-review-modal .jdgm-write-review-modal__btn--leave-review:hover {
+  background-color: var(--reviews-accent) !important;
+  color: #ffffff !important;
+}
+
+/* Fields borrow the theme's input treatment: square, faint fill */
+.jdgm-write-review-modal .jdgm-write-review-modal__field-input {
+  background-color: #f8f9fa !important;
+  border-radius: var(--inputs-radius, 0) !important;
+  font-family: var(--reviews-sans) !important;
+  color: rgb(var(--color-foreground)) !important;
+}
+
+.jdgm-write-review-modal .jdgm-write-review-modal__field-input:focus {
+  border-color: var(--reviews-accent) !important;
+}
+
+/* Selected chips, checkboxes, sliders and upload boxes */
+.jdgm-write-review-modal .jdgm-write-review-modal__chip-input:checked + .jdgm-write-review-modal__chip-label,
+.jdgm-write-review-modal .jdgm-write-review-modal__chip-label:hover {
+  background-color: var(--reviews-accent) !important;
+  color: #ffffff !important;
+}
+
+.jdgm-write-review-modal
+  .jdgm-write-review-modal__checkbox-input:checked
+  + .jdgm-write-review-modal__checkbox-custom {
+  background-color: var(--reviews-accent) !important;
+  border-color: var(--reviews-accent) !important;
+}
+
+.jdgm-write-review-modal .jdgm-rev__slider-range {
+  background-color: rgba(104, 51, 169, 0.2) !important;
+}
+
+.jdgm-write-review-modal .jdgm-rev__slider-range::-webkit-slider-thumb,
+.jdgm-write-review-modal .jdgm-rev__slider-range::-moz-range-thumb {
+  border-color: var(--reviews-accent) !important;
+}
+
+.jdgm-write-review-modal .jdgm-picture-fieldset__box--input {
+  background-color: #f8f9fa !important;
+  border-color: var(--reviews-accent) !important;
+}
+
+.jdgm-write-review-modal .jdgm-picture-fieldset__delete,
+.jdgm-write-review-modal .jdgm-picture-fieldset__delete:hover {
+  background-color: var(--reviews-accent) !important;
+  color: #ffffff !important;
+}
+
+.jdgm-write-review-modal .jdgm-coupon-banner {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+    linear-gradient(90deg, var(--reviews-accent), var(--reviews-accent)) !important;
+  color: rgb(var(--color-foreground)) !important;
+}
+
+/* Close button: fa-xmark, as used by the homepage reviews modal */
+.jdgm-write-review-modal .jdgm-write-review-modal__close-btn > svg {
+  display: none !important;
+}
+
+.jdgm-write-review-modal .jdgm-write-review-modal__close-btn::before {
+  content: '\f00d'; /* fa-xmark */
+  font-family: 'Font Awesome 6 Pro';
+  font-weight: 900;
+  font-size: 2rem;
+  line-height: 1;
+  color: rgb(var(--color-foreground));
+}
+
+/* Judge.me focuses fields and controls with the browser-blue #007bff */
+.jdgm-write-review-modal *:focus-visible {
+  outline-color: var(--reviews-accent) !important;
+}

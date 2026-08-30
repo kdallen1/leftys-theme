@@ -315,6 +315,28 @@
     {%- endcomment -%}
     {%- if request.page_type == 'product' -%}
       {{ 'component-judgeme.css' | asset_url | stylesheet_tag }}
+
+      {%- comment -%}
+        Label for the purchased-variant chip at the foot of each review. Judge.me
+        renders the bare option value ("S"), so the prefix has to come from the
+        theme -- and it has to name this product's own option rather than
+        assuming size, or the gift card ends up reading "Purchased size $50.00".
+        Products with more than one option get an unqualified "Purchased",
+        since the value arrives as a joined string ("Blue / L").
+      {%- endcomment -%}
+      {%- liquid
+        if product.options.size == 1
+          assign reviews_option_name = product.options.first | downcase | replace: "'", "" | replace: '"', ''
+          assign reviews_variant_label = reviews_option_name | prepend: 'Purchased ' | append: ' '
+        else
+          assign reviews_variant_label = 'Purchased '
+        endif
+      -%}
+      {% style %}
+        #judgeme_product_reviews {
+          --reviews-variant-label: '{{ reviews_variant_label }}';
+        }
+      {% endstyle %}
     {%- endif -%}
 
     {%- if settings.cart_type == 'drawer' -%}

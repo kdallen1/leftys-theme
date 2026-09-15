@@ -1,0 +1,53 @@
+{%- comment -%}
+  Renders the ship-by countdown: "Ships today if you order within the next 3h 42m."
+
+  Accepts:
+  - show_info: {Boolean} adds an info button that discloses the cutoff rule in
+    a small popover. The cart page has room for it; the popup does not.
+
+  Usage:
+  {% render 'shipping-countdown', show_info: true %}
+
+  ---------------------------------------------------------------------------
+  THE SHIPPING RULES LIVE HERE. Edit the assigns below and every surface that
+  renders this snippet follows — there is nothing to change in the JS.
+
+    shipping_timezone   IANA zone the cutoff is measured in.
+    shipping_cutoff     Orders before this wall-clock time ship the same day.
+    shipping_closed_weekdays  0 = Sunday … 6 = Saturday. Days we never ship.
+    shipping_closed_dates     Extra one-off closures (vacation, moving week)
+                              as YYYY-MM-DD, comma separated. Past dates are
+                              harmless, so they can be left in place.
+
+  USPS holidays are not listed: assets/shipping-countdown.js computes the
+  eleven observed federal holidays for whatever year it is asked about, so
+  they need no yearly upkeep. Set data-observe-holidays to false to ship
+  through them.
+  ---------------------------------------------------------------------------
+
+  The countdown is computed client-side because it has to keep ticking, but it
+  is anchored to data-now — the server's clock — so a visitor whose own clock
+  is wrong by hours still sees the real ship day. See readClockSkew in the JS.
+
+  Rendered hidden and revealed by the JS once it has a number to show, which
+  avoids flashing an empty box or a wrong one.
+{%- endcomment -%}
+
+{%- liquid
+  assign shipping_timezone = 'America/Chicago'
+  assign shipping_cutoff = '14:00'
+  assign shipping_closed_weekdays = '0'
+  assign shipping_closed_dates = ''
+-%}
+
+<shipping-countdown
+  class="shipping-countdown{% if show_info %} shipping-countdown--roomy{% endif %}"
+  data-timezone="{{ shipping_timezone }}"
+  data-cutoff="{{ shipping_cutoff }}"
+  data-closed-weekdays="{{ shipping_closed_weekdays }}"
+  data-closed-dates="{{ shipping_closed_dates }}"
+  data-observe-holidays="true"
+  data-now="{{ 'now' | date: '%s' }}"
+  data-show-info="{% if show_info %}true{% else %}false{% endif %}"
+  hidden
+></shipping-countdown>

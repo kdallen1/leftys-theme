@@ -120,6 +120,12 @@
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
+{%- comment -%}
+  The header is on every page, so loading the countdown here covers both places
+  it renders — the add-to-cart notification below and the cart page footer —
+  from one tag. Two tags would re-run customElements.define and throw.
+{%- endcomment -%}
+<script src="{{ 'shipping-countdown.js' | asset_url }}" defer="defer"></script>
 
 {%- liquid
   for block in section.blocks

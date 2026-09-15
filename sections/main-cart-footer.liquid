@@ -2,6 +2,7 @@
 {{ 'component-totals.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+{{ 'shipping-countdown.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -78,6 +79,14 @@
                 </small>
               </div>
             {%- else -%}
+              {%- comment -%}
+                Directly above the checkout button, and outside .js-contents so
+                a quantity change doesn't tear the ticking element down.
+              {%- endcomment -%}
+              {%- unless cart == empty -%}
+                {%- render 'shipping-countdown', show_info: true -%}
+              {%- endunless -%}
+
               <div class="cart__ctas" {{ block.shopify_attributes }}>
                 <button
                   type="submit"

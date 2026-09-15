@@ -10,6 +10,7 @@
 {% endcomment %}
 
 {{ 'shirt-promotion.css' | asset_url | stylesheet_tag }}
+{{ 'shipping-countdown.css' | asset_url | stylesheet_tag }}
 
 <cart-notification>
   <div class="cart-notification-wrapper{% if desktop_menu_type != 'drawer' %} page-width{% endif %}">
@@ -43,6 +44,13 @@
         update. Empty on first paint, the same way #cart-notification-product is.
       {%- endcomment -%}
       <div id="cart-notification-promotion"></div>
+
+      {%- comment -%}
+        Sits outside the containers the Section Rendering API replaces, so the
+        countdown element stays mounted and keeps ticking across cart updates
+        instead of being torn down and rebuilt on every quantity change.
+      {%- endcomment -%}
+      {%- render 'shipping-countdown' -%}
 
       <div class="cart-notification__links">
         <a

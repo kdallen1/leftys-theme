@@ -18,7 +18,7 @@
             "image": "shopify://shop_images/IMG_1027.jpg",
             "heading": "Summer '26 Collection",
             "heading_size": "h1",
-            "text": "<em>Your new favorite 90's-inspired pearl snaps. Only 5 or 10 per size left in stock!</em>",
+            "text": "<em>Your new favorite 90's-inspired pearl snaps. A couple sizes are almost sold out!</em>",
             "text_style": "body",
             "button_label": "Get 'em now",
             "button_link": "shopify://collections/summer-2026-collection",
@@ -35,6 +35,19 @@
             "text_style": "body",
             "button_label": "The Neon Moon",
             "button_link": "shopify://products/the-neon-moon",
+            "button_style_secondary": false
+          }
+        },
+        "slide_mWXNHq": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/IMG_1259_parliament_pocket_tag.jpg",
+            "heading": "Made from 100% Cotton",
+            "heading_size": "h1",
+            "text": "<em>Unlike the other guys, we make our shirts out of substantial 100% cotton.  So they don't fall apart— they only get better with age.</em>",
+            "text_style": "body",
+            "button_label": "The Parliament",
+            "button_link": "shopify://products/the-parliament",
             "button_style_secondary": false
           }
         },
@@ -94,6 +107,7 @@
       "block_order": [
         "slide_BkpDAr",
         "slide_UQ8wBh",
+        "slide_mWXNHq",
         "slide_ngGCqX",
         "slide_nqhqUx",
         "slide_eAzRez",

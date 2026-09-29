@@ -12,19 +12,6 @@
     "image_carousel_DTmFXT": {
       "type": "image-carousel",
       "blocks": {
-        "slide_BkpDAr": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/IMG_1027.jpg",
-            "heading": "Summer '26 Collection",
-            "heading_size": "h1",
-            "text": "<em>Your new favorite 90's-inspired pearl snaps. A couple sizes are almost sold out!</em>",
-            "text_style": "body",
-            "button_label": "Get 'em now",
-            "button_link": "shopify://collections/summer-2026-collection",
-            "button_style_secondary": false
-          }
-        },
         "slide_mWXNHq": {
           "type": "slide",
           "settings": {
@@ -35,6 +22,19 @@
             "text_style": "body",
             "button_label": "The Parliament",
             "button_link": "shopify://products/the-parliament",
+            "button_style_secondary": false
+          }
+        },
+        "slide_BkpDAr": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/IMG_1027.jpg",
+            "heading": "Summer '26 Collection",
+            "heading_size": "h1",
+            "text": "<em>Your new favorite 90's-inspired pearl snaps. A couple sizes are almost sold out!</em>",
+            "text_style": "body",
+            "button_label": "Get 'em now",
+            "button_link": "shopify://collections/summer-2026-collection",
             "button_style_secondary": false
           }
         },
@@ -105,8 +105,8 @@
         }
       },
       "block_order": [
-        "slide_BkpDAr",
         "slide_mWXNHq",
+        "slide_BkpDAr",
         "slide_UQ8wBh",
         "slide_ngGCqX",
         "slide_nqhqUx",

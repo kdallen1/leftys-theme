@@ -12,19 +12,6 @@
     "image_carousel_DTmFXT": {
       "type": "image-carousel",
       "blocks": {
-        "slide_mWXNHq": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/IMG_1259_parliament_pocket_tag.jpg",
-            "heading": "Made from 100% Cotton",
-            "heading_size": "h1",
-            "text": "<em>Unlike the other guys, we make our shirts out of substantial 100% cotton.  So they don't fall apart— they only get better with age.</em>",
-            "text_style": "body",
-            "button_label": "The Parliament",
-            "button_link": "shopify://products/the-parliament",
-            "button_style_secondary": false
-          }
-        },
         "slide_BkpDAr": {
           "type": "slide",
           "settings": {
@@ -35,6 +22,19 @@
             "text_style": "body",
             "button_label": "Get 'em now",
             "button_link": "shopify://collections/summer-2026-collection",
+            "button_style_secondary": false
+          }
+        },
+        "slide_mWXNHq": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/IMG_1259_parliament_pocket_tag.jpg",
+            "heading": "Made from 100% Cotton",
+            "heading_size": "h1",
+            "text": "<em>Unlike the other guys, we make our shirts out of substantial 100% cotton.  So they don't fall apart— they only get better with age.</em>",
+            "text_style": "body",
+            "button_label": "The Parliament",
+            "button_link": "shopify://products/the-parliament",
             "button_style_secondary": false
           }
         },
@@ -105,8 +105,8 @@
         }
       },
       "block_order": [
-        "slide_mWXNHq",
         "slide_BkpDAr",
+        "slide_mWXNHq",
         "slide_UQ8wBh",
         "slide_ngGCqX",
         "slide_nqhqUx",

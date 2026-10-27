@@ -342,6 +342,12 @@
           --reviews-variant-label: '{{ reviews_variant_label }}';
         }
       {% endstyle %}
+
+      {%- comment -%}
+        Restock Rocket "Notify me" button and sign-up modal skin. Like Judge.me,
+        it's an app embed, so it loads here after content_for_header.
+      {%- endcomment -%}
+      {{ 'component-restock-rocket.css' | asset_url | stylesheet_tag }}
     {%- endif -%}
 
     {%- if settings.cart_type == 'drawer' -%}

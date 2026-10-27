@@ -16,9 +16,9 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/IMG_1027.jpg",
-            "heading": "Summer '26 Collection",
+            "heading": "Fresh Fall Drops",
             "heading_size": "h1",
-            "text": "<em>Your new favorite 90's-inspired pearl snaps. A couple sizes are almost sold out!</em>",
+            "text": "<em>Your new favorite 90's-inspired pearl snaps. A couple sizes are already sold out!</em>",
             "text_style": "body",
             "button_label": "Get 'em now",
             "button_link": "shopify://collections/summer-2026-collection",
@@ -77,19 +77,6 @@
             "button_style_secondary": false
           }
         },
-        "slide_eAzRez": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/IMG_1059_tank_front_zoomed.jpg",
-            "heading": "Hummingbird Tank",
-            "heading_size": "h1",
-            "text": "<em>Get ready for summer with our debut tank top - lovingly embroidered in Austin, Texas.</em>",
-            "text_style": "body",
-            "button_label": "Order now",
-            "button_link": "shopify://products/the-hummingbird-tank",
-            "button_style_secondary": false
-          }
-        },
         "slide_GxNqFf": {
           "type": "slide",
           "settings": {
@@ -110,7 +97,6 @@
         "slide_UQ8wBh",
         "slide_ngGCqX",
         "slide_nqhqUx",
-        "slide_eAzRez",
         "slide_GxNqFf"
       ],
       "name": "Image Carousel",

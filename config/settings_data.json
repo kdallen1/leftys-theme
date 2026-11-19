@@ -162,6 +162,11 @@
         "type": "shopify://apps/forms/blocks/forms/8744a304-fcb1-4347-b211-bb6b4759a76a",
         "disabled": false,
         "settings": {}
+      },
+      "10653092989201779468": {
+        "type": "shopify://apps/managed-markets/blocks/adaptive_pricing_banner/01a04a8f-9b00-7a7d-a048-ecae6789cdfc",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {

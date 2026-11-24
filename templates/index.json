@@ -119,7 +119,7 @@
       "settings": {
         "shipping_icon": "fa-solid fa-truck-fast",
         "shipping_us_text": "Free U.S. Shipping",
-        "shipping_intl_text": "$10 flat-rate international",
+        "shipping_intl_text": "Flat-rate international",
         "returns_icon": "fa-solid fa-arrow-rotate-left",
         "returns_text": "Free Returns & Exchanges",
         "limited_icon": "fa-solid fa-hat-cowboy",
@@ -129,6 +129,40 @@
         "color_scheme": "scheme-1",
         "padding_top": 28,
         "padding_bottom": 8
+      }
+    },
+    "collection_list_ah73zg": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_EkCMM7": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "long-sleeve-western-shirts"
+          }
+        },
+        "featured_collection_Aeajpt": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "black-friday-bonus-shirts"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_EkCMM7",
+        "featured_collection_Aeajpt"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "🔥 Black friday special runs Nov 24-30 🔥 Buy 2 long-sleeve western shirts, save $15 🔥 Buy 3, get a bonus shirt of your choice for free 🔥",
+        "heading_size": "h2",
+        "image_ratio": "square",
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "show_view_all": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "featured_collection": {
@@ -433,6 +467,7 @@
   "order": [
     "image_carousel_DTmFXT",
     "value_props",
+    "collection_list_ah73zg",
     "featured_collection",
     "featured_collection_WJgfHY",
     "featured_collection_iBXjGH",
